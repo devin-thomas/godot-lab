@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.png binary
 *.wav binary
+game/addons/cappy/*.gd -text
+game/addons/cappy/plugin.cfg -text
+game/addons/cappy/LICENSE -text
