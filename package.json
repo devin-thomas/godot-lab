@@ -1,0 +1,34 @@
+{
+  "name": "godot-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playable Godot capability labs with reproducible Cappy capture.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "python scripts/check.py",
+    "build": "python scripts/build.py",
+    "cappy:setup": "node scripts/cappy-setup.mjs",
+    "cappy": "cappy",
+    "test:cappy": "node scripts/cappy-gate.mjs",
+    "capture:setup": "node scripts/cappy-obs.mjs",
+    "capture": "node scripts/cappy-capture.mjs",
+    "test:audio": "node scripts/cappy-audio-gate.mjs",
+    "capture:stop": "node scripts/cappy-obs-stop.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devin-thomas/godot-lab.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/devin-thomas/godot-lab/issues"
+  },
+  "homepage": "https://github.com/devin-thomas/godot-lab#readme",
+  "devDependencies": {
+    "@uppercut-labs/cappy": "0.1.0",
+    "ws": "8.21.3"
+  }
+}

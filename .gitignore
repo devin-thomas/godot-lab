@@ -1,0 +1,12 @@
+.godot/
+node_modules/
+.cappy/
+artifacts/
+dist/
+cappy.config.json
+.env
+*.log
+__pycache__/
+.local/
+.artifacts/
+cappy.*.local.json

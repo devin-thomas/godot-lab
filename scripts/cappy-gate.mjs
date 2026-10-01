@@ -1,0 +1,24 @@
+import assert from "node:assert/strict";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { cappy } from "./cappy-cli.mjs";
+import { root, setup } from "./cappy-setup.mjs";
+
+const config = "cappy.headless.local.json";
+await setup({ headless: true, automation: true, output: config });
+const discovery = await cappy(["scenarios"], config);
+const expected = ["motion", "physics", "navigation", "materials", "audio", "persistence"];
+assert.deepEqual(discovery.scenarios.map(item => item.id).sort(), expected.toSorted(), "All six labs must register real Cappy scenarios");
+const record = await cappy(["record", "--duration", "4"], config);
+assert.equal(record.replayable, true, "The game must provide a replay payload");
+assert.equal(record.session.status, "completed");
+const replay = await cappy(["replay", record.session.id, "--no-capture"], config);
+assert.equal(replay.captured, false);
+assert.ok(replay.events.length > 0, "Replay must emit semantic events");
+const recordedTimeline = JSON.parse(await readFile(path.join(root, ".cappy/sessions", record.session.id, "timeline.json"), "utf8"));
+const semantic = events => events.filter(event => event.source === "adapter").map(({ t, type, payload, durationMs }) => ({ t, type, payload, durationMs }));
+assert.deepEqual(semantic(replay.events), semantic(recordedTimeline), "Replay semantic events and final state must equal the recording");
+const report = { generatedAt: new Date().toISOString(), cappyVersion: "0.1.0", scenarios: expected, sessionId: record.session.id, replayResult: replay.result, events: replay.events.length, captureVerified: false };
+await mkdir(path.join(root, ".artifacts"), { recursive: true });
+await writeFile(path.join(root, ".artifacts/cappy-gate.json"), `${JSON.stringify(report, null, 2)}\n`);
+console.log(JSON.stringify(report, null, 2));

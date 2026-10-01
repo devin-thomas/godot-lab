@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "project": { "id": "godot-lab", "name": "Godot Lab" },
+  "game": { "command": "godot", "args": ["--path", "/absolute/path/to/godot-lab/game"], "cwd": "." },
+  "adapter": { "port": 0, "requiredCapabilities": ["scenarios", "replay"] },
+  "obs": { "url": "ws://127.0.0.1:4467", "passwordEnv": "GODOT_LAB_OBS_PASSWORD", "scene": "Godot Lab", "switchScene": false },
+  "presets": {
+    "proof": {
+      "derivatives": [
+        { "kind": "mp4", "role": "delivery", "options": { "crf": 20, "preset": "veryfast" } },
+        { "kind": "thumbnail", "role": "thumb", "options": { "at": 2, "width": 960 } }
+      ]
+    },
+    "master-only": {}
+  },
+  "defaultPreset": "master-only",
+  "timeouts": { "connectMs": 30000, "readyMs": 30000, "obsMs": 10000, "processMs": 120000 }
+}
