@@ -4,6 +4,8 @@ const PlayerScript: GDScript = preload("res://player.gd")
 const WorldScript: GDScript = preload("res://world.gd")
 const StoreScript: GDScript = preload("res://lab_store.gd")
 const Operation: GDScript = preload("res://addons/cappy/cappy_operation.gd")
+const RegistryScript: GDScript = preload("res://labs/lab_registry.gd")
+const BusScript: GDScript = preload("res://domain/operation_bus.gd")
 const IDS: Array[String] = ["motion", "physics", "navigation", "materials", "audio", "persistence"]
 const TITLES: Array[String] = ["Motion atelier", "Gravity foundry", "Pathfinder garden",
 	"Paint & light", "Signal chamber", "Memory archive"]
@@ -50,11 +52,24 @@ var replay_cursor: int = 0
 var replay_action_origin: int = 0
 var replay_expected: Dictionary = {}
 var args: PackedStringArray
+var registry: RefCounted
+var operation_bus: RefCounted
+var active_module: Node3D
+var module_controls: VBoxContainer
+var module_workbench: PanelContainer
+var catalog_popup: PopupPanel
+var catalog_rows: VBoxContainer
+var catalog_search: LineEdit
+var inspector_popup: PopupPanel
+var inspector_text: TextEdit
+var operation_serial: int = 0
+var last_receipt: Dictionary = {}
+var live_api: Node
 
 
 func _ready() -> void:
 	args = OS.get_cmdline_user_args()
-	automation = args.has("--automation") or args.has("--verify") or args.has("--tour") or args.has("--inspect-save")
+	automation = args.has("--automation") or args.has("--verify") or args.has("--tour") or args.has("--inspect-save") or args.has("--module-verify")
 	DisplayServer.window_set_title("Godot Lab | Signal Observatory")
 	_setup_input()
 	store = StoreScript.new()
@@ -73,17 +88,27 @@ func _ready() -> void:
 	player.add_child(listener)
 	listener.make_current()
 	_setup_camera()
+	registry = RegistryScript.new()
+	if not registry.load_catalog():
+		push_error(registry.error)
+		get_tree().quit(1)
+		return
+	operation_bus = BusScript.new()
+	_register_host_operations()
 	_build_ui()
 	_set_hub_text()
 	if load_result != OK:
 		ui_receipt.text = store.last_error + "\nRepair requires an explicit checkpoint save."
 	_register_cappy()
+	_setup_live_api()
 	if args.has("--inspect-save"):
 		_inspect_save.call_deferred()
 	elif args.has("--verify"):
 		_run_verification.call_deferred()
 	elif args.has("--tour"):
 		_run_tour.call_deferred()
+	elif args.has("--module-verify"):
+		_run_module_verification.call_deferred()
 
 
 func _setup_input() -> void:
@@ -188,6 +213,13 @@ func _build_ui() -> void:
 	ui_status = _label("", 14, Color("75dfb8"))
 	ui_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(ui_status)
+	var controls_scroll: ScrollContainer = ScrollContainer.new()
+	module_workbench = _panel(root, Vector2(24, 245), Vector2(420, 340))
+	module_workbench.add_child(controls_scroll)
+	module_controls = VBoxContainer.new()
+	module_controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	controls_scroll.add_child(module_controls)
+	module_workbench.visible = false
 	action_button = _button("", column, func() -> void: command("activate"))
 	return_button = _button("RETURN TO OBSERVATORY   [Esc]", column, func() -> void: command("hub"))
 	ui_receipt = _label("", 13, Color("e9b75b"))
@@ -255,6 +287,13 @@ func _build_ui() -> void:
 	crt.material = shader
 	crt.visible = false
 	root.add_child(crt)
+	var catalog_button: Button = _button("CATALOG / 96 LABS", root,
+		func() -> void: _open_catalog())
+	catalog_button.position = Vector2(24, 142)
+	var inspect_button: Button = _button("INSPECT STATE", root,
+		func() -> void: _open_inspector())
+	inspect_button.position = Vector2(24, 185)
+	_build_catalog()
 	_refresh_progress()
 
 
@@ -298,7 +337,7 @@ func _save_settings() -> void:
 
 func _set_hub_text() -> void:
 	ui_title.text = "THE OBSERVATORY"
-	ui_copy.text = "Six doors. Six working systems.\n\nWalk to a colored doorway and press E, or choose a lab below.\n\nEvery room has an interaction, a reset, an explanation and an automated scenario.\n\nBuilt from original geometry, pixel surfaces and synthetic sound."
+	ui_copy.text = "Explore the 96-lab capability atlas.\n\nThe six doors lead to the original rooms. Open CATALOG for additional playable prototypes and the complete design program.\n\nTry a mechanism, change its parameters, and inspect its actual state."
 	action_button.text = "ENTER NEAREST DOOR   [E]"
 	return_button.visible = false
 	ui_status.text = "Keyboard + pointer + controller paths"
@@ -307,13 +346,24 @@ func _set_hub_text() -> void:
 
 
 func command(kind: String, value: String = "", remember: bool = true) -> void:
+	if kind == "enter" and registry.module_ids().has(value) and record_op != null:
+		ui_receipt.text = "Input-v1 recording covers the original rooms. Use this prototype's named Cappy scenario."
+		return
 	if remember and record_op != null:
 		record_commands.append({"tick": tick - record_start_tick, "kind": kind, "value": value})
+	if remember and kind in ["enter", "hub", "reset"]:
+		var name: String = {"enter": "host.enter", "hub": "host.hub", "reset": "host.reset"}[kind]
+		_request_operation(name, {"id": value} if kind == "enter" else {})
+		return
 	match kind:
 		"enter":
+			if registry.module_ids().has(value):
+				_enter_module(value)
+				return
 			if not IDS.has(value):
 				push_error("Unknown lab: " + value)
 				return
+			_leave_module()
 			current = value
 			camera.size = 24
 			world.build_lab(value)
@@ -329,6 +379,7 @@ func command(kind: String, value: String = "", remember: bool = true) -> void:
 			ui_hint.text = "WASD / arrows: move    Space: jump    E: action    R: reset room    Esc: hub"
 			ui_receipt.text = "Try the mechanism. Watch its state change."
 		"hub":
+			_leave_module()
 			current = "hub"
 			camera.size = 30
 			launched = null
@@ -336,7 +387,12 @@ func command(kind: String, value: String = "", remember: bool = true) -> void:
 			player.teleport(Vector3(0, 0.2, 2))
 			_set_hub_text()
 		"reset":
-			if current != "hub":
+			if active_module != null:
+				last_receipt = active_module.reset()
+				operation_bus.reset_epoch()
+				_release_inputs()
+				ui_receipt.text = JSON.stringify(last_receipt)
+			elif current != "hub":
 				command("enter", current, false)
 		"activate":
 			action_count += 1
@@ -350,6 +406,10 @@ func command(kind: String, value: String = "", remember: bool = true) -> void:
 
 
 func _activate() -> void:
+	if active_module != null:
+		var primary: Dictionary = active_module.primary_operation()
+		_request_operation(primary["operation"], primary["arguments"])
+		return
 	match current:
 		"hub":
 			var nearest: int = -1
@@ -441,6 +501,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	tick += 1
+	operation_bus.advance_tick(tick)
+	if active_module != null:
+		var state: Dictionary = active_module.observe()
+		ui_status.text = JSON.stringify(state).left(220)
 	if current == "motion" and player.distance - motion_origin > 2 and player.jumps > motion_jumps:
 		_complete("motion")
 	if current == "physics" and is_instance_valid(launched) and tick - launched_ticks > 120:
@@ -491,6 +555,22 @@ func _register_cappy() -> void:
 				op.mark_ready(),
 			func(op: RefCounted) -> void: _capture_scenario(id, op))
 	Cappy.set_replay_provider(_record_start, _record_stop, _replay_prepare, _replay_start, false)
+	for id: String in registry.module_ids():
+		Cappy.register_scenario(id.to_lower(), id + " / playable prototype", {},
+			func(op: RefCounted) -> void:
+				command("enter", id, false)
+				if active_module == null:
+					op.fail("MODULE_UNAVAILABLE", id)
+				else:
+					op.mark_ready(),
+			func(op: RefCounted) -> void:
+				var result: Dictionary = await module_scenario(id, 24)
+				op.event("LAB_PROOF", op.elapsed_msec(), result)
+				if result["passed"]:
+					await wait_ticks(120)
+					op.complete(result)
+				else:
+					op.fail("LAB_ASSERTION_FAILED", JSON.stringify(result)))
 
 
 func _capture_scenario(id: String, op: RefCounted) -> void:
@@ -503,6 +583,318 @@ func _capture_scenario(id: String, op: RefCounted) -> void:
 		op.event("LAB_PROOF", op.elapsed_msec(), result)
 		op.complete(result)
 	running_scenario = false
+
+
+func _register_host_operations() -> void:
+	var descriptors: Array[Dictionary] = [
+		{"name": "host.enter", "scope": "host", "arguments": {"id": {"type": "enum", "values": registry.playable_ids()}}, "required": ["id"], "mutates": true},
+		{"name": "host.reset", "scope": "host", "arguments": {}, "required": [], "mutates": true},
+		{"name": "host.hub", "scope": "host", "arguments": {}, "required": [], "mutates": true},
+		{"name": "host.observe", "scope": "host", "arguments": {}, "required": [], "mutates": false}]
+	for descriptor: Dictionary in descriptors:
+		var name: String = descriptor["name"]
+		var result: Error = operation_bus.register_operation(descriptor,
+			func(arguments: Dictionary) -> Dictionary:
+				match name:
+					"host.enter":
+						if record_op != null and registry.module_ids().has(arguments["id"]):
+							return {"ok": false, "code": "INPUT_V1_RECORDING_SCOPE", "message": "Use the prototype's named Cappy scenario; input-v1 covers original rooms."}
+						command("enter", arguments["id"], false)
+						return {"ok": current == arguments["id"], "code": "ENTERED" if current == arguments["id"] else "MODULE_UNAVAILABLE", "lab": current}
+					"host.reset":
+						if active_module != null:
+							var outcome: Dictionary = active_module.reset()
+							if not outcome.get("ok", false):
+								return outcome
+							operation_bus.reset_epoch()
+							_release_inputs()
+						else:
+							command("reset", "", false)
+					"host.hub": command("hub", "", false)
+				return {"ok": true, "code": "OK", "result": inspect_state(false)})
+		if result != OK:
+			push_error("Cannot register host operation: %s" % name)
+
+
+func _setup_live_api() -> void:
+	var port_text: String = OS.get_environment("GODOT_LAB_API_PORT")
+	if port_text.is_empty():
+		return
+	if not port_text.is_valid_int() or int(port_text) < 0 or int(port_text) > 65535:
+		push_error("GODOT_LAB_API_PORT must be an integer from 0 to 65535")
+		get_tree().quit(1)
+		return
+	var script: GDScript = load("res://automation/live_api.gd")
+	if script == null or not script.can_instantiate():
+		push_error("Optional live API could not load")
+		get_tree().quit(1)
+		return
+	live_api = script.new()
+	live_api.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(live_api)
+	var configured: Dictionary = live_api.configure(operation_bus, inspect_state, int(port_text),
+		OS.get_environment("GODOT_LAB_API_TOKEN"))
+	print("LIVE_API " + JSON.stringify(configured))
+	if not configured["ok"]:
+		get_tree().quit(1)
+
+
+func _request_operation(name: String, arguments: Dictionary) -> Dictionary:
+	operation_serial += 1
+	last_receipt = operation_bus.submit({"operation": name, "arguments": arguments,
+		"request_id": "host-%d" % operation_serial})
+	ui_receipt.text = "%s / revision %d / tick %d" % [last_receipt["code"], last_receipt["revision"], last_receipt["tick"]]
+	return last_receipt
+
+
+func _enter_module(id: String) -> void:
+	_leave_module()
+	var module: Node3D = registry.instantiate(id)
+	if module == null:
+		ui_receipt.text = registry.error
+		return
+	world.build_module_room(id)
+	world.room.add_child(module)
+	active_module = module
+	current = id
+	module.setup({"player": player, "camera": camera, "host": self, "automation": automation,
+		"namespace": "automation" if automation else "player"})
+	module.request_operation.connect(_request_operation)
+	for descriptor: Dictionary in module.operations():
+		var name: String = descriptor["name"]
+		descriptor["scope"] = "active-module"
+		var error: Error = operation_bus.register_operation(descriptor,
+			func(arguments: Dictionary) -> Dictionary: return module.apply_operation(name, arguments))
+		if error != OK:
+			push_error("Module operation registration failed: %s / %s" % [name, error])
+			ui_receipt.text = "OPERATION_REGISTRATION_FAILED: " + name
+			return
+	module.create_controls(module_controls)
+	_fit_module_controls(module_controls)
+	module_workbench.visible = true
+	var description: Dictionary = module.describe()
+	ui_title.text = "%s / %s" % [id, description["title"]]
+	ui_copy.text = description["description"]
+	action_button.text = description.get("action", "TRY MECHANISM") + "   [E]"
+	return_button.visible = true
+	ui_hint.text = "E: primary action    Controls: parameters    R: reset fixture    Esc: hub"
+	ui_receipt.text = "Playable prototype. Full contract qualification is tracked separately."
+	camera.size = 24
+	player.teleport(Vector3(0, 0.2, 6))
+	_release_inputs()
+
+
+func _leave_module() -> void:
+	_release_inputs()
+	if active_module != null:
+		active_module.teardown()
+		active_module = null
+	operation_bus.unregister_scope("active-module")
+	operation_bus.reset_epoch()
+	for child: Node in module_controls.get_children():
+		module_controls.remove_child(child)
+		child.queue_free()
+	module_workbench.visible = false
+	get_tree().paused = false
+	Engine.time_scale = 1.0
+
+
+func _fit_module_controls(node: Node) -> void:
+	if node is Button:
+		node.tooltip_text = node.text
+		node.clip_text = true
+		node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		node.custom_minimum_size.x = 0
+		node.custom_minimum_size.y = 38
+		node.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	for child: Node in node.get_children():
+		_fit_module_controls(child)
+
+
+func inspect_state(include_receipt: bool = true) -> Dictionary:
+	var bus_state: Dictionary = operation_bus.observation()
+	bus_state.erase("receipts")
+	bus_state.erase("events")
+	var state: Dictionary = {"lab": current, "tick": tick, "operation_bus": bus_state,
+		"module": active_module.observe() if active_module != null else {},
+		"player": {"position": {"x": player.position.x, "y": player.position.y, "z": player.position.z},
+			"jumps": player.jumps},
+		"operations": operation_bus.describe(), "qualification": "Prototype logic and runtime evidence are separate from device and provider acceptance."}
+	if include_receipt:
+		state["last_receipt"] = last_receipt.duplicate(true)
+	return state
+
+
+func _build_catalog() -> void:
+	catalog_popup = PopupPanel.new()
+	add_child(catalog_popup)
+	var column: VBoxContainer = VBoxContainer.new()
+	column.custom_minimum_size = Vector2(740, 490)
+	catalog_popup.add_child(column)
+	column.add_child(_label("CAPABILITY ATLAS / 96 LAB CONTRACTS", 23, Color("edbd68")))
+	column.add_child(_label("PLAY: original room    PROTOTYPE: new mechanism    SPECIFIED: design contract", 13, Color("75dfb8")))
+	catalog_search = LineEdit.new()
+	catalog_search.placeholder_text = "Search title, lab number, wing or capability"
+	column.add_child(catalog_search)
+	catalog_search.text_changed.connect(func(_text: String) -> void: _filter_catalog())
+	var scroll: ScrollContainer = ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	column.add_child(scroll)
+	catalog_rows = VBoxContainer.new()
+	catalog_rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(catalog_rows)
+	_button("CLOSE", column, func() -> void: catalog_popup.hide())
+	inspector_popup = PopupPanel.new()
+	add_child(inspector_popup)
+	var inspector_column: VBoxContainer = VBoxContainer.new()
+	inspector_column.custom_minimum_size = Vector2(740, 490)
+	inspector_popup.add_child(inspector_column)
+	inspector_column.add_child(_label("LIVE STATE / TYPED OPERATIONS", 23, Color("edbd68")))
+	inspector_text = TextEdit.new()
+	inspector_text.editable = false
+	inspector_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	inspector_column.add_child(inspector_text)
+	_button("REFRESH", inspector_column, func() -> void: inspector_text.text = JSON.stringify(inspect_state(), "  "))
+	_button("CLOSE", inspector_column, func() -> void: inspector_popup.hide())
+
+
+func _open_catalog() -> void:
+	_filter_catalog()
+	catalog_popup.popup_centered()
+	catalog_search.grab_focus()
+
+
+func _filter_catalog() -> void:
+	for child: Node in catalog_rows.get_children():
+		catalog_rows.remove_child(child)
+		child.queue_free()
+	for entry: Dictionary in registry.search(catalog_search.text):
+		var id: String = entry["id"]
+		var status: String = "PLAY" if registry.BASELINE.has(id) else "PROTOTYPE" if registry.available(id) else "SPECIFIED"
+		var button: Button = _button("%s / %s / %s / %s" % [id, entry["title"], entry["wing"], status], catalog_rows,
+			func() -> void:
+				if registry.available(id):
+					_request_operation("host.enter", {"id": registry.route(id)})
+				else:
+					ui_title.text = id + " / SPECIFIED"
+					ui_copy.text = entry["payoff"] + "\n\n" + entry["limits"]
+					ui_receipt.text = "This lab has a design contract; no playable module is registered yet."
+				catalog_popup.hide())
+		button.tooltip_text = entry["payoff"]
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+
+
+func _open_inspector() -> void:
+	inspector_text.text = JSON.stringify(inspect_state(), "  ")
+	inspector_popup.popup_centered()
+
+
+func module_scenario(id: String, minimum_wait_ticks: int = 1) -> Dictionary:
+	command("enter", id, false)
+	if active_module == null or current != id:
+		return {"lab": id, "passed": false, "checks": [{"name": "module-entry", "passed": false}]}
+	var checks: Array[Dictionary] = []
+	var executing_module: Node3D = active_module
+	for step: Dictionary in executing_module.scenario():
+		var receipt: Dictionary = _request_operation(step["operation"], step.get("arguments", {}))
+		if step.has("poll_until_code"):
+			var deadline: int = Time.get_ticks_msec() + clampi(int(step.get("timeout_msec", 1000)), 1, 10000)
+			while receipt["ok"] and receipt["code"] != step["poll_until_code"] and Time.get_ticks_msec() < deadline:
+				await get_tree().physics_frame
+				if not is_instance_valid(executing_module) or active_module != executing_module:
+					return {"lab": id, "passed": false, "code": "SCENARIO_INTERRUPTED", "checks": checks}
+				receipt = _request_operation(step["operation"], step.get("arguments", {}))
+		var wait_ticks: int = clampi(maxi(int(step.get("wait_ticks", 1)), minimum_wait_ticks), 1, 300)
+		for frame: int in range(wait_ticks):
+			await get_tree().physics_frame
+			if not is_instance_valid(executing_module) or active_module != executing_module:
+				return {"lab": id, "passed": false, "code": "SCENARIO_INTERRUPTED", "checks": checks}
+		var passed: bool = receipt["ok"] == step.get("expect_ok", true)
+		if step.has("expect_code") or step.has("expect_bus_code"):
+			passed = passed and receipt["code"] == step.get("expect_bus_code", step.get("expect_code"))
+		var observed: Dictionary = active_module.observe()
+		for key: String in step.get("assert", {}):
+			passed = passed and _matches_observation(observed.get(key), step["assert"][key])
+		for key: String in step.get("assert_near", {}):
+			var rule: Dictionary = step["assert_near"][key]
+			passed = passed and observed.get(key) is float and absf(observed[key] - rule["value"]) <= rule["tolerance"]
+		checks.append({"name": step["operation"], "passed": passed, "receipt": receipt, "observed": observed})
+	var all_passed: bool = not checks.is_empty()
+	for check: Dictionary in checks:
+		all_passed = all_passed and check["passed"]
+	return {"lab": id, "passed": all_passed, "checks": checks}
+
+
+func _matches_observation(actual: Variant, expected: Variant) -> bool:
+	if expected is Dictionary:
+		if not actual is Dictionary:
+			return false
+		for key: Variant in expected:
+			if not actual.has(key) or not _matches_observation(actual[key], expected[key]):
+				return false
+		return true
+	return actual == expected
+
+
+func _operation_effects_observation() -> Dictionary:
+	var observed: Dictionary = active_module.observe().duplicate(true)
+	# A worker keeps progressing during a retry; job identity, revision and commits must stay fixed.
+	if current == "LAB-028":
+		observed.erase("worker_progress")
+		observed.erase("worker_active")
+	return observed
+
+
+func _run_module_verification() -> void:
+	var results: Array[Dictionary] = []
+	var passed: bool = true
+	for id: String in registry.module_ids():
+		var result: Dictionary = await module_scenario(id)
+		var observation: Dictionary = active_module.observe().duplicate(true)
+		var unknown: Dictionary = _request_operation("invalid.unknown", {})
+		result["checks"].append({"name": "unknown-operation-preserves-state", "passed": not unknown["ok"] and active_module.observe() == observation})
+		var primary: Dictionary = active_module.primary_operation()
+		var bad_arguments: Dictionary = primary.get("arguments", {}).duplicate(true)
+		bad_arguments["unexpected_argument"] = true
+		var invalid: Dictionary = _request_operation(primary["operation"], bad_arguments)
+		result["checks"].append({"name": "invalid-arguments-preserve-state", "passed": not invalid["ok"] and active_module.observe() == observation})
+		command("reset", "", false)
+		primary = active_module.primary_operation()
+		var stale: Dictionary = operation_bus.submit({"operation": primary["operation"], "arguments": primary["arguments"],
+			"request_id": "stale-" + id, "epoch": operation_bus.observation()["epoch"] - 1})
+		result["checks"].append({"name": "reset-rejects-stale-epoch", "passed": not stale["ok"] and stale["code"] == "STALE_EPOCH"})
+		var first: Dictionary = _request_operation(primary["operation"], primary["arguments"])
+		observation = _operation_effects_observation()
+		var retry_revision: int = operation_bus.observation()["revision"]
+		var retry: Dictionary = operation_bus.submit({"operation": primary["operation"], "arguments": primary["arguments"], "request_id": first["request_id"]})
+		result["checks"].append({"name": "idempotent-retry-preserves-state", "passed": retry == first and _operation_effects_observation() == observation and operation_bus.observation()["revision"] == retry_revision})
+		command("enter", id, false)
+		result["checks"].append({"name": "reentry-fresh-revision", "passed": active_module.observe().get("revision", -1) == 0})
+		for check: Dictionary in result["checks"]:
+			result["passed"] = result["passed"] and check["passed"]
+		var snapshots: String = _argument("--snapshots=")
+		if not snapshots.is_empty() and DisplayServer.get_name() != "headless":
+			await get_tree().process_frame
+			await RenderingServer.frame_post_draw
+			var image: Image = get_viewport().get_texture().get_image()
+			if image.save_png(snapshots.path_join(id + ".png")) != OK:
+				result["passed"] = false
+		results.append(result)
+		passed = passed and result["passed"]
+	command("hub", "", false)
+	var report: Dictionary = {"passed": passed, "prototype_results": results,
+		"expected_module_ids": registry.module_ids(),
+		"full_contract_qualification": false, "engine": Engine.get_version_info()["string"]}
+	for argument: String in args:
+		if argument.begins_with("--report="):
+			var file: FileAccess = FileAccess.open(argument.trim_prefix("--report="), FileAccess.WRITE)
+			if file == null:
+				push_error("Cannot write prototype verification report")
+				get_tree().quit(1)
+				return
+			file.store_string(JSON.stringify(report, "  "))
+	print("MODULE_GATE " + ("PASS" if passed else "FAIL"))
+	get_tree().quit(0 if passed else 1)
 
 
 func _record_start(op: RefCounted) -> void:

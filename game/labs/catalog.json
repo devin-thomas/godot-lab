@@ -1,0 +1,1273 @@
+[
+  {
+    "id": "LAB-001",
+    "title": "Motion atelier",
+    "wing": "motion",
+    "payoff": "Feel a real capsule move, jump and land against stairs and a solid block.",
+    "mechanism": [
+      "CharacterBody3D",
+      "InputMap",
+      "CollisionShape3D"
+    ],
+    "limits": "Baseline Windows proof only. Synthetic controller event is not physical-controller evidence.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-002",
+    "title": "Gravity foundry",
+    "wing": "simulation",
+    "payoff": "Launch a weighted cube and inspect actual impulse, contacts and settling.",
+    "mechanism": [
+      "RigidBody3D",
+      "StaticBody3D",
+      "CollisionShape3D"
+    ],
+    "limits": "No bit-identical cross-host physics or full destruction claim.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-003",
+    "title": "Pathfinder garden",
+    "wing": "world",
+    "payoff": "Dispatch a courier around a tower to a fixed destination.",
+    "mechanism": [
+      "NavigationAgent3D",
+      "NavigationMesh",
+      "NavigationRegion3D"
+    ],
+    "limits": "No free destination selection, rebaking, crowd avoidance or broad navigation guarantee yet.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-004",
+    "title": "Paint & light",
+    "wing": "art",
+    "payoff": "Separate painted shade, matte light and vertex shade on comparable geometry.",
+    "mechanism": [
+      "ShaderMaterial",
+      "SurfaceTool",
+      "ArrayMesh",
+      "ImageTexture"
+    ],
+    "limits": "Baseline uses Compatibility. Global post-effects and all-renderer parity remain planned.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-005",
+    "title": "Signal chamber",
+    "wing": "audio",
+    "payoff": "Hear distance and stereo change around a visible original tone emitter.",
+    "mechanism": [
+      "AudioStreamPlayer3D",
+      "AudioListener3D",
+      "AudioStreamWAV"
+    ],
+    "limits": "Encoded24 kHz stereo proof is not speaker, headphone, comfort or device qualification.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-006",
+    "title": "Memory archive",
+    "wing": "core",
+    "payoff": "Write earned seals and comfort preferences then reload a real versioned file.",
+    "mechanism": [
+      "FileAccess",
+      "JSON",
+      "DirAccess"
+    ],
+    "limits": "No arbitrary positions, cloud sync or save-slot system. Deep migration work is planned.",
+    "milestone": "M0"
+  },
+  {
+    "id": "LAB-007",
+    "title": "Tile Workshop",
+    "wing": "world",
+    "payoff": "Paint a playable 2D room and see terrain seams and collision update together.",
+    "mechanism": [
+      "TileMapLayer",
+      "TileSet",
+      "TileSetAtlasSource"
+    ],
+    "limits": "API/import signatures need an installed-engine probe. Original art only.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-008",
+    "title": "Animation Loom",
+    "wing": "motion",
+    "payoff": "Blend locomotion with a gesture and inspect transition timing rather than swapping clips blindly.",
+    "mechanism": [
+      "AnimationTree",
+      "AnimationPlayer",
+      "AnimationNodeStateMachine"
+    ],
+    "limits": "No universal animation cadence or rig compatibility implied.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-009",
+    "title": "Particle Weather",
+    "wing": "rendering",
+    "payoff": "Tune a storm and compare CPU/GPU particle behavior under a bounded budget.",
+    "mechanism": [
+      "GPUParticles3D",
+      "CPUParticles3D",
+      "ParticleProcessMaterial",
+      "GPUParticles2D",
+      "CPUParticles2D"
+    ],
+    "limits": "Compute/backend capability is probed. Timing belongs to the measured host.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-010",
+    "title": "Light Archive",
+    "wing": "rendering",
+    "payoff": "Inspect how baked, authored and dynamic light change the same original room.",
+    "mechanism": [
+      "LightmapGI",
+      "DirectionalLight3D",
+      "WorldEnvironment",
+      "PointLight2D",
+      "LightOccluder2D",
+      "CanvasModulate"
+    ],
+    "limits": "Bake dependencies and renderer support require probes. No appearance parity promise.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-011",
+    "title": "Camera Rig",
+    "wing": "motion",
+    "payoff": "Try camera projection and occlusion behavior while moving through a readable course.",
+    "mechanism": [
+      "Camera3D",
+      "SpringArm3D",
+      "RayCast3D"
+    ],
+    "limits": "Comfort remains a later human gate; screen-space assertions are bounded proxies.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-012",
+    "title": "Input Atelier",
+    "wing": "interfaces",
+    "payoff": "Rebind actions and see prompts follow actual input events without losing essential controls.",
+    "mechanism": [
+      "InputMap",
+      "InputEventKey",
+      "InputEventJoypadButton"
+    ],
+    "limits": "Configured/synthetic pads do not prove a physical controller model.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-013",
+    "title": "UI Workshop",
+    "wing": "interfaces",
+    "payoff": "Operate a responsive control panel by keyboard and pointer with one predictable focus path.",
+    "mechanism": [
+      "Control",
+      "Container",
+      "Theme",
+      "Focus neighbors"
+    ],
+    "limits": "Screen-reader support needs a separate probe/qualification path.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-014",
+    "title": "Dialogue Machine",
+    "wing": "narrative",
+    "payoff": "Choose branches in original dialogue and undo a choice without corrupting story state.",
+    "mechanism": [
+      "Resource",
+      "RichTextLabel",
+      "proposed DialogueGraph contract"
+    ],
+    "limits": "Lab-owned graph contract is proposed, not a built-in Godot dialogue API.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-015",
+    "title": "Skeleton Studio",
+    "wing": "motion",
+    "payoff": "Place targets and inspect constrained skeletal motion and deformation.",
+    "mechanism": [
+      "Skeleton3D",
+      "SkeletonModifier3D",
+      "AnimationMixer"
+    ],
+    "limits": "Modifier signatures require installed-engine probe; no deprecated IK API assumed.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-016",
+    "title": "Terrain Foundry",
+    "wing": "world",
+    "payoff": "Sculpt or import terrain and compare visual form, collision and level-of-detail boundaries.",
+    "mechanism": [
+      "ArrayMesh",
+      "HeightMapShape3D",
+      "proposed TerrainPatch contract"
+    ],
+    "limits": "No third-party terrain addon promised. Supported shape/import path is probed.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-017",
+    "title": "Crowd Balcony",
+    "wing": "performance",
+    "payoff": "Compare individual meshes and instancing under the same crowd layout and camera.",
+    "mechanism": [
+      "MultiMesh",
+      "MultiMeshInstance3D",
+      "Performance"
+    ],
+    "limits": "Host-specific measurement, not universal speedup; skinned crowds are separate work.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-018",
+    "title": "Resource Cabinet",
+    "wing": "interchange",
+    "payoff": "Save and reload a custom Resource while inspecting dependencies and stable identities.",
+    "mechanism": [
+      "Resource",
+      "ResourceSaver",
+      "ResourceLoader"
+    ],
+    "limits": "Unknown-field policy must be recorded before schema evolution.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-019",
+    "title": "Shader Bench",
+    "wing": "rendering",
+    "payoff": "Adjust uniforms and see clean before/after output while inspecting shader diagnostics.",
+    "mechanism": [
+      "Shader",
+      "ShaderMaterial",
+      "SubViewport"
+    ],
+    "limits": "Shader language/backend availability requires compile probes.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-020",
+    "title": "Acoustic Rooms",
+    "wing": "audio",
+    "payoff": "Compare bus effects, reverb and filters while walking between simple acoustic spaces.",
+    "mechanism": [
+      "AudioServer",
+      "AudioEffectReverb",
+      "AudioEffectLowPassFilter"
+    ],
+    "limits": "Encoded proof does not establish listening comfort or device routing.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-021",
+    "title": "Time Laboratory",
+    "wing": "simulation",
+    "payoff": "See pause, time scaling and interpolation affect simulation without freezing the inspector.",
+    "mechanism": [
+      "Engine",
+      "SceneTree",
+      "Node.process_mode"
+    ],
+    "limits": "Frame count is not wall time; real-time and fixed-step evidence stay separate.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-022",
+    "title": "Destruction Cell",
+    "wing": "simulation",
+    "payoff": "Break an original assembly into bounded physical fragments and rebuild it.",
+    "mechanism": [
+      "RigidBody3D",
+      "Joint3D",
+      "proposed FractureRecipe contract"
+    ],
+    "limits": "Authored modular breakage, not arbitrary runtime mesh fracturing.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-023",
+    "title": "Procedural Garden",
+    "wing": "world",
+    "payoff": "Generate a seeded playable layout and inspect connectivity before entering it.",
+    "mechanism": [
+      "RandomNumberGenerator",
+      "AStarGrid2D",
+      "proposed LayoutRecipe contract"
+    ],
+    "limits": "Procedural recipe is lab-owned; no claim of universal level quality.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-024",
+    "title": "Network Commons",
+    "wing": "networking",
+    "payoff": "Join two local processes and inspect server authority and replicated player state.",
+    "mechanism": [
+      "ENetMultiplayerPeer",
+      "MultiplayerAPI",
+      "MultiplayerSpawner",
+      "MultiplayerSynchronizer"
+    ],
+    "limits": "Local transport proof is not internet/NAT, service or security qualification.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-025",
+    "title": "Replay Observatory",
+    "wing": "automation",
+    "payoff": "Record meaningful operations and replay a versioned semantic timeline.",
+    "mechanism": [
+      "InputEvent",
+      "FileAccess",
+      "proposed OperationTimeline contract"
+    ],
+    "limits": "Does not promise deterministic physics or pixel-identical cross-host output.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-026",
+    "title": "Editor Toolroom",
+    "wing": "tooling",
+    "payoff": "Build a small editor panel that changes scene data with working undo/redo.",
+    "mechanism": [
+      "EditorPlugin",
+      "EditorUndoRedoManager",
+      "EditorInterface",
+      "EditorInspectorPlugin"
+    ],
+    "limits": "Editor-only feature; enabling a plugin is distinct from runtime play.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-027",
+    "title": "Native Bridge",
+    "wing": "tooling",
+    "payoff": "Compare a narrow GDExtension calculation with a typed GDScript reference.",
+    "mechanism": [
+      "GDExtension",
+      "ClassDB",
+      "proposed NativeKernel contract"
+    ],
+    "limits": "Exact extension ABI/toolchain must be probed per engine/target.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-028",
+    "title": "Thread Mill",
+    "wing": "performance",
+    "payoff": "Run a bounded cancellable data job without mutating the scene from worker threads.",
+    "mechanism": [
+      "WorkerThreadPool",
+      "Mutex",
+      "proposed JobReceipt contract"
+    ],
+    "limits": "Pool overhead may exceed gains. Thread-safety rules require a focused probe.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-029",
+    "title": "Streaming Depot",
+    "wing": "world",
+    "payoff": "Walk across scene boundaries while loading chunks and preserving local changes.",
+    "mechanism": [
+      "ResourceLoader",
+      "PackedScene",
+      "proposed ChunkLedger contract"
+    ],
+    "limits": "Threaded load is not free scene-tree mutation; actual resource path is probed.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-030",
+    "title": "Large World",
+    "wing": "world",
+    "payoff": "Explore precision at large distances and compare an explicit origin strategy.",
+    "mechanism": [
+      "Node3D",
+      "Transform3D",
+      "proposed OriginLedger contract"
+    ],
+    "limits": "Double-precision builds and engine limits are separate probes, never assumed.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-031",
+    "title": "Renderer Gallery",
+    "wing": "rendering",
+    "payoff": "Compare the same fixture across Compatibility, Mobile and Forward+ with explicit support gates.",
+    "mechanism": [
+      "RenderingServer",
+      "ProjectSettings",
+      "WorldEnvironment"
+    ],
+    "limits": "Renderer switching may require restart; API/hardware availability is probed.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-032",
+    "title": "Web Portal",
+    "wing": "platforms",
+    "payoff": "Export a small route and try browser-specific input, storage and restart behavior.",
+    "mechanism": [
+      "EditorExportPlatformWeb",
+      "Input",
+      "FileAccess"
+    ],
+    "limits": "Browser automation is not mobile browser/device proof. Threading headers are explicit.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-033",
+    "title": "Mobile Field Kit",
+    "wing": "platforms",
+    "payoff": "Try touch controls and sensor adapters with visible simulated/real distinction.",
+    "mechanism": [
+      "InputEventScreenTouch",
+      "InputEventScreenDrag",
+      "Input"
+    ],
+    "limits": "Physical mobile evidence deferred; SDK/signing/toolchain must be probed.",
+    "milestone": "M5"
+  },
+  {
+    "id": "LAB-034",
+    "title": "XR Room",
+    "wing": "xr",
+    "payoff": "Interact through tracked input while inspecting real versus fixture poses.",
+    "mechanism": [
+      "XRServer",
+      "XROrigin3D",
+      "XRController3D",
+      "OpenXRInterface"
+    ],
+    "limits": "No headset/controller qualification until physical test; extension names probed.",
+    "milestone": "M5"
+  },
+  {
+    "id": "LAB-035",
+    "title": "Import Studio",
+    "wing": "interchange",
+    "payoff": "Inspect imported meshes, materials and animation against original source fixtures.",
+    "mechanism": [
+      "GLTFDocument",
+      "GLTFState",
+      "ResourceImporterScene"
+    ],
+    "limits": "Exact import option names/version require probes; no copied commercial assets.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-036",
+    "title": "Profiling Booth",
+    "wing": "performance",
+    "payoff": "Measure a controlled expensive scene before and after one explained optimization.",
+    "mechanism": [
+      "Performance",
+      "Engine",
+      "RenderingServer"
+    ],
+    "limits": "No universal performance threshold or hardware claim without measurements.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-037",
+    "title": "Capability Compass",
+    "wing": "core",
+    "payoff": "Find a capability by payoff and see exactly why its live route is available or gated.",
+    "mechanism": [
+      "Resource",
+      "Control",
+      "proposed CapabilityManifest contract"
+    ],
+    "limits": "Readiness is a current probe, not a permanent platform promise.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-038",
+    "title": "Operation Desk",
+    "wing": "core",
+    "payoff": "Invoke one typed operation from UI and automation and compare receipts and undo.",
+    "mechanism": [
+      "Callable",
+      "Signal",
+      "proposed OperationEnvelope contract"
+    ],
+    "limits": "Proposed lab-owned contract, not arbitrary remote code execution.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-039",
+    "title": "Fixture Pantry",
+    "wing": "core",
+    "payoff": "Choose safe original fixtures and preview their bounds before committing them to a lab.",
+    "mechanism": [
+      "ResourceLoader",
+      "JSON",
+      "proposed FixtureEnvelope contract"
+    ],
+    "limits": "Only approved original/licensed inputs; no automatic arbitrary-path import.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-040",
+    "title": "Pause Vestibule",
+    "wing": "core",
+    "payoff": "Pause, resume and leave an active lab while inspecting cleanup and focus handoff.",
+    "mechanism": [
+      "SceneTree",
+      "Node.process_mode",
+      "Control"
+    ],
+    "limits": "Only lab-owned work may be cancelled or reset.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-041",
+    "title": "Signal Switchboard",
+    "wing": "core",
+    "payoff": "Wire events between scene objects and inspect ordering, disconnection and duplicate subscription.",
+    "mechanism": [
+      "Signal",
+      "Callable",
+      "SceneTree groups"
+    ],
+    "limits": "Ordering policy belongs to this lab; not a universal global event bus.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-042",
+    "title": "2D Movement",
+    "wing": "motion",
+    "payoff": "Compare forgiving jump controls with exact collision in a compact2D platform course.",
+    "mechanism": [
+      "CharacterBody2D",
+      "ShapeCast2D",
+      "InputMap"
+    ],
+    "limits": "Input comfort needs later human testing; timing measured in declared ticks.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-043",
+    "title": "Combat Clock",
+    "wing": "motion",
+    "payoff": "Land a readable attack and inspect hitboxes, invulnerability, hitstop and cancel timing.",
+    "mechanism": [
+      "Area3D",
+      "AnimationPlayer",
+      "Engine",
+      "proposed CombatTimeline contract"
+    ],
+    "limits": "Original mechanics only; not rollback determinism or production combat balance.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-044",
+    "title": "Ledge Course",
+    "wing": "motion",
+    "payoff": "Traverse slope, wall and ledge states while inspecting transition guards.",
+    "mechanism": [
+      "CharacterBody3D",
+      "ShapeCast3D",
+      "RayCast3D"
+    ],
+    "limits": "No comfortable movement claim without human testing.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-045",
+    "title": "Platform Ferry",
+    "wing": "motion",
+    "payoff": "Ride translating/rotating platforms and compare inherited velocity on departure.",
+    "mechanism": [
+      "AnimatableBody3D",
+      "CharacterBody3D",
+      "PhysicsServer3D"
+    ],
+    "limits": "Godot platform-motion properties are compile/probe leads; no all-controller equivalence.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-046",
+    "title": "Aim Range",
+    "wing": "motion",
+    "payoff": "Compare ray, shape and projectile targeting with readable occlusion and collision masks.",
+    "mechanism": [
+      "RayCast3D",
+      "ShapeCast3D",
+      "PhysicsDirectSpaceState3D"
+    ],
+    "limits": "No weapon-art or commercial game content; continuous projectile proof is separate.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-047",
+    "title": "Navigation Traffic",
+    "wing": "motion",
+    "payoff": "Dispatch several agents through a bottleneck and inspect avoidance versus path planning.",
+    "mechanism": [
+      "NavigationAgent3D",
+      "NavigationServer3D"
+    ],
+    "limits": "Avoidance does not guarantee perfect deadlock resolution or internet synchronization.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-048",
+    "title": "Joint Arcade",
+    "wing": "simulation",
+    "payoff": "Connect2D bodies with pin/spring/groove joints and inspect limits and break policy.",
+    "mechanism": [
+      "RigidBody2D",
+      "PinJoint2D",
+      "DampedSpringJoint2D",
+      "GrooveJoint2D"
+    ],
+    "limits": "Physics tolerances are host/version-specific; no bit-identical replay promise.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-049",
+    "title": "Constraint Foundry",
+    "wing": "simulation",
+    "payoff": "Manipulate3D mechanical joints and inspect angular limits and solver stability.",
+    "mechanism": [
+      "RigidBody3D",
+      "HingeJoint3D",
+      "SliderJoint3D",
+      "Generic6DOFJoint3D"
+    ],
+    "limits": "Joint solver behavior needs engine-specific acceptance rather than universal stability claims.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-050",
+    "title": "Field Chamber",
+    "wing": "simulation",
+    "payoff": "Move bodies through gravity, damping and trigger zones and inspect overlap policy.",
+    "mechanism": [
+      "Area2D",
+      "Area3D",
+      "RigidBody3D",
+      "PhysicsServer3D"
+    ],
+    "limits": "Exact gravity override priorities require installed-engine probe.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-051",
+    "title": "Cloth Sail",
+    "wing": "simulation",
+    "payoff": "Pin and release a small soft-body sail and inspect deformation and collision cost.",
+    "mechanism": [
+      "SoftBody3D",
+      "MeshInstance3D"
+    ],
+    "limits": "Soft-body availability/performance is a probe; no realistic fabric claim.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-052",
+    "title": "Collision Switchyard",
+    "wing": "simulation",
+    "payoff": "Toggle layers/masks and see which bodies, triggers and queries can interact.",
+    "mechanism": [
+      "CollisionObject2D",
+      "CollisionObject3D",
+      "Area3D"
+    ],
+    "limits": "Physics contact, trigger and query rules are distinguished; no implicit global policy.",
+    "milestone": "M1"
+  },
+  {
+    "id": "LAB-053",
+    "title": "Ballistics Tunnel",
+    "wing": "simulation",
+    "payoff": "Fire fast objects at thin obstacles and compare discrete/continuous collision behavior.",
+    "mechanism": [
+      "RigidBody3D",
+      "PhysicsDirectSpaceState3D",
+      "proposed SweepPolicy contract"
+    ],
+    "limits": "Backend/version-sensitive CCD properties need probes. No unbounded velocity guarantee.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-054",
+    "title": "Ragdoll Recovery",
+    "wing": "simulation",
+    "payoff": "Switch an original rig between animation and physical bones and inspect recovery.",
+    "mechanism": [
+      "Skeleton3D",
+      "PhysicalBoneSimulator3D",
+      "AnimationTree"
+    ],
+    "limits": "Exact physical-bone API requires probe; no general retargeting guarantee.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-055",
+    "title": "Grid Tactics",
+    "wing": "world",
+    "payoff": "Plan and execute a turn on a2D grid with cost, occupancy and undoable commands.",
+    "mechanism": [
+      "AStarGrid2D",
+      "Resource",
+      "proposed TurnCommand contract"
+    ],
+    "limits": "Lab-owned tactics contract; not a built-in combat framework.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-056",
+    "title": "Voxel Quarry",
+    "wing": "world",
+    "payoff": "Edit a tiny voxel volume and inspect meshing, collision and chunk seams.",
+    "mechanism": [
+      "ArrayMesh",
+      "SurfaceTool",
+      "StaticBody3D",
+      "proposed VoxelChunk contract"
+    ],
+    "limits": "Custom bounded meshing, not an implied built-in voxel engine.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-057",
+    "title": "Navmesh Workshop",
+    "wing": "world",
+    "payoff": "Move an obstacle and inspect the difference between navigation rebake and runtime avoidance.",
+    "mechanism": [
+      "NavigationMesh",
+      "NavigationRegion3D",
+      "NavigationServer3D"
+    ],
+    "limits": "Bake/source signatures are version-sensitive probes; avoidance alone is not rebaking.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-058",
+    "title": "World Clock",
+    "wing": "world",
+    "payoff": "Advance a scoped day/weather clock and inspect gameplay triggers and visual change separately.",
+    "mechanism": [
+      "AnimationPlayer",
+      "WorldEnvironment",
+      "proposed WorldClock contract"
+    ],
+    "limits": "No OS clock manipulation; visual interpolation and logical schedule remain separate.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-059",
+    "title": "LOD Walk",
+    "wing": "performance",
+    "payoff": "Walk an identical camera route and inspect mesh detail transitions, culling and visual discontinuity.",
+    "mechanism": [
+      "GeometryInstance3D",
+      "MeshInstance3D",
+      "MultiMeshInstance3D"
+    ],
+    "limits": "Exact LOD/occlusion support probed per renderer; cost is measured not promised.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-060",
+    "title": "Atlas Author",
+    "wing": "art",
+    "payoff": "Paint a tiny original motif atlas and inspect UV padding, sampling and repetition on modular geometry.",
+    "mechanism": [
+      "Image",
+      "ImageTexture",
+      "ArrayMesh",
+      "ShaderMaterial"
+    ],
+    "limits": "Texture size is a project choice. Whole-atlas repeat is not subregion tiling.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-061",
+    "title": "Vertex Shade",
+    "wing": "art",
+    "payoff": "Paint broad shade on geometry and inspect interpolation and triangulation before adding lights.",
+    "mechanism": [
+      "SurfaceTool",
+      "ArrayMesh",
+      "MeshDataTool"
+    ],
+    "limits": "No claim that every imported format preserves colors without round-trip test.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-062",
+    "title": "Silhouette Studio",
+    "wing": "art",
+    "payoff": "Compare original low-poly character shapes at gameplay and close-up distances.",
+    "mechanism": [
+      "MeshInstance3D",
+      "Camera3D",
+      "SubViewport"
+    ],
+    "limits": "Automated masks are proxies; preference/expressiveness need later human judgment.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-063",
+    "title": "Stepped Animation",
+    "wing": "art",
+    "payoff": "Compare stepped pose sampling with smooth simulation/camera response.",
+    "mechanism": [
+      "AnimationPlayer",
+      "AnimationMixer",
+      "proposed PoseSampling contract"
+    ],
+    "limits": "No universal on-twos rule inferred from references; comfort is untested.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-064",
+    "title": "Shadow Cards",
+    "wing": "art",
+    "payoff": "Place authored contact gradients and shafts and inspect their camera-angle limits.",
+    "mechanism": [
+      "MeshInstance3D",
+      "StandardMaterial3D",
+      "Camera3D"
+    ],
+    "limits": "Cards are not volumetric lighting or physically correct moving shadows.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-065",
+    "title": "Fog Theater",
+    "wing": "rendering",
+    "payoff": "Compare depth haze and supported volumetric fog around readable silhouettes.",
+    "mechanism": [
+      "WorldEnvironment",
+      "Environment",
+      "FogVolume"
+    ],
+    "limits": "Volumetric support is renderer-specific and must be probed.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-066",
+    "title": "Viewport Mirrors",
+    "wing": "rendering",
+    "payoff": "Look through a live portal/monitor and inspect camera, texture and input forwarding boundaries.",
+    "mechanism": [
+      "SubViewport",
+      "SubViewportContainer",
+      "ViewportTexture",
+      "Camera3D"
+    ],
+    "limits": "Portal illusion scope is explicit; no unlimited recursion or arbitrary cross-app capture.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-067",
+    "title": "Decal Printing",
+    "wing": "rendering",
+    "payoff": "Place original projected marks and compare them with mesh-backed marks under supported renderers.",
+    "mechanism": [
+      "Decal",
+      "MeshInstance3D",
+      "StandardMaterial3D"
+    ],
+    "limits": "Decal renderer support is probed; mesh fallback is not identical projection.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-068",
+    "title": "Display Laboratory",
+    "wing": "rendering",
+    "payoff": "Compare clean, pixel-scaled, palette and optional CRT output without weakening controls.",
+    "mechanism": [
+      "SubViewport",
+      "ShaderMaterial",
+      "CanvasLayer"
+    ],
+    "limits": "Filters optional. No historical-hardware accuracy implied by visual resemblance.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-069",
+    "title": "Compute Garden",
+    "wing": "rendering",
+    "payoff": "Run a small compute fixture and compare output against a CPU reference with honest availability.",
+    "mechanism": [
+      "RenderingDevice",
+      "RDShaderFile",
+      "RDComputePipeline",
+      "proposed ComputeKernel contract"
+    ],
+    "limits": "RenderingDevice/backend/thread ownership signatures need probes. No Compatibility compute promise.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-070",
+    "title": "Tone Observatory",
+    "wing": "rendering",
+    "payoff": "Compare exposure, tone mapping and color grading while preserving meaningful luminance roles.",
+    "mechanism": [
+      "Environment",
+      "WorldEnvironment",
+      "Image"
+    ],
+    "limits": "Encoded SDR images cannot prove an HDR display. Output color management recorded explicitly.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-071",
+    "title": "Mixer Desk",
+    "wing": "audio",
+    "payoff": "Route original stems into lab-owned buses and inspect gain, solo and clipping safely.",
+    "mechanism": [
+      "AudioServer",
+      "AudioStreamPlayer",
+      "AudioEffectLimiter"
+    ],
+    "limits": "Comfort/loudness requires later listening judgment; no mastering-quality claim.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-072",
+    "title": "Music Conductor",
+    "wing": "audio",
+    "payoff": "Change intensity on a beat boundary and inspect synchronized stems rather than abrupt restarts.",
+    "mechanism": [
+      "AudioStreamPlayer",
+      "AudioStreamInteractive",
+      "AudioStreamSynchronized"
+    ],
+    "limits": "New stream APIs require installed-engine probes; no rhythm-game latency guarantee.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-073",
+    "title": "Voice & Captions",
+    "wing": "audio",
+    "payoff": "Play original speech with timed captions and compare transcript, timing and audible evidence.",
+    "mechanism": [
+      "AudioStreamPlayer",
+      "RichTextLabel",
+      "proposed CaptionTrack contract"
+    ],
+    "limits": "ASR is draft evidence; reviewed authoritative captions are required. No microphone permission assumed.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-074",
+    "title": "Statechart Playhouse",
+    "wing": "narrative",
+    "payoff": "Manipulate a small character state machine and inspect guards, entry/exit and interrupted actions.",
+    "mechanism": [
+      "Resource",
+      "Signal",
+      "proposed Statechart contract"
+    ],
+    "limits": "Lab-owned statechart contract, not an implied Godot behavior-tree feature.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-075",
+    "title": "Quest Weave",
+    "wing": "narrative",
+    "payoff": "Complete original objectives in different orders and inspect dependency and undo semantics.",
+    "mechanism": [
+      "Resource",
+      "JSON",
+      "proposed ObjectiveGraph contract"
+    ],
+    "limits": "No production economy or arbitrary script execution in quest data.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-076",
+    "title": "Cinematic Rails",
+    "wing": "narrative",
+    "payoff": "Compose an interactive camera/animation sequence with skip, resume and bounded cancellation.",
+    "mechanism": [
+      "AnimationPlayer",
+      "Path3D",
+      "PathFollow3D",
+      "Camera3D"
+    ],
+    "limits": "A movie route does not substitute for player interaction or human camera-comfort testing.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-077",
+    "title": "Inventory Alchemy",
+    "wing": "narrative",
+    "payoff": "Combine original items and inspect transactional recipes, limits and undo.",
+    "mechanism": [
+      "Resource",
+      "Dictionary",
+      "proposed InventoryTransaction contract"
+    ],
+    "limits": "Project-owned game economy example; no purchase or payment path.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-078",
+    "title": "Locale Pavilion",
+    "wing": "interfaces",
+    "payoff": "Switch original translations and inspect text direction, plural rules and saved language choice.",
+    "mechanism": [
+      "TranslationServer",
+      "Translation",
+      "RichTextLabel"
+    ],
+    "limits": "RTL/font shaping and translation quality need platform-specific review; no OS language change.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-079",
+    "title": "Focus Labyrinth",
+    "wing": "interfaces",
+    "payoff": "Navigate menus, dialogs and a3D panel with keyboard focus and inspect accessibility probes.",
+    "mechanism": [
+      "Control",
+      "SubViewportContainer",
+      "proposed AccessibilityProbe contract"
+    ],
+    "limits": "Automated focus is not screen-reader/human accessibility qualification. API support probed.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-080",
+    "title": "Comfort Controls",
+    "wing": "interfaces",
+    "payoff": "Tune motion, flash, text and input assists with immediate preview and scoped persistence.",
+    "mechanism": [
+      "Control",
+      "InputMap",
+      "ShaderMaterial",
+      "proposed ComfortProfile contract"
+    ],
+    "limits": "Preview checks do not prove comfort. Avoid compulsory rapid flashing.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-081",
+    "title": "Drag & Inspect",
+    "wing": "interfaces",
+    "payoff": "Drag typed resources between panels and inspect validation, preview and undo.",
+    "mechanism": [
+      "Control",
+      "Resource",
+      "Tree"
+    ],
+    "limits": "No automatic adoption of arbitrary external files; focus behavior tested separately.",
+    "milestone": "M2"
+  },
+  {
+    "id": "LAB-082",
+    "title": "Prediction Track",
+    "wing": "networking",
+    "payoff": "Compare authoritative motion with client prediction and reconciliation under controlled delay.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "ENetMultiplayerPeer",
+      "proposed SnapshotProtocol contract"
+    ],
+    "limits": "Networked physics determinism not assumed; no competitive-game guarantee.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-083",
+    "title": "Reconnect Harbor",
+    "wing": "networking",
+    "payoff": "Drop and rejoin a local session without duplicating owned entities or losing committed state.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "ENetMultiplayerPeer",
+      "proposed ResumeToken contract"
+    ],
+    "limits": "Local session tokens are scoped fixtures, not production authentication.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-084",
+    "title": "Network Chaos",
+    "wing": "networking",
+    "payoff": "Inject loss, jitter, duplication and reordering and inspect recovery instead of hiding transport failures.",
+    "mechanism": [
+      "PacketPeer",
+      "MultiplayerAPI",
+      "proposed ChaosProfile contract"
+    ],
+    "limits": "Fault adapter is proposed lab tooling; actual wire loss is distinct from synthetic event replay.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-085",
+    "title": "RPC Gatehouse",
+    "wing": "networking",
+    "payoff": "Send allowed and invalid RPC requests and inspect authority, payload limits and version checks.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "rpc annotations",
+      "proposed RPCEnvelope contract"
+    ],
+    "limits": "No arbitrary remote eval. Production authentication/encryption needs separate design.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-086",
+    "title": "WebRTC Bridge",
+    "wing": "networking",
+    "payoff": "Connect two browser-capable peers through an explicit local signaling adapter and inspect failure modes.",
+    "mechanism": [
+      "WebRTCPeerConnection",
+      "WebRTCDataChannel",
+      "WebRTCMultiplayerPeer"
+    ],
+    "limits": "Native plugin/browser requirements are probes. No public NAT/STUN service assumption.",
+    "milestone": "M5"
+  },
+  {
+    "id": "LAB-087",
+    "title": "Live Control",
+    "wing": "automation",
+    "payoff": "Drive a running lab through a narrow typed command channel and inspect cancellation and receipts.",
+    "mechanism": [
+      "WebSocketPeer",
+      "Cappy released addon",
+      "proposed LiveCommandEnvelope contract"
+    ],
+    "limits": "No arbitrary code/OS command execution. Official Cappy protocol must be probed rather than invented.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-088",
+    "title": "Source-bound Capture",
+    "wing": "automation",
+    "payoff": "Capture only the declared game window/process and verify the source identity before accepting media.",
+    "mechanism": [
+      "Official @uppercut-labs/cappy package",
+      "OBS WebSocket",
+      "proposed CaptureSourceReceipt contract"
+    ],
+    "limits": "Provider capture distinct from Godot movie writing. Credentials stay local; no desktop fallback.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-089",
+    "title": "Parameter Sweeps",
+    "wing": "automation",
+    "payoff": "Schedule bounded scenario variations and compare their actual outcomes with resumable jobs.",
+    "mechanism": [
+      "WorkerThreadPool",
+      "FileAccess",
+      "Official Cappy package",
+      "proposed SweepPlan contract"
+    ],
+    "limits": "Heavy encoding uses approved separate host policy; no infinite autonomous recording loop.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-090",
+    "title": "Camera Takes",
+    "wing": "automation",
+    "payoff": "Author reusable camera routes and record them without disabling ordinary playable scenes.",
+    "mechanism": [
+      "Path3D",
+      "PathFollow3D",
+      "Camera3D",
+      "Official Cappy package"
+    ],
+    "limits": "Camera route is media tooling, never replacement for live player navigation.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-091",
+    "title": "Golden Assertions",
+    "wing": "automation",
+    "payoff": "Compare declared image/audio/state regions and inspect why a regression passes or fails.",
+    "mechanism": [
+      "Image",
+      "AudioStreamWAV",
+      "proposed EvidenceComparator contract"
+    ],
+    "limits": "Tolerances avoid brittle exact pixels; passing metrics do not establish overall artistic quality.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-092",
+    "title": "Memory Observatory",
+    "wing": "performance",
+    "payoff": "Repeat entry/reset/exit and inspect resource growth, leaks and bounded caches.",
+    "mechanism": [
+      "Performance",
+      "Object",
+      "ResourceLoader",
+      "proposed ResourceLedger contract"
+    ],
+    "limits": "OS memory noise distinguished from owned-object counts; no universal RAM threshold.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-093",
+    "title": "Import Plugin",
+    "wing": "tooling",
+    "payoff": "Import an original custom data format through editor tooling with reimport and diagnostics.",
+    "mechanism": [
+      "EditorImportPlugin",
+      "ResourceImporter",
+      "Resource"
+    ],
+    "limits": "Exact plugin hooks require installed-editor probe. Import does not execute arbitrary source code.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-094",
+    "title": "Export Profiles",
+    "wing": "tooling",
+    "payoff": "Build explicit native/web profiles and inspect included assets, runtime route and unsupported gates.",
+    "mechanism": [
+      "EditorExportPlugin",
+      "EditorExportPreset",
+      "EditorExportPlatform"
+    ],
+    "limits": "Native Windows/macOS/Linux targets need separate builds; signed distribution and physical proof distinct.",
+    "milestone": "M4"
+  },
+  {
+    "id": "LAB-095",
+    "title": "Blender Round Trip",
+    "wing": "interchange",
+    "payoff": "Carry an original rigged, vertex-painted modular asset from source to Godot and back through a bounded interchange path.",
+    "mechanism": [
+      "GLTFDocument",
+      "GLTFState",
+      "Skeleton3D",
+      "Blender glTF exporter probe"
+    ],
+    "limits": "Blender/plugin versions require probes. Godot export may not preserve every authoring feature.",
+    "milestone": "M3"
+  },
+  {
+    "id": "LAB-096",
+    "title": "XR Hands",
+    "wing": "xr",
+    "payoff": "Inspect tracked or recorded hands, pinch grabs and loss-of-tracking behavior on original objects.",
+    "mechanism": [
+      "XRHandTracker",
+      "XRHandModifier3D",
+      "XRServer",
+      "proposed HandPoseSource contract"
+    ],
+    "limits": "Hand tracking extensions and API signatures need probes; no hardware qualification from fixture replay.",
+    "milestone": "M5"
+  }
+]

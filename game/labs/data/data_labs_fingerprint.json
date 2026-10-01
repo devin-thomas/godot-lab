@@ -1,0 +1,9 @@
+{
+  "algorithm": "sha256-source-set-v1",
+  "files": {
+    "res://labs/modules/data_labs.gd": "3e62f5841d09a3ac410b337a04d2ded6ef962474c81d8d7625200dc384f9f4e9",
+    "res://labs/data/worker_coordinator.gd": "48a092bf661155742b9645239b8c61ae718c491e2c1aa184f4771f099a32d9ea",
+    "res://labs/data/golden_comparator.gd": "475933da979777b90bc90835754493de0170f132a360748cc2fc87f114889419"
+  },
+  "fingerprint": "fa9f9f77877e3975a2789b858708311682a2f00447db35b252da37f9eb55f85e"
+}

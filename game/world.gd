@@ -66,6 +66,13 @@ func build_hub() -> void:
 			Vector3(5, 8 + i % 4, 5), INK)
 
 
+func build_module_room(id: String) -> void:
+	active = id
+	_clear()
+	portals.clear()
+	portal_labels.clear()
+
+
 func build_lab(id: String) -> void:
 	active = id
 	_clear()

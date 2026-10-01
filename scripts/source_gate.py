@@ -41,9 +41,11 @@ def main() -> None:
         if result.returncode or "PASS Godot Lab automated acceptance" not in result.stdout:
             raise RuntimeError(result.stdout + result.stderr)
         evidence = json.loads((checkout / "artifacts/headless.json").read_text(encoding="utf-8"))
+        expanded = json.loads((checkout / "artifacts/wave-logic.json").read_text(encoding="utf-8"))
         report = {"passed": True, "public_commit": revision, "sibling_dependencies": [],
                   "checks": len(evidence["checks"]), "engine": evidence["engine"],
-                  "fresh_process_restart": True, "planning": planning_report}
+                  "fresh_process_restart": True, "planning": planning_report,
+                  "expanded": expanded}
         output = ROOT / "artifacts" / "public-source.json"
         output.parent.mkdir(exist_ok=True)
         output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

@@ -28,7 +28,10 @@ def run(command: list[str], *, timeout: int = 180) -> str:
 
 
 def build(godot: str) -> Path:
-    output = ROOT / "dist" / "GodotLab.exe"
+    version = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))["version"]
+    if not isinstance(version, str) or not all(part.isdigit() for part in version.split(".")) or len(version.split(".")) != 3:
+        raise RuntimeError("Build version must contain three numeric components")
+    output = ROOT / "dist" / f"GodotLab-{version}.exe"
     output.parent.mkdir(exist_ok=True)
     run([godot, "--headless", "--path", "game", "--editor", "--import", "--quit"])
     run([godot, "--headless", "--path", "game", "--export-release", "Windows Desktop", str(output)])
