@@ -173,7 +173,7 @@ def expansion(lab: dict) -> str:
     return f"""## Expansion interaction contract
 
 Wing: {lab['wing']}. Planned wave: {'M1 baseline deepening; see dependency order' if lab['milestone'] == 'M0' else lab['milestone']}.
-**All operations and expanded assertions below are specified work.** The six bootstrap routes have separate historical proof; new depth has none yet.
+**This page specifies the full target contract.** Narrower playable prototypes and their actual APIs/evidence are recorded in [implementation waves](../docs/IMPLEMENTATION_WAVES.md) and [build status](../docs/BUILD_STATUS.md). The six bootstrap routes retain separate historical proof; prototype checks do not complete this expanded contract.
 
 ### Player payoff
 
@@ -258,7 +258,7 @@ def outputs(labs: list[dict], journeys: list[dict]) -> dict[str, str]:
     for lab in labs:
         key = lab["id"]
         if int(key[-3:]) > 6:
-            result[f"experiments/{key}.md"] = f"# {key}: {lab['title']}\n\nState: specified. No expanded runtime evidence.\n\n" + expansion(lab)
+            result[f"experiments/{key}.md"] = f"# {key}: {lab['title']}\n\nFull-contract qualification: specified. See [implementation waves](../docs/IMPLEMENTATION_WAVES.md) for narrower runtime slices.\n\n" + expansion(lab)
         else:
             result[f"experiments/{key}-EXPANSION.md"] = f"# {key}: {lab['title']} deepening\n\nExisting bounded proof: [{key}]({key}.md), [BUILD_STATUS](../docs/BUILD_STATUS.md).\n\n" + expansion(lab)
         acceptance = lab["deepening_requirements"] if int(key[-3:]) <= 6 else lab["acceptance"]
@@ -276,7 +276,7 @@ def outputs(labs: list[dict], journeys: list[dict]) -> dict[str, str]:
                       ["Run repeated lifecycle/reset and minimal extraction host", "Capture all required evidence at exact source/fixture/profile; disclose deferred physical gates"])
             result[f"tickets/{ticket}.md"] = f"""# {ticket}: {lab['title']} - {work}
 
-State: specified. Planned wave: {'M1 baseline deepening' if int(key[-3:]) <= 6 else lab['milestone']} ({'separate depth, not historical completion' if int(key[-3:]) <= 6 else 'future lab'}).
+Full-contract state: specified. Planned wave: {'M1 baseline deepening' if int(key[-3:]) <= 6 else lab['milestone']} ({'separate depth, not historical completion' if int(key[-3:]) <= 6 else 'expanded lab'}). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: {deps}.
 
 Contract: [{key}](../experiments/{page}.md). Payoff: {lab['payoff']}
@@ -290,7 +290,7 @@ Required evidence: {', '.join(lab['evidence'])}. Document actual assertions/tole
     for key, title, deps, purpose, checks in CORE:
         result[f"tickets/{key}.md"] = f"""# {key}: {title}
 
-State: {'Done: planning-source verified only' if key == 'CORE-017' else 'specified'}.
+State: {'Done: planning-source verified only' if key == 'CORE-017' else 'full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md)'}.
 Depends on: {', '.join(f'[{dep}]({dep}.md)' for dep in deps)}.
 
 {purpose}
@@ -303,14 +303,14 @@ Resolve installed APIs, bound resources, expose errors/cancellation and record s
 """
     counts = Counter(lab["wing"] for lab in labs)
     waves = Counter(lab["milestone"] for lab in labs)
-    matrix = ["# Capability matrix", "", "Generated from planning/catalog.json by scripts/plan.py. 96 laboratory contracts; six bounded baseline routes and 90 specified future labs. First-six depth is separately specified. API leads require installed-engine probes.", "", "## Coverage", "", "| Wing | Labs |", "|---|---|"]
+    matrix = ["# Capability matrix", "", "Generated from planning/catalog.json by scripts/plan.py. 96 full laboratory contracts; six bounded baseline routes and 90 expanded targets. First-six depth is separately specified. Narrower playable code/evidence is tracked in [implementation waves](IMPLEMENTATION_WAVES.md); API leads require installed-engine probes.", "", "## Coverage", "", "| Wing | Labs |", "|---|---|"]
     matrix += [f"| {wing} | {counts[wing]} |" for wing in WINGS]
     matrix += ["", "| Wave | Lab assignments |", "|---|---|"] + [f"| M{i} | {waves[f'M{i}']} |" for i in range(6)]
     matrix += ["", "## Contracts", "", "| Lab | Wing / wave | Mechanisms | Required evidence | Lab prerequisites |", "|---|---|---|---|---|"]
     for lab in labs:
         matrix.append(f"| [{lab['id']}: {lab['title']}](../experiments/{lab['id']}.md) | {lab['wing']} / {lab['milestone']} | {'; '.join(lab['mechanism']).replace('|', '/')} | {', '.join(lab['evidence'])} | {', '.join(lab['depends_on']) or 'None'} |")
     result["docs/CAPABILITY_MATRIX.md"] = "\n".join(matrix) + "\n"
-    roadmap = ["# Dependency-ordered program", "", "Generated from planning/catalog.json and shared-system gates in scripts/plan.py. **17 shared-system tickets + 192 lab implementation/qualification tickets.** Existing baseline tickets remain historical. CORE-017 qualifies this planning source only; all lab deepening/new runtime work is specified.", "", "Implementation order is the ticket DAG, not catalog numerical order. A lab's prerequisites must qualify before its dependent A begins. Early-wave development may deliver narrower useful slices while later shared capabilities remain explicitly unavailable.", "", "## Shared systems", "", "| Ticket | Contract | Prerequisites |", "|---|---|---|"]
+    roadmap = ["# Dependency-ordered program", "", "Generated from planning/catalog.json and shared-system gates in scripts/plan.py. **17 shared-system tickets + 192 lab implementation/qualification tickets.** Existing baseline tickets remain historical. CORE-017 qualifies this planning source only; full expanded contracts remain open. Narrower code/evidence is tracked in [implementation waves](IMPLEMENTATION_WAVES.md).", "", "The ticket DAG controls qualification and full-contract completion. Coding can advance in bounded provisional slices ahead of qualification, as requested; integrate and test in waves. Dependency readiness cannot be inherited from merely authored code. Later shared capabilities remain explicitly unavailable until implemented and qualified.", "", "## Shared systems", "", "| Ticket | Contract | Prerequisites |", "|---|---|---|"]
     roadmap += [f"| [{key}](../tickets/{key}.md) | {title} | {', '.join(deps)} |" for key, title, deps, _, _ in CORE]
     roadmap += ["", "## Laboratory delivery", "", "| Lab / wave | Implementation | Qualification | A prerequisites |", "|---|---|---|---|"]
     roadmap += [f"| {lab['id']} / {lab['milestone']} | [{lab['id']}-A](../tickets/{lab['id']}-A.md) | [{lab['id']}-B](../tickets/{lab['id']}-B.md) | {', '.join(graph[lab['id']+'-A'])} |" for lab in labs]
@@ -434,7 +434,7 @@ def main() -> None:
                       "public_journeys": len(journeys),
                       "generated_documents": len(rendered), "dependency_layers": len(ordered(ticket_graph(labs), {"RELEASE-001"})),
                       "local_links": local_links, "negative_controls": negatives,
-                      "runtime_claim": "six bounded bootstrap routes only", "runtime_verified_commit": BASELINE_COMMIT}))
+                      "runtime_claim": "planning validation only; runtime evidence is in BUILD_STATUS and IMPLEMENTATION_WAVES", "runtime_verified_commit": BASELINE_COMMIT}))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # LAB-025-B: Replay Observatory - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-025-A](LAB-025-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-025](../experiments/LAB-025.md). Payoff: Record meaningful operations and replay a versioned semantic timeline.

@@ -1,6 +1,6 @@
 # LAB-083-B: Reconnect Harbor - Qualification
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-083-A](LAB-083-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-083](../experiments/LAB-083.md). Payoff: Drop and rejoin a local session without duplicating owned entities or losing committed state.

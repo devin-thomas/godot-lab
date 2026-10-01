@@ -1,6 +1,6 @@
 # LAB-037-B: Capability Compass - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-037-A](LAB-037-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-037](../experiments/LAB-037.md). Payoff: Find a capability by payoff and see exactly why its live route is available or gated.

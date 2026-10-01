@@ -1,6 +1,6 @@
 # LAB-059-A: LOD Walk - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-012](CORE-012.md), [CORE-018](CORE-018.md), [LAB-017-B](LAB-017-B.md), [LAB-036-B](LAB-036-B.md), [LAB-011-B](LAB-011-B.md).
 
 Contract: [LAB-059](../experiments/LAB-059.md). Payoff: Walk an identical camera route and inspect mesh detail transitions, culling and visual discontinuity.

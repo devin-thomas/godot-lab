@@ -1,6 +1,6 @@
 # LAB-086-B: WebRTC Bridge - Qualification
 
-State: specified. Planned wave: M5 (future lab).
+Full-contract state: specified. Planned wave: M5 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-086-A](LAB-086-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-086](../experiments/LAB-086.md). Payoff: Connect two browser-capable peers through an explicit local signaling adapter and inspect failure modes.

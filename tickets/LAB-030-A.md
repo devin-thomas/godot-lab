@@ -1,6 +1,6 @@
 # LAB-030-A: Large World - Implementation/deepening
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [CORE-012](CORE-012.md), [LAB-029-B](LAB-029-B.md), [LAB-002-B](LAB-002-B.md).
 
 Contract: [LAB-030](../experiments/LAB-030.md). Payoff: Explore precision at large distances and compare an explicit origin strategy.

@@ -1,6 +1,6 @@
 # LAB-060-A: Atlas Author - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-013](CORE-013.md), [LAB-004-B](LAB-004-B.md), [LAB-035-B](LAB-035-B.md).
 
 Contract: [LAB-060](../experiments/LAB-060.md). Payoff: Paint a tiny original motif atlas and inspect UV padding, sampling and repetition on modular geometry.

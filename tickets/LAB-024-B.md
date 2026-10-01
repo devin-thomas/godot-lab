@@ -1,6 +1,6 @@
 # LAB-024-B: Network Commons - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-024-A](LAB-024-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-024](../experiments/LAB-024.md). Payoff: Join two local processes and inspect server authority and replicated player state.

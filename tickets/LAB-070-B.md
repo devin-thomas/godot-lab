@@ -1,6 +1,6 @@
 # LAB-070-B: Tone Observatory - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-070-A](LAB-070-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-070](../experiments/LAB-070.md). Payoff: Compare exposure, tone mapping and color grading while preserving meaningful luminance roles.

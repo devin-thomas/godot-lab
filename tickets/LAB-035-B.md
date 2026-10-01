@@ -1,6 +1,6 @@
 # LAB-035-B: Import Studio - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-035-A](LAB-035-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-035](../experiments/LAB-035.md). Payoff: Inspect imported meshes, materials and animation against original source fixtures.

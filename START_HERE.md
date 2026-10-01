@@ -1,10 +1,10 @@
 # Start here
 
-For the expanded program, read [SPEC](SPEC.md), [the 96-lab catalog](experiments/INDEX.md), [MILESTONES](docs/MILESTONES.md), [ROADMAP](docs/ROADMAP.md), [profiles](docs/CAPABILITY_PROFILES.md), and [journeys](docs/JOURNEYS.md). The six-room executable is M0. Begin future implementation with shared-system tickets. Validate consistency with `python scripts/plan.py --check --self-test`.
+For the expanded program, read [SPEC](SPEC.md), [the 96-lab catalog](experiments/INDEX.md), [implementation waves](docs/IMPLEMENTATION_WAVES.md), [MILESTONES](docs/MILESTONES.md), [ROADMAP](docs/ROADMAP.md), [profiles](docs/CAPABILITY_PROFILES.md), and [journeys](docs/JOURNEYS.md). The six original rooms form M0; the searchable catalog also launches implemented prototypes. Full qualification tickets remain open. Validate consistency with `python scripts/plan.py --check --self-test`.
 
 ## Play
 
-Use the run and export commands in [BUILD_STATUS](docs/BUILD_STATUS.md); that page names the actual engine and files tested for the current build. Begin in the hub, walk to a labeled station, and interact. The station explains what to try, what the engine is doing, and how to reset or return. You can visit the six first-release labs in any order.
+Use the run and export commands in [BUILD_STATUS](docs/BUILD_STATUS.md); that page names the actual engine and files tested for the current build. Begin in the hub, walk to a labeled station, and interact. CATALOG searches all 96 descriptions and launches PLAY or PROTOTYPE entries; SPECIFIED entries explain future work. Prototype workbenches expose their real parameters and controls. INSPECT shows observations, descriptors and receipts. The six original stations remain available in any order.
 
 The intended route is collision -> impulse -> navigation -> materials -> sound -> persistence. Compare a direct player action with the same repeatable automation scenario. Watching a movie alone cannot establish that the lab is usable with ordinary input.
 

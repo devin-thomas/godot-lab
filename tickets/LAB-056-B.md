@@ -1,6 +1,6 @@
 # LAB-056-B: Voxel Quarry - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-056-A](LAB-056-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-056](../experiments/LAB-056.md). Payoff: Edit a tiny voxel volume and inspect meshing, collision and chunk seams.

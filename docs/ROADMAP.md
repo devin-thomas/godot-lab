@@ -1,8 +1,8 @@
 # Dependency-ordered program
 
-Generated from planning/catalog.json and shared-system gates in scripts/plan.py. **17 shared-system tickets + 192 lab implementation/qualification tickets.** Existing baseline tickets remain historical. CORE-017 qualifies this planning source only; all lab deepening/new runtime work is specified.
+Generated from planning/catalog.json and shared-system gates in scripts/plan.py. **17 shared-system tickets + 192 lab implementation/qualification tickets.** Existing baseline tickets remain historical. CORE-017 qualifies this planning source only; full expanded contracts remain open. Narrower code/evidence is tracked in [implementation waves](IMPLEMENTATION_WAVES.md).
 
-Implementation order is the ticket DAG, not catalog numerical order. A lab's prerequisites must qualify before its dependent A begins. Early-wave development may deliver narrower useful slices while later shared capabilities remain explicitly unavailable.
+The ticket DAG controls qualification and full-contract completion. Coding can advance in bounded provisional slices ahead of qualification, as requested; integrate and test in waves. Dependency readiness cannot be inherited from merely authored code. Later shared capabilities remain explicitly unavailable until implemented and qualified.
 
 ## Shared systems
 

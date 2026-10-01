@@ -1,6 +1,6 @@
 # LAB-096-B: XR Hands - Qualification
 
-State: specified. Planned wave: M5 (future lab).
+Full-contract state: specified. Planned wave: M5 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-096-A](LAB-096-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-096](../experiments/LAB-096.md). Payoff: Inspect tracked or recorded hands, pinch grabs and loss-of-tracking behavior on original objects.

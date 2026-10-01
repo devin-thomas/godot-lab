@@ -1,6 +1,6 @@
 # LAB-065-B: Fog Theater - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-065-A](LAB-065-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-065](../experiments/LAB-065.md). Payoff: Compare depth haze and supported volumetric fog around readable silhouettes.

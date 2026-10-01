@@ -1,6 +1,6 @@
 # LAB-016-B: Terrain Foundry - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-016-A](LAB-016-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-016](../experiments/LAB-016.md). Payoff: Sculpt or import terrain and compare visual form, collision and level-of-detail boundaries.

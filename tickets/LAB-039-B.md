@@ -1,6 +1,6 @@
 # LAB-039-B: Fixture Pantry - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-039-A](LAB-039-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-039](../experiments/LAB-039.md). Payoff: Choose safe original fixtures and preview their bounds before committing them to a lab.

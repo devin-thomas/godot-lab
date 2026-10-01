@@ -1,6 +1,6 @@
 # CORE-002: Static modules and lifecycle
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [RELEASE-001](RELEASE-001.md).
 
 Migrate the six scenes to injected modules without changing seals, controls or scenario semantics.

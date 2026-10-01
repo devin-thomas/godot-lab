@@ -1,6 +1,6 @@
 # LAB-095-B: Blender Round Trip - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-095-A](LAB-095-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-095](../experiments/LAB-095.md). Payoff: Carry an original rigged, vertex-painted modular asset from source to Godot and back through a bounded interchange path.

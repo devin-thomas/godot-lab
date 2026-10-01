@@ -1,6 +1,6 @@
 # LAB-047-A: Navigation Traffic - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [LAB-003-B](LAB-003-B.md), [LAB-024-B](LAB-024-B.md).
 
 Contract: [LAB-047](../experiments/LAB-047.md). Payoff: Dispatch several agents through a bottleneck and inspect avoidance versus path planning.

@@ -1,6 +1,6 @@
 # Architecture: bootstrap and expanded host
 
-The existing executable uses game/main.gd, world.gd, player.gd and lab_store.gd for six rooms. The boundaries below are **planned architecture**, not an implemented package inventory. [BUILD_STATUS](BUILD_STATUS.md) describes tested behavior.
+The host preserves the six original rooms and now registers separate system and visual modules. `game/labs/lab_registry.gd` owns availability, the exported 96-contract catalog and module construction. `game/domain/operation_bus.gd` validates requests and emits terminal receipts/events; controls, scenarios, the optional HTTP listener and CLI/MCP client share it. [Implementation waves](IMPLEMENTATION_WAVES.md) lists actual source boundaries and their narrower scope. Remaining boundaries below are target architecture, and [BUILD_STATUS](BUILD_STATUS.md) distinguishes current evidence.
 
 ## Dependency direction
 
@@ -22,7 +22,7 @@ Focused scenes with injected context follow [Godot scene organization](https://d
 | scripts/ | Build, capture, analysis, authoring orchestration | Ordinary play requirement |
 | planning/ | Machine-readable specified program | Implied runtime registration |
 
-Migrate the bootstrap in small verified steps during CORE-002. Existing controls, scenarios, seals and saves must survive. This planning revision does not refactor working runtime code.
+The first migration keeps original controls/scenarios/seals/saves compatible and extracts new mechanisms into lab modules and reusable domains. Original-room simulation still lives in the bootstrap host/world; those deeper extraction tickets remain open.
 
 ## Module lifecycle
 

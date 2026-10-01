@@ -1,6 +1,6 @@
 # CORE-012: Budgeted jobs, checkpoints and worker admission
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-005](CORE-005.md), [CORE-006](CORE-006.md).
 
 Bound and cancel authoring/render/analysis jobs with capacity checks and source/recipe identity.

@@ -1,6 +1,6 @@
 # LAB-071-A: Mixer Desk - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-010](CORE-010.md), [LAB-005-B](LAB-005-B.md), [LAB-020-B](LAB-020-B.md).
 
 Contract: [LAB-071](../experiments/LAB-071.md). Payoff: Route original stems into lab-owned buses and inspect gain, solo and clipping safely.

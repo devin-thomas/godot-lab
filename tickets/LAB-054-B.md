@@ -1,6 +1,6 @@
 # LAB-054-B: Ragdoll Recovery - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-054-A](LAB-054-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-054](../experiments/LAB-054.md). Payoff: Switch an original rig between animation and physical bones and inspect recovery.

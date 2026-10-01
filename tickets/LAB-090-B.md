@@ -1,6 +1,6 @@
 # LAB-090-B: Camera Takes - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-090-A](LAB-090-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-090](../experiments/LAB-090.md). Payoff: Author reusable camera routes and record them without disabling ordinary playable scenes.

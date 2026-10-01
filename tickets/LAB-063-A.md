@@ -1,6 +1,6 @@
 # LAB-063-A: Stepped Animation - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-013](CORE-013.md), [LAB-008-B](LAB-008-B.md), [LAB-021-B](LAB-021-B.md).
 
 Contract: [LAB-063](../experiments/LAB-063.md). Payoff: Compare stepped pose sampling with smooth simulation/camera response.

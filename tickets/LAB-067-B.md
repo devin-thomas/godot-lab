@@ -1,6 +1,6 @@
 # LAB-067-B: Decal Printing - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-067-A](LAB-067-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-067](../experiments/LAB-067.md). Payoff: Place original projected marks and compare them with mesh-backed marks under supported renderers.

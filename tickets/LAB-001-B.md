@@ -1,6 +1,6 @@
 # LAB-001-B: Motion atelier - Qualification
 
-State: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion).
+Full-contract state: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-001-A](LAB-001-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-001](../experiments/LAB-001-EXPANSION.md). Payoff: Feel a real capsule move, jump and land against stairs and a solid block.

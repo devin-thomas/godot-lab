@@ -1,6 +1,6 @@
 # LAB-029-B: Streaming Depot - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-029-A](LAB-029-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-029](../experiments/LAB-029.md). Payoff: Walk across scene boundaries while loading chunks and preserving local changes.

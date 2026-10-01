@@ -1,6 +1,6 @@
 # LAB-082-B: Prediction Track - Qualification
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-082-A](LAB-082-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-082](../experiments/LAB-082.md). Payoff: Compare authoritative motion with client prediction and reconciliation under controlled delay.

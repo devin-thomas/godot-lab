@@ -1,6 +1,6 @@
 # LAB-033-B: Mobile Field Kit - Qualification
 
-State: specified. Planned wave: M5 (future lab).
+Full-contract state: specified. Planned wave: M5 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-033-A](LAB-033-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-033](../experiments/LAB-033.md). Payoff: Try touch controls and sensor adapters with visible simulated/real distinction.

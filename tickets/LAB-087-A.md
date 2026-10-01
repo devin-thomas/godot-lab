@@ -1,6 +1,6 @@
 # LAB-087-A: Live Control - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-011](CORE-011.md), [CORE-014](CORE-014.md), [LAB-038-B](LAB-038-B.md), [LAB-025-B](LAB-025-B.md), [LAB-040-B](LAB-040-B.md).
 
 Contract: [LAB-087](../experiments/LAB-087.md). Payoff: Drive a running lab through a narrow typed command channel and inspect cancellation and receipts.

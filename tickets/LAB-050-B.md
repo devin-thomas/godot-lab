@@ -1,6 +1,6 @@
 # LAB-050-B: Field Chamber - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-050-A](LAB-050-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-050](../experiments/LAB-050.md). Payoff: Move bodies through gravity, damping and trigger zones and inspect overlap policy.

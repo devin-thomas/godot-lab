@@ -1,6 +1,6 @@
 # LAB-023-A: Procedural Garden - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [CORE-012](CORE-012.md), [LAB-007-B](LAB-007-B.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-023](../experiments/LAB-023.md). Payoff: Generate a seeded playable layout and inspect connectivity before entering it.

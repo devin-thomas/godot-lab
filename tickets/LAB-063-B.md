@@ -1,6 +1,6 @@
 # LAB-063-B: Stepped Animation - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-063-A](LAB-063-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-063](../experiments/LAB-063.md). Payoff: Compare stepped pose sampling with smooth simulation/camera response.

@@ -5,7 +5,7 @@ Existing bounded proof: [LAB-002](LAB-002.md), [BUILD_STATUS](../docs/BUILD_STAT
 ## Expansion interaction contract
 
 Wing: simulation. Planned wave: M1 baseline deepening; see dependency order.
-**All operations and expanded assertions below are specified work.** The six bootstrap routes have separate historical proof; new depth has none yet.
+**This page specifies the full target contract.** Narrower playable prototypes and their actual APIs/evidence are recorded in [implementation waves](../docs/IMPLEMENTATION_WAVES.md) and [build status](../docs/BUILD_STATUS.md). The six bootstrap routes retain separate historical proof; prototype checks do not complete this expanded contract.
 
 ### Player payoff
 

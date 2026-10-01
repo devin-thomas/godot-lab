@@ -1,6 +1,6 @@
 # LAB-041-A: Signal Switchboard - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-016](CORE-016.md), [LAB-038-B](LAB-038-B.md).
 
 Contract: [LAB-041](../experiments/LAB-041.md). Payoff: Wire events between scene objects and inspect ordering, disconnection and duplicate subscription.

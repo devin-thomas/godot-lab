@@ -1,6 +1,6 @@
 # LAB-017-A: Crowd Balcony - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-012](CORE-012.md), [CORE-018](CORE-018.md), [LAB-036-B](LAB-036-B.md).
 
 Contract: [LAB-017](../experiments/LAB-017.md). Payoff: Compare individual meshes and instancing under the same crowd layout and camera.

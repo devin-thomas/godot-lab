@@ -1,6 +1,6 @@
 # LAB-082-A: Prediction Track - Implementation/deepening
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-015](CORE-015.md), [LAB-024-B](LAB-024-B.md), [LAB-025-B](LAB-025-B.md), [LAB-001-B](LAB-001-B.md).
 
 Contract: [LAB-082](../experiments/LAB-082.md). Payoff: Compare authoritative motion with client prediction and reconciliation under controlled delay.

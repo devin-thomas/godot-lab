@@ -1,6 +1,6 @@
 # CORE-018: Profile exports, budgets and extraction qualification
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-004](CORE-004.md), [CORE-006](CORE-006.md), [CORE-012](CORE-012.md).
 
 Qualify actual source/export/toolchain routes and minimal component hosts for each supported profile.

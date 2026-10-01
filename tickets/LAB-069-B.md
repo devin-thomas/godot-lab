@@ -1,6 +1,6 @@
 # LAB-069-B: Compute Garden - Qualification
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-069-A](LAB-069-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-069](../experiments/LAB-069.md). Payoff: Run a small compute fixture and compare output against a CPU reference with honest availability.

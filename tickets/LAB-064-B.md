@@ -1,6 +1,6 @@
 # LAB-064-B: Shadow Cards - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-064-A](LAB-064-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-064](../experiments/LAB-064.md). Payoff: Place authored contact gradients and shafts and inspect their camera-angle limits.

@@ -1,6 +1,6 @@
 # Godot Lab product specification
 
-Expanded program: 2026-10-01. **96 lab contracts, 16 wings, six delivery milestones, and two independently useful repositories.** This is the product plan; [BUILD_STATUS](docs/BUILD_STATUS.md) remains the authority for implemented behavior. Six baseline rooms are automatically verified. The other 90 labs and the deeper contracts for those six are planned.
+Expanded program: 2026-10-01. **96 lab contracts, 16 wings, six delivery milestones, and two independently useful repositories.** This is the product plan; [BUILD_STATUS](docs/BUILD_STATUS.md) remains the authority for implemented behavior. Six baseline rooms have automatic proof, and [implementation waves](docs/IMPLEMENTATION_WAVES.md) records additional playable prototypes. Full A/B contracts remain open for the other 90 labs and the deeper contracts for those six.
 
 ## 1. Purpose and audiences
 
@@ -47,9 +47,9 @@ The host has a world route, catalog route, fixture browser, session inspector, s
 
 ## 4. Shared systems and module contract
 
-The expanded host must replace monolithic growth with statically registered lab modules. Current main.gd and world.gd are the bootstrap implementation, not proof that this split exists. Proposed modules expose metadata, readiness, setup/teardown, operations, bounded observations, fixture/reset, scenarios, and a reusable component. The host injects services; a module does not reach into arbitrary sibling scene paths.
+The expanded host uses statically registered lab modules for new system/visual prototypes while preserving the original main.gd/world.gd routes. Implemented boundaries and actual source paths are in [implementation waves](docs/IMPLEMENTATION_WAVES.md). Modules expose metadata, readiness, setup/teardown, operations, bounded observations, fixture/reset, scenarios, and reusable extraction hosts. The host injects services; a module does not reach into arbitrary sibling scene paths. Full first-six extraction and remaining target systems remain open.
 
-One operation spine accepts validated requests and emits versioned receipts/events. Actions carry a session, lab/namespace, request ID, expected revision where needed, and typed bounded arguments. An inspector and automation client observe the same result. Operation names in new lab specs are **proposed contracts**, not callable APIs today. Retry semantics, stale-state rejection and effectful actions are specified in [DATA_CONTRACTS](docs/DATA_CONTRACTS.md) and [AUTOMATION_CONTRACTS](docs/AUTOMATION_CONTRACTS.md).
+One implemented synchronous operation spine accepts validated requests and emits receipts/events. Actions carry a request ID, optional expected revision/epoch and typed bounded arguments. The inspector and optional HTTP/CLI/MCP client observe the same result. The names in expanded lab specs remain **target contracts**; callable descriptors come from the live registry and [runtime API](docs/RUNTIME_API.md). Wider session/queued-effect contracts remain specified in [DATA_CONTRACTS](docs/DATA_CONTRACTS.md) and [AUTOMATION_CONTRACTS](docs/AUTOMATION_CONTRACTS.md).
 
 Shared systems include readiness/profiles, fixture registry, reset ownership, schema/migration, scenario/event records, clocks, live transport, CLI/MCP adapters, presentation tracks, Cappy orchestration, evidence manifests, cancelable jobs, asset provenance/import, analysis budgets, and source/export qualification. Their implementation and qualification tickets precede dependent lab tickets.
 

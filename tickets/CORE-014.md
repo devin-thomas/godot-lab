@@ -1,6 +1,6 @@
 # CORE-014: Media regressions and event derivatives
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-006](CORE-006.md), [CORE-009](CORE-009.md), [CORE-011](CORE-011.md), [CORE-012](CORE-012.md).
 
 Analyze actual video/audio, compare source-bound runs and produce event-anchored clips.

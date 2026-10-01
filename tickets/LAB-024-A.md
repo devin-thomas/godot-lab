@@ -1,6 +1,6 @@
 # LAB-024-A: Network Commons - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-015](CORE-015.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-024](../experiments/LAB-024.md). Payoff: Join two local processes and inspect server authority and replicated player state.

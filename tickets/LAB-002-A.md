@@ -1,6 +1,6 @@
 # LAB-002-A: Gravity foundry - Implementation/deepening
 
-State: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion).
+Full-contract state: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md).
 
 Contract: [LAB-002](../experiments/LAB-002-EXPANSION.md). Payoff: Launch a weighted cube and inspect actual impulse, contacts and settling.

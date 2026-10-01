@@ -1,6 +1,6 @@
 # LAB-079-A: Focus Labyrinth - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [LAB-013-B](LAB-013-B.md), [LAB-066-B](LAB-066-B.md).
 
 Contract: [LAB-079](../experiments/LAB-079.md). Payoff: Navigate menus, dialogs and a3D panel with keyboard focus and inspect accessibility probes.

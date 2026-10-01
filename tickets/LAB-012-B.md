@@ -1,6 +1,6 @@
 # LAB-012-B: Input Atelier - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-012-A](LAB-012-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-012](../experiments/LAB-012.md). Payoff: Rebind actions and see prompts follow actual input events without losing essential controls.

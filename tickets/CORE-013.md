@@ -1,6 +1,6 @@
 # CORE-013: Original asset recipes and interchange pipeline
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-005](CORE-005.md), [CORE-006](CORE-006.md), [CORE-012](CORE-012.md).
 
 Automate Blender authoring/import and validate meshes, UVs, colors, materials, rigs and clips.

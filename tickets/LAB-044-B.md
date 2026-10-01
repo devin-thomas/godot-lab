@@ -1,6 +1,6 @@
 # LAB-044-B: Ledge Course - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-044-A](LAB-044-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-044](../experiments/LAB-044.md). Payoff: Traverse slope, wall and ledge states while inspecting transition guards.

@@ -1,6 +1,6 @@
 # CORE-007: Catalog, inspector and accessible input contexts
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-003](CORE-003.md), [CORE-004](CORE-004.md), [CORE-005](CORE-005.md).
 
 Provide searchable specification/readiness, parameters, receipts, keyboard focus and comfort controls.

@@ -1,6 +1,6 @@
 # LAB-022-A: Destruction Cell - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [LAB-002-B](LAB-002-B.md), [LAB-049-B](LAB-049-B.md).
 
 Contract: [LAB-022](../experiments/LAB-022.md). Payoff: Break an original assembly into bounded physical fragments and rebuild it.

@@ -1,6 +1,6 @@
 # LAB-040-A: Pause Vestibule - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-016](CORE-016.md), [LAB-021-B](LAB-021-B.md), [LAB-028-B](LAB-028-B.md), [LAB-013-B](LAB-013-B.md).
 
 Contract: [LAB-040](../experiments/LAB-040.md). Payoff: Pause, resume and leave an active lab while inspecting cleanup and focus handoff.

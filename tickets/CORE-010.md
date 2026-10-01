@@ -1,6 +1,6 @@
 # CORE-010: Viewer cameras and presentation tracks
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-009](CORE-009.md).
 
 Author independent framing/look/effect tracks anchored to simulation events.

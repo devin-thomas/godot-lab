@@ -1,6 +1,6 @@
 # LAB-019-B: Shader Bench - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-019-A](LAB-019-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-019](../experiments/LAB-019.md). Payoff: Adjust uniforms and see clean before/after output while inspecting shader diagnostics.

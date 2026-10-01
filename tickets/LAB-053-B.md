@@ -1,6 +1,6 @@
 # LAB-053-B: Ballistics Tunnel - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-053-A](LAB-053-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-053](../experiments/LAB-053.md). Payoff: Fire fast objects at thin obstacles and compare discrete/continuous collision behavior.

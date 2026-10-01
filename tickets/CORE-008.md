@@ -1,6 +1,6 @@
 # CORE-008: Authenticated live transport, CLI and MCP
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-003](CORE-003.md), [CORE-005](CORE-005.md), [CORE-006](CORE-006.md).
 
 Expose bounded loopback operations, observations/events and clients through the shared spine.

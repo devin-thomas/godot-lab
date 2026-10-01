@@ -1,6 +1,6 @@
 # LAB-013-B: UI Workshop - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-013-A](LAB-013-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-013](../experiments/LAB-013.md). Payoff: Operate a responsive control panel by keyboard and pointer with one predictable focus path.

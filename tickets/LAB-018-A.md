@@ -1,6 +1,6 @@
 # LAB-018-A: Resource Cabinet - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-013](CORE-013.md), [CORE-016](CORE-016.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-018](../experiments/LAB-018.md). Payoff: Save and reload a custom Resource while inspecting dependencies and stable identities.

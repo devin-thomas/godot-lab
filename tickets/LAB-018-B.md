@@ -1,6 +1,6 @@
 # LAB-018-B: Resource Cabinet - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-018-A](LAB-018-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-018](../experiments/LAB-018.md). Payoff: Save and reload a custom Resource while inspecting dependencies and stable identities.

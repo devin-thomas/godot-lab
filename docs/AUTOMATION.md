@@ -2,7 +2,7 @@
 
 The product is a playable executable. Automation operates its real mechanisms, records what happened, and makes the results inspectable. A developer can learn a capability by playing a station, reading its explanation, driving the same operation, and examining evidence. Recording software remains optional for ordinary play.
 
-**The runtime commands, six scenarios and bounded capture workflow below are implemented. Everything under Expansion design is proposed.** The typed registry, general CLI/MCP adapters, live API, parameter matrices, named cameras, time-scale support and broader evidence bundles need their own implementation and acceptance gates. [BUILD_STATUS](BUILD_STATUS.md) owns observed results; [AUTOMATION_CONTRACTS](AUTOMATION_CONTRACTS.md) owns the proposed contracts.
+The runtime includes six original scenarios, a typed operation bus, registered playable prototypes, an opt-in loopback HTTP API, and shared CLI/stdio MCP clients. [RUNTIME_API](RUNTIME_API.md) documents the implemented transport and budgets. The broader contracts under Expansion design remain targets: the current prototypes do not qualify streaming, every parameter matrix, all cameras, all capture providers or complete evidence bundles. [BUILD_STATUS](BUILD_STATUS.md) owns observed results; [AUTOMATION_CONTRACTS](AUTOMATION_CONTRACTS.md) owns the full proposed contracts.
 
 ## Runtime commands
 
@@ -35,7 +35,9 @@ npm run cappy -- doctor --json
 npm run test:cappy
 ```
 
-Setup writes ignored local `cappy.config.json`. The replay check launches the game's `--automation` route, discovers six scenarios (`motion`, `physics`, `navigation`, `materials`, `audio`, `persistence`), records a bounded operation timeline, and compares semantic replay. It does not itself record video or claim bit-identical physics.
+Setup writes ignored local `cappy.config.json`. The replay check launches the game's `--automation` route, discovers the six original scenarios (`motion`, `physics`, `navigation`, `materials`, `audio`, `persistence`) plus registered prototypes, records a bounded operation timeline, and compares semantic replay. Prototype IDs use lowercase `lab-013` syntax required by the released schema. LAB_PROOF payloads preserve canonical uppercase catalog IDs. Freeform `input-v1` recording remains restricted to the original six; entering a prototype while recording returns an explicit scope error. Named prototype scenarios use the real operation bus. Discovery and replay do not themselves record video or claim bit-identical physics.
+
+`node scripts/cappy_prototypes.mjs` runs bounded selected-prototype Cappy/provider checks against the isolated game-only OBS scene. It verifies actual recording completion, scenario proof, source identity and decoded frames. Use its `--help` for options and BUILD_STATUS for the specific scenarios tested; selected captures do not establish every registered scenario's media contract.
 
 For a real local Windows OBS recording, `npm run capture:setup -- <existing-portable-OBS-root>` creates an isolated ignored `.local/obs` profile on WebSocket port 4467. `npm run capture -- motion` captures the named game scenario; use another listed scenario ID for a different lab. The default is a master-only recording to keep local resource use bounded. FFmpeg uses two threads to inspect small sampled frames, rejects black/flat output, and extracts an actual master frame beside the capture report. Optional derivative presets are separate. See BUILD_STATUS for actual provider results; successful setup is not recording proof.
 
@@ -69,7 +71,7 @@ Developer capture is an explicit local action, not automatic recording of a play
 
 ## Expansion design
 
-The following is a specification, not a list of working integrations. Its scope extends the foundation into a reusable playable automation workshop. Each station still needs discoverable controls, readable feedback, reset, exit, documentation and evidence under the [extension contract](EXTENSION_CONTRACT.md).
+The following describes full target contracts. Implemented subsets are listed in [IMPLEMENTATION_WAVES](IMPLEMENTATION_WAVES.md) and [RUNTIME_API](RUNTIME_API.md). Each station still needs the complete declared interaction, explanation, reset, exit and evidence under the [extension contract](EXTENSION_CONTRACT.md) before its A/B tickets close.
 
 ### One operation path and one running world
 

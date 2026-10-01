@@ -1,6 +1,6 @@
 # CORE-011: One-session Cappy and live orchestration
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-008](CORE-008.md), [CORE-009](CORE-009.md), [CORE-010](CORE-010.md).
 
 Extend pinned official Cappy integration so live authoring, replay and capture coexist in one session.

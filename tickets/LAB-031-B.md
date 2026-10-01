@@ -1,6 +1,6 @@
 # LAB-031-B: Renderer Gallery - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-031-A](LAB-031-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-031](../experiments/LAB-031.md). Payoff: Compare the same fixture across Compatibility, Mobile and Forward+ with explicit support gates.

@@ -1,6 +1,6 @@
 # LAB-081-B: Drag & Inspect - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-081-A](LAB-081-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-081](../experiments/LAB-081.md). Payoff: Drag typed resources between panels and inspect validation, preview and undo.

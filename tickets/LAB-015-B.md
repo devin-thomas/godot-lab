@@ -1,6 +1,6 @@
 # LAB-015-B: Skeleton Studio - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-015-A](LAB-015-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-015](../experiments/LAB-015.md). Payoff: Place targets and inspect constrained skeletal motion and deformation.

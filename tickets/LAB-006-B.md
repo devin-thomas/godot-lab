@@ -1,6 +1,6 @@
 # LAB-006-B: Memory archive - Qualification
 
-State: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion).
+Full-contract state: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-006-A](LAB-006-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-006](../experiments/LAB-006-EXPANSION.md). Payoff: Write earned seals and comfort preferences then reload a real versioned file.

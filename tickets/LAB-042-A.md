@@ -1,6 +1,6 @@
 # LAB-042-A: 2D Movement - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [LAB-007-B](LAB-007-B.md), [LAB-012-B](LAB-012-B.md).
 
 Contract: [LAB-042](../experiments/LAB-042.md). Payoff: Compare forgiving jump controls with exact collision in a compact2D platform course.

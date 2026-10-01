@@ -1,6 +1,6 @@
 # LAB-013-A: UI Workshop - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-013](../experiments/LAB-013.md). Payoff: Operate a responsive control panel by keyboard and pointer with one predictable focus path.

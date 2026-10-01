@@ -1,6 +1,6 @@
 # LAB-080-A: Comfort Controls - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [LAB-012-B](LAB-012-B.md), [LAB-013-B](LAB-013-B.md), [LAB-006-B](LAB-006-B.md), [LAB-068-B](LAB-068-B.md).
 
 Contract: [LAB-080](../experiments/LAB-080.md). Payoff: Tune motion, flash, text and input assists with immediate preview and scoped persistence.

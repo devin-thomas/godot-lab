@@ -1,6 +1,6 @@
 # LAB-007-A: Tile Workshop - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [CORE-012](CORE-012.md), [LAB-001-B](LAB-001-B.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-007](../experiments/LAB-007.md). Payoff: Paint a playable 2D room and see terrain seams and collision update together.

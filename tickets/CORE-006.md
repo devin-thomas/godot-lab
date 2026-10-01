@@ -1,6 +1,6 @@
 # CORE-006: Source-bound evidence and gate registry
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-003](CORE-003.md), [CORE-004](CORE-004.md).
 
 Bind results/artifacts to source, fixture, toolchain, scenario, profile and declared limits.

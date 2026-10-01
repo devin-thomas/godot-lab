@@ -1,6 +1,6 @@
 # LAB-048-B: Joint Arcade - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-048-A](LAB-048-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-048](../experiments/LAB-048.md). Payoff: Connect2D bodies with pin/spring/groove joints and inspect limits and break policy.

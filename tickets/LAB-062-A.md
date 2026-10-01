@@ -1,6 +1,6 @@
 # LAB-062-A: Silhouette Studio - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-013](CORE-013.md), [LAB-011-B](LAB-011-B.md), [LAB-035-B](LAB-035-B.md).
 
 Contract: [LAB-062](../experiments/LAB-062.md). Payoff: Compare original low-poly character shapes at gameplay and close-up distances.

@@ -1,6 +1,6 @@
 # LAB-041-B: Signal Switchboard - Qualification
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-041-A](LAB-041-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-041](../experiments/LAB-041.md). Payoff: Wire events between scene objects and inspect ordering, disconnection and duplicate subscription.

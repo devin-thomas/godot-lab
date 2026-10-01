@@ -1,6 +1,6 @@
 # CORE-004: Profiles, probes and unavailable routes
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-002](CORE-002.md).
 
 Probe actual build/renderer/provider/assets/adapters and show useful labeled fallbacks.

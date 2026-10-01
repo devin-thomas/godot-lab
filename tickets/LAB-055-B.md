@@ -1,6 +1,6 @@
 # LAB-055-B: Grid Tactics - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-055-A](LAB-055-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-055](../experiments/LAB-055.md). Payoff: Plan and execute a turn on a2D grid with cost, occupancy and undoable commands.

@@ -1,6 +1,6 @@
 # LAB-066-B: Viewport Mirrors - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-066-A](LAB-066-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-066](../experiments/LAB-066.md). Payoff: Look through a live portal/monitor and inspect camera, texture and input forwarding boundaries.

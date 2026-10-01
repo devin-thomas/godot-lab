@@ -1,6 +1,6 @@
 # LAB-034-A: XR Room - Implementation/deepening
 
-State: specified. Planned wave: M5 (future lab).
+Full-contract state: specified. Planned wave: M5 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-018](CORE-018.md), [LAB-001-B](LAB-001-B.md), [LAB-049-B](LAB-049-B.md), [LAB-012-B](LAB-012-B.md).
 
 Contract: [LAB-034](../experiments/LAB-034.md). Payoff: Interact through tracked input while inspecting real versus fixture poses.

@@ -1,6 +1,6 @@
 # LAB-026-A: Editor Toolroom - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-008](CORE-008.md), [CORE-013](CORE-013.md), [LAB-018-B](LAB-018-B.md).
 
 Contract: [LAB-026](../experiments/LAB-026.md). Payoff: Build a small editor panel that changes scene data with working undo/redo.

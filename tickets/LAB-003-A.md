@@ -1,6 +1,6 @@
 # LAB-003-A: Pathfinder garden - Implementation/deepening
 
-State: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion).
+Full-contract state: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [CORE-012](CORE-012.md).
 
 Contract: [LAB-003](../experiments/LAB-003-EXPANSION.md). Payoff: Dispatch a courier around a tower to a fixed destination.

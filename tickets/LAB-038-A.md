@@ -1,6 +1,6 @@
 # LAB-038-A: Operation Desk - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-016](CORE-016.md), [LAB-006-B](LAB-006-B.md), [LAB-025-B](LAB-025-B.md).
 
 Contract: [LAB-038](../experiments/LAB-038.md). Payoff: Invoke one typed operation from UI and automation and compare receipts and undo.

@@ -1,6 +1,6 @@
 # CORE-005: Fixtures, namespaces and reset ownership
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-003](CORE-003.md).
 
 Register original hashed fixtures and stage bounded hostile imports; reset cancels only owned work.

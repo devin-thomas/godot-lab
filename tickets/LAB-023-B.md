@@ -1,6 +1,6 @@
 # LAB-023-B: Procedural Garden - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-023-A](LAB-023-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-023](../experiments/LAB-023.md). Payoff: Generate a seeded playable layout and inspect connectivity before entering it.

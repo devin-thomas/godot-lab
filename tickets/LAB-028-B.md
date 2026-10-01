@@ -1,6 +1,6 @@
 # LAB-028-B: Thread Mill - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-028-A](LAB-028-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-028](../experiments/LAB-028.md). Payoff: Run a bounded cancellable data job without mutating the scene from worker threads.

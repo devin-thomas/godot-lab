@@ -1,6 +1,6 @@
 # LAB-075-B: Quest Weave - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-075-A](LAB-075-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-075](../experiments/LAB-075.md). Payoff: Complete original objectives in different orders and inspect dependency and undo semantics.

@@ -1,6 +1,6 @@
 # LAB-092-B: Memory Observatory - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-092-A](LAB-092-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-092](../experiments/LAB-092.md). Payoff: Repeat entry/reset/exit and inspect resource growth, leaks and bounded caches.

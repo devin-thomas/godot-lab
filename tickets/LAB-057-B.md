@@ -1,6 +1,6 @@
 # LAB-057-B: Navmesh Workshop - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-057-A](LAB-057-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-057](../experiments/LAB-057.md). Payoff: Move an obstacle and inspect the difference between navigation rebake and runtime avoidance.

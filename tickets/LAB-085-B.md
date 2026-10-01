@@ -1,6 +1,6 @@
 # LAB-085-B: RPC Gatehouse - Qualification
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-085-A](LAB-085-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-085](../experiments/LAB-085.md). Payoff: Send allowed and invalid RPC requests and inspect authority, payload limits and version checks.

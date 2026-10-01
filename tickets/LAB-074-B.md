@@ -1,6 +1,6 @@
 # LAB-074-B: Statechart Playhouse - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-074-A](LAB-074-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-074](../experiments/LAB-074.md). Payoff: Manipulate a small character state machine and inspect guards, entry/exit and interrupted actions.

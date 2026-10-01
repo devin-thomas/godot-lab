@@ -1,6 +1,6 @@
 # LAB-078-A: Locale Pavilion - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [LAB-013-B](LAB-013-B.md), [LAB-006-B](LAB-006-B.md).
 
 Contract: [LAB-078](../experiments/LAB-078.md). Payoff: Switch original translations and inspect text direction, plural rules and saved language choice.

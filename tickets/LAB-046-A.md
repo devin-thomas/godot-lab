@@ -1,6 +1,6 @@
 # LAB-046-A: Aim Range - Implementation/deepening
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [LAB-052-B](LAB-052-B.md), [LAB-053-B](LAB-053-B.md).
 
 Contract: [LAB-046](../experiments/LAB-046.md). Payoff: Compare ray, shape and projectile targeting with readable occlusion and collision masks.

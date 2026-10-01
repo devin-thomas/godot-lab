@@ -1,6 +1,6 @@
 # LAB-004-B: Paint & light - Qualification
 
-State: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion).
+Full-contract state: specified. Planned wave: M1 baseline deepening (separate depth, not historical completion). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-004-A](LAB-004-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-004](../experiments/LAB-004-EXPANSION.md). Payoff: Separate painted shade, matte light and vertex shade on comparable geometry.

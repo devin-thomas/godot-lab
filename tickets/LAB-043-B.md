@@ -1,6 +1,6 @@
 # LAB-043-B: Combat Clock - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-043-A](LAB-043-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-043](../experiments/LAB-043.md). Payoff: Land a readable attack and inspect hitboxes, invulnerability, hitstop and cancel timing.

@@ -1,6 +1,6 @@
 # CORE-003: Typed operations, receipts and revisions
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-002](CORE-002.md).
 
 One validated operation bus drives UI and scenarios; receipts distinguish queued and completed effects.

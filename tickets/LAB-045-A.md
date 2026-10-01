@@ -1,6 +1,6 @@
 # LAB-045-A: Platform Ferry - Implementation/deepening
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-009](CORE-009.md), [LAB-001-B](LAB-001-B.md), [LAB-021-B](LAB-021-B.md).
 
 Contract: [LAB-045](../experiments/LAB-045.md). Payoff: Ride translating/rotating platforms and compare inherited velocity on departure.

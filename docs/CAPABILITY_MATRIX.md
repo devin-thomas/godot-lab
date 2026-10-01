@@ -1,6 +1,6 @@
 # Capability matrix
 
-Generated from planning/catalog.json by scripts/plan.py. 96 laboratory contracts; six bounded baseline routes and 90 specified future labs. First-six depth is separately specified. API leads require installed-engine probes.
+Generated from planning/catalog.json by scripts/plan.py. 96 full laboratory contracts; six bounded baseline routes and 90 expanded targets. First-six depth is separately specified. Narrower playable code/evidence is tracked in [implementation waves](IMPLEMENTATION_WAVES.md); API leads require installed-engine probes.
 
 ## Coverage
 

@@ -1,6 +1,6 @@
 # LAB-037-A: Capability Compass - Implementation/deepening
 
-State: specified. Planned wave: M1 (future lab).
+Full-contract state: specified. Planned wave: M1 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [CORE-007](CORE-007.md), [CORE-017](CORE-017.md), [CORE-016](CORE-016.md), [LAB-013-B](LAB-013-B.md), [LAB-018-B](LAB-018-B.md).
 
 Contract: [LAB-037](../experiments/LAB-037.md). Payoff: Find a capability by payoff and see exactly why its live route is available or gated.

@@ -1,6 +1,6 @@
 # LAB-032-B: Web Portal - Qualification
 
-State: specified. Planned wave: M4 (future lab).
+Full-contract state: specified. Planned wave: M4 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-032-A](LAB-032-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-032](../experiments/LAB-032.md). Payoff: Export a small route and try browser-specific input, storage and restart behavior.

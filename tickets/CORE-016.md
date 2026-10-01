@@ -1,6 +1,6 @@
 # CORE-016: Documents, schema migration and recovery
 
-State: specified.
+State: full contract specified; narrower implementations tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md).
 Depends on: [CORE-003](CORE-003.md), [CORE-005](CORE-005.md).
 
 Separate progress/documents/records; stage migrations and atomically publish portable experiments.

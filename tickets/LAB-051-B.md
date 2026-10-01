@@ -1,6 +1,6 @@
 # LAB-051-B: Cloth Sail - Qualification
 
-State: specified. Planned wave: M3 (future lab).
+Full-contract state: specified. Planned wave: M3 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-051-A](LAB-051-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-051](../experiments/LAB-051.md). Payoff: Pin and release a small soft-body sail and inspect deformation and collision cost.

@@ -4,19 +4,19 @@
 
 Godot Lab is a playable capability museum: an original retro 3D hub connects small experiments in movement, simulation, rendering, sound, and durable state. Each experiment has a physical interaction, an explanation, a reset path, and an automated scenario. A recording is evidence of a playable system; the executable is the product.
 
-The tested bootstrap contains six rooms: **Motion atelier**, **Gravity foundry**, **Pathfinder garden**, **Paint & light**, **Signal chamber**, and **Memory archive**. The expanded program specifies **96 labs across 16 wings**, shared typed operations/live automation, asset authoring, composed journeys, and implementation/qualification dependencies. The [catalog](experiments/INDEX.md), [roadmap](docs/ROADMAP.md), and [specification](SPEC.md) define that work. Ninety future labs and deeper contracts for the first six remain planned; actual runtime evidence belongs in [BUILD_STATUS](docs/BUILD_STATUS.md).
+The original six rooms now sit alongside **35 additional playable system/graphics/data prototypes**, a searchable **96-lab capability atlas**, parameter controls, and a live state/operation inspector. The expanded program spans **16 wings**, shared automation, asset authoring and composed journeys. The [catalog](experiments/INDEX.md), [roadmap](docs/ROADMAP.md), and [specification](SPEC.md) define the full destination; [implementation waves](docs/IMPLEMENTATION_WAVES.md) identify the narrower mechanisms actually built. Prototype logic checks do not complete full laboratory qualification. Actual evidence belongs in [BUILD_STATUS](docs/BUILD_STATUS.md).
 
 ## Play and verify
 
-The local Windows export is `dist/GodotLab.exe`. From the repository root:
+The local Windows export is `dist/GodotLab-0.2.0.exe`. From the repository root:
 
 ```powershell
-.\dist\GodotLab.exe
+.\dist\GodotLab-0.2.0.exe
 godot --path game
 python scripts/check.py --render --export
 ```
 
-The source/check routes require Godot 4.7.2 stable and matching export templates; set `GODOT` to its console executable or pass `--godot` to the checker. Build with `python scripts/build.py`. The executable is a generated, unsigned local artifact rather than a file committed to this repository. WASD/arrows move, Space jumps, E interacts, R resets the room, Escape returns to the hub, and 1-6 selects a lab.
+The source/check routes require Godot 4.7.2 stable and matching export templates; set `GODOT` to its console executable or pass `--godot` to the checker. Build with `python scripts/build.py`. The executable is a generated, unsigned local artifact rather than a file committed to this repository. WASD/arrows move, Space jumps, E interacts, R resets the room, Escape returns to the hub, and 1-6 selects an original room. Open CATALOG to search all 96 contracts and enter additional prototypes; INSPECT STATE exposes observations and typed operations.
 
 ## Begin
 

@@ -1,6 +1,6 @@
 # LAB-049-B: Constraint Foundry - Qualification
 
-State: specified. Planned wave: M2 (future lab).
+Full-contract state: specified. Planned wave: M2 (expanded lab). Narrower code/evidence is tracked in [implementation waves](../docs/IMPLEMENTATION_WAVES.md); it does not close this ticket.
 Depends on: [LAB-049-A](LAB-049-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
 
 Contract: [LAB-049](../experiments/LAB-049.md). Payoff: Manipulate3D mechanical joints and inspect angular limits and solver stability.
