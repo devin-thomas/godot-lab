@@ -1,6 +1,6 @@
 # RELEASE-001: Executable delivery
 
-State: executable automated-verified; independent public-source review and publication pending. Depends on: CORE-001, LABS-001, AUTO-001, CAPTURE-001, ART-001. Evidence: docs/BUILD_STATUS.md.
+State: done, automated-verified. Depends on: CORE-001, LABS-001, AUTO-001, CAPTURE-001, ART-001. Evidence: docs/BUILD_STATUS.md. Windows executable, 23 outcome checks in three modes, fresh-process persistence, independent public source and source distribution review passed. Unsigned local delivery; human and other-platform gates deferred.
 
 Export a local playable executable, launch that artifact, and run its bounded smoke route. Complete public setup instructions, build/evidence ledger, original asset review, and source publishing checks.
 

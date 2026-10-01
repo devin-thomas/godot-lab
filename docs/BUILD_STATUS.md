@@ -1,6 +1,6 @@
 # Build status
 
-Evidence snapshot: 2026-10-01, foundation working tree. This is a runnable six-lab build with automatic verification. No human playtesting, physical controller qualification, or other-platform claim is made.
+Evidence snapshot: 2026-10-01, foundation runtime `2ca31ff17979971f694807e23184df8264f2c50d`. This is a runnable six-lab build with automatic verification. Subsequent source maintenance preserves the official adapter's exact npm bytes and records delivery evidence. No human playtesting, physical controller qualification, or other-platform claim is made.
 
 ## Toolchain and artifact
 
@@ -21,11 +21,12 @@ The latest `python scripts/check.py --render --export` run passed 23 outcome che
 | Official Cappy discovery/input replay | Passed; semantic replay, not bit-identical physics | `.artifacts/cappy-gate.json` |
 | Cappy/OBS all six scenarios | Recorded game-only pixels and successful LAB_PROOF events | `.artifacts/capture-<id>.json` and extracted frames |
 | Encoded spatial audio | Passed non-silence, near/far attenuation, stereo dominance swap, and 220 Hz tone | `.artifacts/cappy-audio-gate.json`, `.artifacts/capture-audio.wav` |
-| Public clean-checkout/distribution review | Final integration review pending | Independent runtime; public-content review before publish |
+| Public-only source archive | 23 checks and fresh-process restart passed with no sibling dependencies | `artifacts/public-source.json`; `python scripts/source_gate.py` |
+| Public distribution review | Passed source allowlist, license/provenance and ignored-artifact checks | Original project assets; exact released adapter with MIT license; generated captures, credentials and executable excluded from Git |
 | Human comfort and real controller | Deferred by requested scope | Requires later human/input session |
 | Other platforms and physical devices | Deferred by requested scope | Requires platform-specific evidence |
 
-Reports are local generated evidence locations, not public downloadable links. The builder must update this ledger after the independent public-source check and final publication review finish. Earlier failed development reports are not passing proof.
+Reports are local generated evidence locations, not public downloadable links. Earlier failed development reports are not passing proof. Public source is delivered through the canonical repository's `main` branch; generated unsigned binaries remain local. The private composition is unnecessary to play, build or verify the public source.
 
 ## What the checks establish
 
