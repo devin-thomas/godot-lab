@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devin-thomas/godot-lab.git"
+    "url": "git+https://github.com/uppercut-labs/godot-lab.git"
   },
   "keywords": [],
   "type": "module",
   "bugs": {
-    "url": "https://github.com/devin-thomas/godot-lab/issues"
+    "url": "https://github.com/uppercut-labs/godot-lab/issues"
   },
-  "homepage": "https://github.com/devin-thomas/godot-lab#readme",
+  "homepage": "https://github.com/uppercut-labs/godot-lab#readme",
   "devDependencies": {
     "@uppercut-labs/cappy": "0.1.0",
     "ws": "8.21.3"
