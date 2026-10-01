@@ -1,0 +1,19 @@
+# LAB-019-B: Shader Bench - Qualification
+
+State: specified. Planned wave: M2 (future lab).
+Depends on: [LAB-019-A](LAB-019-A.md), [CORE-006](CORE-006.md), [CORE-018](CORE-018.md).
+
+Contract: [LAB-019](../experiments/LAB-019.md). Payoff: Adjust uniforms and see clean before/after output while inspecting shader diagnostics.
+
+## Acceptance
+
+- Uniform changes intended pixels
+- Reference view stays unchanged
+- Compile failure is shown
+- Recovery restores valid output
+- Unknown uniform rejects
+- Invalid shader never overwrites known-good fixture
+- Run repeated lifecycle/reset and minimal extraction host
+- Capture all required evidence at exact source/fixture/profile; disclose deferred physical gates
+
+Required evidence: logic, render, provider. Document actual assertions/tolerances and artifacts. No status promotion from a generated ticket or another revision's proof.

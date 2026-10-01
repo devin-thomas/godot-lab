@@ -2,6 +2,8 @@
 
 Source review: 2026-10-01. Links are reference material, not dependencies or permission to redistribute their assets. Version-sensitive implementation claims must be checked against the installed Godot engine recorded in BUILD_STATUS.
 
+The expanded [primary research index](RESEARCH_SOURCES.md) covers animation, skeletal modifiers, import/interchange, tools, rendering, performance, clocks, media, transport and XR. Per-lab source leads are preserved in planning/catalog.json and generated specifications. [SHOWCASE_CAPABILITY_COVERAGE](SHOWCASE_CAPABILITY_COVERAGE.md) maps reusable mechanisms without redistributing private source.
+
 | Public source | Used for | Confidence boundary |
 |---|---|---|
 | [Godot command-line tutorial](https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html) | CLI, user args, headless, movie writing, exports | Official documentation; confirm flags in installed engine |

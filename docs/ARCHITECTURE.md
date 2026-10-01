@@ -1,29 +1,45 @@
-# Architecture
+# Architecture: bootstrap and expanded host
 
-## Runtime
+The existing executable uses game/main.gd, world.gd, player.gd and lab_store.gd for six rooms. The boundaries below are **planned architecture**, not an implemented package inventory. [BUILD_STATUS](BUILD_STATUS.md) describes tested behavior.
 
-`game/project.godot` is the independent Godot project. `game/main.tscn` boots the host. `game/main.gd` owns navigation, instructions, catalog access, and scenario dispatch; `game/world.gd` builds the playable environments; `game/player.gd` owns ordinary player movement; `game/lab_store.gd` owns scoped local progress. These are the initial boundaries, not a commitment to keep every future lab in one file.
+## Dependency direction
 
-The hub is a third-person observatory. A player can walk to a portal or choose the same lab through direct selection. Entry mounts the lab, establishes its reset baseline, and presents its controls and explanation. Leaving clears lab-owned objects and returns to the hub. Long-running lab work must be cancelled before exit.
+Player UI / scenario / CLI / live API / MCP -> validation/dispatcher -> lab/domain component -> receipts/events -> inspector / recorder / analysis.
 
-## Shared interaction path
+The host owns navigation, fixture selection, injected services, input context, progress and settings. Modules own their scenes/transient state. Components contain extractable mechanisms. Adapters own renderer/platform/provider/editor/native integration. Evidence tools consume records/artifacts without becoming ordinary play dependencies.
 
-```text
-Player input / focused UI / bounded scenario
-    -> named lab operation
-    -> real Godot nodes and scoped state
-    -> visible feedback + diagnostic observation
-    -> reset or return to hub
-```
+Focused scenes with injected context follow [Godot scene organization](https://docs.godotengine.org/en/stable/tutorials/best_practices/scene_organization.html). Extraction requires a tested minimal scene.
 
-The scenario route must use real collision, rigid-body, navigation, material, audio, and file mechanisms. It may set up a known starting state or drive a target; it must not assign an expected final result to bypass the mechanism under test.
+| Planned area | Responsibility | Excluded responsibility |
+|---|---|---|
+| game/host/ | Catalog, world, inspector, settings, journeys, input | Every lab simulation |
+| game/domain/ | Schemas, IDs, revisions, receipts/events, jobs, profiles | UI nodes and OBS |
+| game/labs/<id>/ | Module, scenes, fixture adapter, reset, scenarios | Sibling internals |
+| game/components/ | Reusable movement/animation/audio/world/documents | Private fixtures |
+| game/adapters/ | Optional platform/renderer/native/network/Cappy | Shortcut progress mutation |
+| game/fixtures/ | Original small sources/manifests | User files and capture caches |
+| game/tests/ | Operation/lifecycle/fixture checks | Expected-state assignment as proof |
+| scripts/ | Build, capture, analysis, authoring orchestration | Ordinary play requirement |
+| planning/ | Machine-readable specified program | Implied runtime registration |
 
-## Data and tooling
+Migrate the bootstrap in small verified steps during CORE-002. Existing controls, scenarios, seals and saves must survive. This planning revision does not refactor working runtime code.
 
-Ordinary progress belongs to `user://godot-lab/progress.json`, a versioned demo-owned file; automation uses `user://godot-lab/automation-progress.json`. Schema 1 stores earned lab IDs, reduced-motion and mute preferences. The runtime rejects malformed/version-invalid data and preserves it until an explicit checkpoint save. Room reset rebuilds geometry while preserving earned seals. Credentials, analytics, and cloud synchronization are outside the baseline.
+## Module lifecycle
 
-`scripts/check.py` orchestrates automated checks. `scripts/build.py` handles export. Optional Node tooling integrates the official Cappy npm package. Build, source execution, encoded Godot movie output, Cappy provider capture, and exported-executable launch are recorded separately.
+Static registration -> profile probe -> fixture validation -> isolated namespace -> instantiate -> inject/connect -> ready -> operations/events -> reset/exit -> cancel jobs -> disconnect signals/peers -> stop audio -> release nodes/resources -> cleanup receipt.
 
-## Renderer and resources
+Reset owns transient scene/demo state, not unrelated progress. Requests during teardown receive a lifecycle error. Entering a room does not start recording, open external listeners, load native binaries or overwrite an export.
 
-The first release uses Godot 4.7.2 Compatibility rendering; the exact tested engine/renderer belongs in BUILD_STATUS. A future experiment may require another renderer, but must expose that gate and preserve access to the baseline hub. Scene-owned resources are freed on exit; original fixtures are bounded, reusable, and documented.
+## Simulation and presentation
+
+Stable actor/event IDs survive visual substitution. Fixed-tick queues and sequence ordering drive simulation. Presentation interpolates visible actors, effects and camera tracks. Capture selects a viewer camera independently of the player. Simulation time, presentation time and wall time are recorded separately; physics tolerances and renderer-dependent output are declared.
+
+## Optional adapters and storage
+
+CoreLocal is default. RenderAdvanced, NetworkLocal, ProductionTools, EditorNative, Web, Mobile and XR have independently probed readiness/fallbacks. Default import/export cannot require OBS, Blender, MCP, a native compiler, mobile SDKs or XR hardware. Renderer claims need separate evidence: [renderer overview](https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html); export selection needs installed probes: [feature tags](https://docs.godotengine.org/en/stable/tutorials/export/feature_tags.html).
+
+Progress, experiment documents, records, captures and worker checkpoints have separate schemas/namespaces. Existing schema-1 seals remain supported. Migrations stage/validate before publication; replay is history rather than a general save. Video is an artifact rather than simulation truth.
+
+## Public/private boundary
+
+Public modules and original fixtures work alone. Private missions consume qualified public components at an exact revision and own restricted recipes/provenance/namespaces. Neither imports an uncommitted sibling checkout. Public archive and private pin gates verify these boundaries.

@@ -1,5 +1,15 @@
 # Build status
 
+## Expanded planning delivery
+
+Planning snapshot: 2026-10-01. The program now specifies **96 labs in 16 wings**, **17 shared-system tickets**, **192 laboratory implementation/qualification tickets**, **eight public journeys**, and six milestone waves. The private repository specifies twelve composed experiences with its own 39-ticket graph. Ninety future labs and all first-six deepening contracts remain specified; this expansion does not add runtime rooms or upgrade earlier evidence.
+
+`python scripts/plan.py --check --self-test` passed catalog identity/depth/evidence validation, both dependency graphs, milestone prerequisites, eight journey contracts, 308 generated-document coherence checks, local-link resolution and 12 deliberate invalid-planning controls, including omitted first-six depth qualification. The public archive gate repeats those checks independently before the existing runtime assertions. These checks qualify planning source, not future gameplay.
+
+The latest previously qualified runtime/source revision is `ad7d305f4f8057296cf75cacd6624c6d329bf236`. New planning revisions retain this historical runtime provenance. Current six-room executable/media proof follows below; no re-rendered or new-platform claim is made for this documentation revision.
+
+## Bootstrap runtime evidence
+
 Evidence snapshot: 2026-10-01, foundation runtime `2ca31ff17979971f694807e23184df8264f2c50d`. This is a runnable six-lab build with automatic verification. Subsequent source maintenance preserves the official adapter's exact npm bytes and records delivery evidence. No human playtesting, physical controller qualification, or other-platform claim is made.
 
 ## Toolchain and artifact

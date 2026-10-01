@@ -1,0 +1,74 @@
+[
+  {
+    "id": "JOURNEY-001", "title": "Courier Circuit", "milestone": "M1",
+    "labs": ["LAB-001", "LAB-003", "LAB-007", "LAB-011", "LAB-012", "LAB-018", "LAB-025"],
+    "goal": "Paint a small route, move through it, dispatch a courier and keep a portable record of the delivery.",
+    "handoff": "An original route document carries cell IDs, courier target, seed and semantic events into the navigation scene and replay viewer.",
+    "flow": ["Edit a bounded tile route and inspect collisions", "Traverse with ordinary input and dispatch the courier", "Compare the courier path with the player route", "Select a viewer camera, export the route and replay its receipt sequence"],
+    "acceptance": ["Edited cells affect actual collision/navigation", "Courier arrival follows the allowed route", "Player and scenario share operations", "Document round-trip preserves semantic IDs", "Replay resets and reproduces arrival within tolerance"],
+    "failures": ["Blocked destination yields explicit unreachable result", "Malformed route never replaces the good fixture", "Exit/reset cancels dispatch and preserves ordinary seals"]
+  },
+  {
+    "id": "JOURNEY-002", "title": "Clockwork Duel", "milestone": "M2",
+    "labs": ["LAB-001", "LAB-008", "LAB-011", "LAB-015", "LAB-021", "LAB-022", "LAB-043", "LAB-063", "LAB-071"],
+    "goal": "Play a readable timed duel against an original mechanical actor and compare its animation, impact and sound treatments.",
+    "handoff": "Combat events identify attack windows, contacts and impact ticks; the rig, effects, camera and mixer subscribe to those same events.",
+    "flow": ["Choose original actor and stepped/smooth presentation", "Move, guard and trigger attacks with ordinary controls", "Inspect windup/contact/recovery, hit-stop and impact cues", "Replay a bounded duel at alternate presentation rates without changing its outcome"],
+    "acceptance": ["Hits occur only in declared contact windows", "Animation blends/layers preserve the actor root contract", "Hit-stop and mixer cues align with contact events", "Viewer changes do not alter duel simulation", "Reduced motion keeps combat state readable"],
+    "failures": ["Missing clip/rig marker prevents activation visibly", "Invalid attack during recovery is rejected", "Reset during impact clears actors, effects and audio"]
+  },
+  {
+    "id": "JOURNEY-003", "title": "Weather Postcard", "milestone": "M3",
+    "labs": ["LAB-009", "LAB-010", "LAB-016", "LAB-019", "LAB-023", "LAB-031", "LAB-058", "LAB-060", "LAB-061", "LAB-065", "LAB-090"],
+    "goal": "Grow an original island, shift its weather and light, and take a framed moving postcard with honest renderer comparisons.",
+    "handoff": "A seed and scene recipe bind terrain, placement, atlas/vertex shade, world clock, weather and camera cues to one source-bound take.",
+    "flow": ["Select a bounded seed and paint the island palette", "Grow terrain/props and explore their silhouettes", "Move the clock, light and weather through comparison presets", "Capture an independent viewer take and inspect pixels/metrics"],
+    "acceptance": ["Seed reproduces declared terrain/placement", "Weather/light changes are visible in temporal frames", "Authored shading is distinguishable from live lighting", "Renderer fallback identifies unavailable mechanisms", "Camera take does not move the playable actor"],
+    "failures": ["Oversized generation rejects before memory growth", "Unsupported fog/shader path reports fallback", "Cancelled take leaves prior postcard intact"]
+  },
+  {
+    "id": "JOURNEY-004", "title": "Story Caravan", "milestone": "M3",
+    "labs": ["LAB-006", "LAB-013", "LAB-014", "LAB-018", "LAB-074", "LAB-075", "LAB-077", "LAB-078", "LAB-079", "LAB-080"],
+    "goal": "Collect an original item, resolve a branching task, change language and resume the same story after restart.",
+    "handoff": "Stable quest/item/dialogue IDs and versioned state survive localization, document export and a process restart.",
+    "flow": ["Navigate the caravan with keyboard/focus and comfortable text", "Choose dialogue and inspect a quest transition", "Craft/collect an item that fulfills the task", "Change locale, save/export and resume after restart"],
+    "acceptance": ["Only valid state transitions consume items", "Dialogue/quest state survives real files and restart", "Locale changes labels without changing semantic IDs", "Focus recovery preserves the active action", "Malformed imports preserve the existing story"],
+    "failures": ["Unknown quest edge rejects visibly", "Duplicate request cannot consume an item twice", "Unsupported/newer schema does not reset user progress"]
+  },
+  {
+    "id": "JOURNEY-005", "title": "Signal Orchestra", "milestone": "M3",
+    "labs": ["LAB-005", "LAB-020", "LAB-021", "LAB-071", "LAB-072", "LAB-073", "LAB-088"],
+    "goal": "Walk through acoustic spaces and conduct original timed music/voice cues while inspecting captured sound and captions.",
+    "handoff": "One cue timeline links simulation events, audio buses, source positions, original speech fixtures and caption timestamps.",
+    "flow": ["Move near/far and left/right of audible sources", "Switch acoustic and bus-routing presets", "Conduct a bounded synchronized cue sequence", "Capture and compare decoded sound/caption timing"],
+    "acceptance": ["Encoded channels show expected positional changes", "Bus effects have measurable differences without clipping", "Music cues align within declared timing tolerance", "Original speech captions match authored fixture timing", "Mute and reset stop owned sound without losing progress"],
+    "failures": ["Missing device/provider reports unavailable capture", "Late cue is handled according to clock policy", "Silent/corrupt recording fails the media gate"]
+  },
+  {
+    "id": "JOURNEY-006", "title": "Two Worlds Together", "milestone": "M4",
+    "labs": ["LAB-006", "LAB-012", "LAB-024", "LAB-025", "LAB-082", "LAB-083", "LAB-084", "LAB-085"],
+    "goal": "Play a shared delivery with two local processes, then inspect prediction, network loss and reconnection.",
+    "handoff": "An explicit paired session owns authoritative entity IDs, ordered commands, replaceable samples and reconnection checkpoints.",
+    "flow": ["Start separate local host/client and pair explicitly", "Move and deliver an object in the shared world", "Inject bounded delay/loss and inspect prediction correction", "Disconnect/reconnect and replay the authoritative result"],
+    "acceptance": ["Real separate peers share authoritative state", "Unauthorized clients cannot apply durable operations", "Duplicate/late messages follow the declared policy", "Reconnect converges within tolerance", "Offline fixture is labeled as simulation"],
+    "failures": ["Protocol mismatch rejects pairing", "Packet storm is rate/budget bounded", "Reset/session exit releases listeners and peer state"]
+  },
+  {
+    "id": "JOURNEY-007", "title": "Maker to Movie", "milestone": "M4",
+    "labs": ["LAB-008", "LAB-015", "LAB-026", "LAB-035", "LAB-060", "LAB-061", "LAB-087", "LAB-088", "LAB-089", "LAB-090", "LAB-091", "LAB-095"],
+    "goal": "Author an original rigged prop, play with it, direct it live while recording and compare a bounded revision sweep.",
+    "handoff": "Recipe, imported attribute manifest, live operation receipts, simulation record and viewer track become one source-bound capture/evidence package.",
+    "flow": ["Run a bounded original Blender recipe and validate interchange", "Explore the imported rig/clip/material in ordinary play", "Use CLI/MCP/live controls in the same Cappy-recorded session", "Produce event-anchored takes and compare approved parameter variants"],
+    "acceptance": ["UV/color/rig/clip/unit markers survive declared round trip", "One session serves live control and real Cappy capture", "Operations and movie events align", "Comparison binds exact source/fixture/look/profile", "Cancelled worker preserves prior good output"],
+    "failures": ["Missing attribute/license or corrupt asset rejects activation", "Stale build evidence cannot qualify current source", "Provider loss/worker capacity failure produces no success artifact"]
+  },
+  {
+    "id": "JOURNEY-008", "title": "Device Expedition", "milestone": "M5",
+    "labs": ["LAB-012", "LAB-013", "LAB-027", "LAB-032", "LAB-033", "LAB-034", "LAB-080", "LAB-094", "LAB-096"],
+    "goal": "Carry a small original interaction across available exports and spatial/input adapters, seeing readiness and limits honestly.",
+    "handoff": "A portable interaction fixture and operation record retain semantic IDs while each target owns its input/presentation adapter and evidence.",
+    "flow": ["Select a probed target/profile and inspect missing gates", "Operate the fixture with available native/browser/spatial input", "Compare input receipts and comfort modes", "Export/test the available route and inspect deferred device gates"],
+    "acceptance": ["Default desktop remains independently playable", "Actual target build/export is tested separately", "Unavailable adapter has a meaningful labeled fixture route", "Input maps to equivalent semantic operations", "Physical sensor/XR/comfort claims remain pending without devices"],
+    "failures": ["Missing SDK/plugin/permission reports exact readiness reason", "Unsupported native ABI is not loaded", "Lifecycle interruption resets owned input/session state"]
+  }
+]

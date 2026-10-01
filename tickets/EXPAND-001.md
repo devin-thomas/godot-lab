@@ -1,7 +1,7 @@
-# EXPAND-001: Next capability slice
+# EXPAND-001: Comprehensive program (superseded delivery umbrella)
 
-State: specified. Depends on: RELEASE-001.
+State: superseded by [the program roadmap](../docs/ROADMAP.md). Depends on: RELEASE-001.
 
-Select one M2 candidate after first-release evidence is complete. Start with a player payoff and the extension template. Prioritize an interaction that reuses the shared input, reset, and scenario contracts while adding a distinct mechanism: 2D tiles, animation blending, responsive UI, or resource round trips.
+The user's scope correction expands this from selecting one next room to 96 detailed lab contracts, 17 shared-system tickets, 192 implementation/qualification tasks and eight composed public journeys. The first six are M0; depth tasks remain specified. Use the actual dependency graph rather than a single generic expansion ticket.
 
-Acceptance before implementation: full experiment contract, original fixtures, renderer/platform gates, bounded automated plan, and integration path. Acceptance before promotion: playable action, documented reuse boundary, meaningful tests, rendered/audio evidence as needed, and updated public status. Catalog breadth alone is not completion.
+Planning-source acceptance: coherent catalogs, graph/order, generated documents, detailed player/failure/evidence/reuse contracts and truthful status. Runtime acceptance remains in each A/B task and BUILD_STATUS. This umbrella is not a completed future-room claim.

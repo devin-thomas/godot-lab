@@ -4,7 +4,7 @@
 
 Godot Lab is a playable capability museum: an original retro 3D hub connects small experiments in movement, simulation, rendering, sound, and durable state. Each experiment has a physical interaction, an explanation, a reset path, and an automated scenario. A recording is evidence of a playable system; the executable is the product.
 
-The first playable build contains six labs: **Motion atelier**, **Gravity foundry**, **Pathfinder garden**, **Paint & light**, **Signal chamber**, and **Memory archive**. The broader [capability catalog](experiments/INDEX.md) describes future work without presenting it as shipped. Current checks and remaining gates belong in [BUILD_STATUS](docs/BUILD_STATUS.md).
+The tested bootstrap contains six rooms: **Motion atelier**, **Gravity foundry**, **Pathfinder garden**, **Paint & light**, **Signal chamber**, and **Memory archive**. The expanded program specifies **96 labs across 16 wings**, shared typed operations/live automation, asset authoring, composed journeys, and implementation/qualification dependencies. The [catalog](experiments/INDEX.md), [roadmap](docs/ROADMAP.md), and [specification](SPEC.md) define that work. Ninety future labs and deeper contracts for the first six remain planned; actual runtime evidence belongs in [BUILD_STATUS](docs/BUILD_STATUS.md).
 
 ## Play and verify
 
@@ -30,7 +30,12 @@ The public project runs with original bundled examples and local storage. No acc
 |---|---|
 | [Context.md](Context.md) | Why an interactive engine laboratory exists |
 | [SPEC.md](SPEC.md) | Scope, behavior, milestones, and completion rules |
-| [experiments/INDEX.md](experiments/INDEX.md) | Six first-release labs and specified expansion opportunities |
+| [experiments/INDEX.md](experiments/INDEX.md) | 96 detailed laboratory contracts across 16 wings |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Shared systems and lab implementation/qualification dependencies |
+| [docs/JOURNEYS.md](docs/JOURNEYS.md) | Eight composed public playable routes |
+| [planning/catalog.json](planning/catalog.json) | Machine-readable interaction, failure, evidence and reuse contracts |
+| [docs/CAPABILITY_MATRIX.md](docs/CAPABILITY_MATRIX.md) | Wing/milestone/dependency/evidence coverage |
+| [docs/CAPABILITY_PROFILES.md](docs/CAPABILITY_PROFILES.md) | Optional renderer, tool, network and device readiness |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Host, lab boundaries, and operation flow |
 | [docs/EXTENSION_CONTRACT.md](docs/EXTENSION_CONTRACT.md) | Requirements for a new playable lab |
 | [docs/ART_DIRECTION.md](docs/ART_DIRECTION.md) | Original palette, geometry, texture, UI, and comfort rules |
@@ -40,3 +45,5 @@ The public project runs with original bundled examples and local storage. No acc
 | [ADR.md](ADR.md) | Decisions and consequences |
 
 Project code and original project material are MIT licensed. Third-party engine, fonts, tooling, and independently supplied assets retain their own licenses; see [ASSET_POLICY](docs/ASSET_POLICY.md). This independent project is not sponsored by Godot or by the games discussed as visual references.
+
+Validate the planning pack with `python scripts/plan.py --check --self-test`. Generated specifications do not enable new runtime rooms.

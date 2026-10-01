@@ -1,0 +1,5105 @@
+[
+  {
+    "id": "LAB-001",
+    "title": "Motion atelier",
+    "wing": "motion",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Feel a real capsule move, jump and land against stairs and a solid block.",
+    "mechanism": [
+      "CharacterBody3D",
+      "InputMap",
+      "CollisionShape3D"
+    ],
+    "interaction": [
+      "Enter the motion room",
+      "Move with screen-relative input and jump",
+      "Read traveled distance and jump/landing state",
+      "Rebuild the room and return to the hub"
+    ],
+    "operations": [
+      "host.command(kind:String,value:String)->void",
+      "player.teleport(at:Vector3)->void"
+    ],
+    "scenario": "motion",
+    "fixture": "Original five stairs, coral block and capsule player.",
+    "reset": "Rebuild this room and restore player transform/velocity without deleting seals.",
+    "acceptance": [
+      "Actual travel exceeds two units and one jump occurs",
+      "Character lands on the floor",
+      "Solid obstacle blocks travel",
+      "Room reset clears motion baseline"
+    ],
+    "failures": [
+      "Unknown lab ID rejects entry",
+      "Falling below the room teleports to the start"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Character movement and observation adapter",
+    "limits": "Baseline Windows proof only. Synthetic controller event is not physical-controller evidence.",
+    "deepening_requirements": [
+      "Separate reusable player/controller modules from host assembly.",
+      "Add input buffering, coyote time and analog profiles with boundary assertions.",
+      "Add slope, moving-platform and camera-occlusion comparisons.",
+      "Keep actual-controller and human-comfort gates separate from synthetic events."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-002",
+    "title": "Gravity foundry",
+    "wing": "simulation",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Launch a weighted cube and inspect actual impulse, contacts and settling.",
+    "mechanism": [
+      "RigidBody3D",
+      "StaticBody3D",
+      "CollisionShape3D"
+    ],
+    "interaction": [
+      "Enter the six-body arrangement",
+      "Apply launch impulse",
+      "Observe cube displacement and settling",
+      "Reset before another take"
+    ],
+    "operations": [
+      "host.command(kind:String,value:String)->void",
+      "world.launch_body()->RigidBody3D"
+    ],
+    "scenario": "physics",
+    "fixture": "Six original cubes, raised plinth and floor.",
+    "reset": "Rebuild the six-body baseline and release transient bodies.",
+    "acceptance": [
+      "Launch adds one real body",
+      "Body travels from launch position and settles within tolerance",
+      "Reset restores six bodies"
+    ],
+    "failures": [
+      "Twenty-four body budget refuses further spawning",
+      "Leaving releases the arrangement"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Bounded rigid-body launch rig",
+    "limits": "No bit-identical cross-host physics or full destruction claim.",
+    "deepening_requirements": [
+      "Add mass/friction/restitution sweeps with recorded tolerances.",
+      "Compare jointed mechanisms and high-speed collision.",
+      "Expose contact/impulse diagnostics and meaningful reset receipts.",
+      "Measure solver/resource costs across recorded engine/backend profiles."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-003",
+    "title": "Pathfinder garden",
+    "wing": "world",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Dispatch a courier around a tower to a fixed destination.",
+    "mechanism": [
+      "NavigationAgent3D",
+      "NavigationMesh",
+      "NavigationRegion3D"
+    ],
+    "interaction": [
+      "Enter the authored navigation island",
+      "Dispatch the courier from its mint origin",
+      "Watch its non-straight path to the gold pad",
+      "Reset and dispatch again"
+    ],
+    "operations": [
+      "host.command(kind:String,value:String)->void",
+      "world.start_navigation()->void"
+    ],
+    "scenario": "navigation",
+    "fixture": "Original tower, authored mesh hole, mint courier and gold pad.",
+    "reset": "Rebuild actor/map baseline and clear arrival state.",
+    "acceptance": [
+      "Actual path has multiple points",
+      "Courier reaches within one unit of fixed destination",
+      "Reset clears travel and arrival state"
+    ],
+    "failures": [
+      "Unavailable map must not invent arrival",
+      "Leaving during travel cancels the room"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Authored obstacle-routing example",
+    "limits": "No free destination selection, rebaking, crowd avoidance or broad navigation guarantee yet.",
+    "deepening_requirements": [
+      "Add selectable destinations and explicitly unreachable targets.",
+      "Compare authored, runtime-rebuilt and avoidance routes.",
+      "Add multi-agent bottleneck and reset-during-travel checks.",
+      "Verify map synchronization and obstacle/path correspondence."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_navigationagent3d.html"
+    ]
+  },
+  {
+    "id": "LAB-004",
+    "title": "Paint & light",
+    "wing": "art",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Separate painted shade, matte light and vertex shade on comparable geometry.",
+    "mechanism": [
+      "ShaderMaterial",
+      "SurfaceTool",
+      "ArrayMesh",
+      "ImageTexture"
+    ],
+    "interaction": [
+      "Inspect the three sample cubes",
+      "Cycle the left active sample",
+      "Compare with unchanged middle/right references",
+      "Reset to authored mode"
+    ],
+    "operations": [
+      "host.command(kind:String,value:String)->void",
+      "world.cycle_material()->void"
+    ],
+    "scenario": "materials",
+    "fixture": "Original 32 x 32 masonry texture and vertex-colored cubes.",
+    "reset": "Rebuild mode 0 and its labels with reference samples unchanged.",
+    "acceptance": [
+      "Active mode cycles and labels agree",
+      "Middle/right references stay stable",
+      "Rendered capture contains actual game pixels",
+      "Reset returns authored mode"
+    ],
+    "failures": [
+      "Unknown lab identifier refuses entry",
+      "Missing shader or texture fails resource loading rather than inventing a passing material result"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Original painted-surface comparison rig",
+    "limits": "Baseline uses Compatibility. Global post-effects and all-renderer parity remain planned.",
+    "deepening_requirements": [
+      "Develop original atlas/UV and vertex-color round-trip examples.",
+      "Add identical-fixture renderer and shader-profile comparisons.",
+      "Compare lighting/bake/gradient-card roles and optional display modes.",
+      "Use regional visual assertions plus documented human art review limits."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html",
+      "https://docs.godotengine.org/en/stable/tutorials/shaders/index.html"
+    ]
+  },
+  {
+    "id": "LAB-005",
+    "title": "Signal chamber",
+    "wing": "audio",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Hear distance and stereo change around a visible original tone emitter.",
+    "mechanism": [
+      "AudioStreamPlayer3D",
+      "AudioListener3D",
+      "AudioStreamWAV"
+    ],
+    "interaction": [
+      "Start the 220 Hz signal",
+      "Walk near and far",
+      "Move between lateral positions",
+      "Stop or reset the source"
+    ],
+    "operations": [
+      "host.command(kind:String,value:String)->void",
+      "world.toggle_audio()->void"
+    ],
+    "scenario": "audio",
+    "fixture": "Original one-second looped mono220 Hz PCM tone and visible cabinet.",
+    "reset": "Rebuild a stopped emitter and retain mute preference.",
+    "acceptance": [
+      "Encoded output is non-silent",
+      "Near RMS exceeds far RMS",
+      "Left/right phase channel dominance swaps",
+      "Dominant recorded frequency is220 Hz"
+    ],
+    "failures": [
+      "Mute deliberately silences the master bus",
+      "Exit/reset stops the source"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio",
+      "provider",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Scoped spatial-tone emitter and PCM proof gate",
+    "limits": "Encoded24 kHz stereo proof is not speaker, headphone, comfort or device qualification.",
+    "deepening_requirements": [
+      "Add buses, effects, synchronized music and reviewed speech/captions.",
+      "Exercise muted/missing-device/unsupported-output paths.",
+      "Add actual channel/timing analysis for new fixtures rather than playing flags.",
+      "Separate encoded proof from later speaker/headphone comfort."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html"
+    ]
+  },
+  {
+    "id": "LAB-006",
+    "title": "Memory archive",
+    "wing": "core",
+    "milestone": "M0",
+    "status": "automated-verified",
+    "payoff": "Write earned seals and comfort preferences then reload a real versioned file.",
+    "mechanism": [
+      "FileAccess",
+      "JSON",
+      "DirAccess"
+    ],
+    "interaction": [
+      "Earn or inspect seals",
+      "Save a checkpoint",
+      "Read the fresh-reader receipt",
+      "Restart and inspect retained state"
+    ],
+    "operations": [
+      "store.save_progress()->Error",
+      "store.load_progress()->Error",
+      "store.complete_lab(id:String)->Error"
+    ],
+    "scenario": "persistence",
+    "fixture": "Schema 1 demo file with six known IDs, CALM and MUTE.",
+    "reset": "Room reset preserves progress. Automation uses its separate demo-owned file.",
+    "acceptance": [
+      "Fresh reader recovers all six seals",
+      "Fresh process recovers all six seals",
+      "Unsupported/truncated input rejects",
+      "Invalid original file remains until explicit checkpoint repair"
+    ],
+    "failures": [
+      "Unknown lab ID rejects load",
+      "Malformed schema rejects without success-shaped replacement"
+    ],
+    "evidence": [
+      "logic",
+      "interchange",
+      "export"
+    ],
+    "depends_on": [],
+    "reusable_component": "Versioned scoped progress store",
+    "limits": "No arbitrary positions, cloud sync or save-slot system. Deep migration work is planned.",
+    "deepening_requirements": [
+      "Add explicit schema migration and unknown-field preservation policy.",
+      "Demonstrate durable idempotent transactions, recovery and undo.",
+      "Add export/import profiles and conflict/revision fixtures.",
+      "Keep scope-limited reset, corrupt-file preservation and ordinary/automation isolation."
+    ],
+    "implementation_boundary": "Delivered bounded M0 interaction; expansion requirements remain specified.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-007",
+    "title": "Tile Workshop",
+    "wing": "world",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Paint a playable 2D room and see terrain seams and collision update together.",
+    "mechanism": [
+      "TileMapLayer",
+      "TileSet",
+      "TileSetAtlasSource"
+    ],
+    "interaction": [
+      "Choose a brush and paint a corridor",
+      "Switch terrain neighbors",
+      "Walk through the painted room",
+      "Undo and replay the edits"
+    ],
+    "operations": [
+      "tiles.paint(cell:Vector2i,tile_id:int)->EditReceipt",
+      "tiles.undo(receipt_id:String)->EditReceipt"
+    ],
+    "scenario": "tile-workshop",
+    "fixture": "Original 16 x 16 tile kit with floor, solid wall and terrain variants.",
+    "reset": "Restore seeded cell map and undo history without touching other labs.",
+    "acceptance": [
+      "Same edit sequence produces same cell IDs",
+      "Collision matches solid tiles",
+      "Undo restores all changed cells",
+      "Terrain seams use expected neighbors"
+    ],
+    "failures": [
+      "Invalid tile ID rejects before mutation",
+      "Out-of-bounds stroke refuses or clips according to documented policy"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-006"
+    ],
+    "reusable_component": "Transactional tile-brush service",
+    "limits": "API/import signatures need an installed-engine probe. Original art only.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-008",
+    "title": "Animation Loom",
+    "wing": "motion",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Blend locomotion with a gesture and inspect transition timing rather than swapping clips blindly.",
+    "mechanism": [
+      "AnimationTree",
+      "AnimationPlayer",
+      "AnimationNodeStateMachine"
+    ],
+    "interaction": [
+      "Walk a speed ramp",
+      "Trigger a gesture during motion",
+      "Compare blend weights and pose",
+      "Interrupt and reset"
+    ],
+    "operations": [
+      "animation.set_speed(value:float)->BlendReceipt",
+      "animation.gesture(id:String)->TransitionReceipt"
+    ],
+    "scenario": "animation-loom",
+    "fixture": "Original walk/run/gesture rig and marked speed ramp.",
+    "reset": "Restore rest pose, state-machine entry and blend weights.",
+    "acceptance": [
+      "Speed changes weights continuously",
+      "Gesture ends in intended state",
+      "Repeated interruption never sticks",
+      "Visible feet/pose match state trace"
+    ],
+    "failures": [
+      "Missing clip returns unavailable state",
+      "Out-of-range blend input rejects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-001"
+    ],
+    "reusable_component": "Inspectable animation-state controller",
+    "limits": "No universal animation cadence or rig compatibility implied.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-009",
+    "title": "Particle Weather",
+    "wing": "rendering",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Tune a storm and compare CPU/GPU particle behavior under a bounded budget.",
+    "mechanism": [
+      "GPUParticles3D",
+      "CPUParticles3D",
+      "ParticleProcessMaterial",
+      "GPUParticles2D",
+      "CPUParticles2D"
+    ],
+    "interaction": [
+      "Select an original 2D or 3D rain/spark fixture",
+      "Adjust lifetime and count",
+      "Switch supported backend",
+      "Run a fixed capture and read measured cost"
+    ],
+    "operations": [
+      "particles.configure(config:ParticleConfig)->EmitterReceipt",
+      "particles.measure(frames:int)->CostReceipt"
+    ],
+    "scenario": "particle-weather",
+    "fixture": "Original bounded 2D and 3D rain/spark fixtures, occluders and emitter bounds.",
+    "reset": "Stop and clear emitters, restore seed/config and resource budget.",
+    "acceptance": [
+      "Particle count stays within cap",
+      "Lifetime changes visible persistence",
+      "Backend comparison records actual renderer and timing",
+      "Reset leaves no active emitter",
+      "2D/3D comparison records the actual dimensional fixture and supported backend"
+    ],
+    "failures": [
+      "Unsupported GPU path reports unavailable",
+      "Excess count rejects before allocation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-036"
+    ],
+    "reusable_component": "Budgeted particle preset runner",
+    "limits": "Compute/backend capability is probed. Timing belongs to the measured host.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-010",
+    "title": "Light Archive",
+    "wing": "rendering",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Inspect how baked, authored and dynamic light change the same original room.",
+    "mechanism": [
+      "LightmapGI",
+      "DirectionalLight3D",
+      "WorldEnvironment",
+      "PointLight2D",
+      "LightOccluder2D",
+      "CanvasModulate"
+    ],
+    "interaction": [
+      "Open original matched 2D/3D light-and-occluder fixtures in supported profiles",
+      "Move the same occluder",
+      "Compare static/dynamic response",
+      "Read bake/runtime cost and restore baseline"
+    ],
+    "operations": [
+      "lighting.select(profile:LightProfile)->ProfileReceipt",
+      "lighting.move_occluder(at:Vector3)->ChangeReceipt"
+    ],
+    "scenario": "light-archive",
+    "fixture": "Original room with static/dynamic props and reference camera.",
+    "reset": "Restore selected profile, fixtures and independent bake outputs.",
+    "acceptance": [
+      "Dynamic occluder changes dynamic mode",
+      "Baked mode explains its static limits",
+      "Authored mode remains stable",
+      "Capture labels and selected profile agree",
+      "2D light/occluder masks and 3D light/bake profiles have separate assertions"
+    ],
+    "failures": [
+      "Missing bake reports missing asset",
+      "Unsupported profile leaves baseline room usable"
+    ],
+    "evidence": [
+      "render",
+      "profiling",
+      "editor",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-031"
+    ],
+    "reusable_component": "Explicit lighting-profile comparison",
+    "limits": "Bake dependencies and renderer support require probes. No appearance parity promise.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html",
+      "https://docs.godotengine.org/en/stable/tutorials/2d/2d_lights_and_shadows.html"
+    ]
+  },
+  {
+    "id": "LAB-011",
+    "title": "Camera Rig",
+    "wing": "motion",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Try camera projection and occlusion behavior while moving through a readable course.",
+    "mechanism": [
+      "Camera3D",
+      "SpringArm3D",
+      "RayCast3D"
+    ],
+    "interaction": [
+      "Walk under an arch",
+      "Switch projection presets",
+      "Move behind a camera obstruction",
+      "Compare framing and reset"
+    ],
+    "operations": [
+      "camera.select(profile:CameraProfile)->CameraReceipt",
+      "camera.set_target(id:String)->CameraReceipt"
+    ],
+    "scenario": "camera-rig",
+    "fixture": "Original player-height landmarks, arch and narrow corner.",
+    "reset": "Restore camera transform, target, projection and spring-arm state.",
+    "acceptance": [
+      "Camera avoids clipping in supported preset",
+      "Projection label matches actual mode",
+      "Player remains in declared safe frame",
+      "Reset restores reference composition"
+    ],
+    "failures": [
+      "Missing target rejects",
+      "Invalid near/far range rejects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-001"
+    ],
+    "reusable_component": "Camera profile and framing evaluator",
+    "limits": "Comfort remains a later human gate; screen-space assertions are bounded proxies.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-012",
+    "title": "Input Atelier",
+    "wing": "interfaces",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Rebind actions and see prompts follow actual input events without losing essential controls.",
+    "mechanism": [
+      "InputMap",
+      "InputEventKey",
+      "InputEventJoypadButton"
+    ],
+    "interaction": [
+      "Choose an action",
+      "Capture a new key or synthetic pad event",
+      "Try it in a short task",
+      "Restore default bindings"
+    ],
+    "operations": [
+      "input.bind(action:String,event:InputEvent)->BindingReceipt",
+      "input.restore_defaults()->BindingReceipt"
+    ],
+    "scenario": "input-atelier",
+    "fixture": "Original action list and keyboard/controller prompt sheet.",
+    "reset": "Restore baseline bindings and last-device state.",
+    "acceptance": [
+      "New key invokes the same operation",
+      "Conflicting essential binding is rejected",
+      "Prompt family follows last event",
+      "Cancel exits capture without changes"
+    ],
+    "failures": [
+      "Unknown action rejects",
+      "Disconnect during capture preserves prior bindings"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "physical"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-013"
+    ],
+    "reusable_component": "Validated action-binding and glyph service",
+    "limits": "Configured/synthetic pads do not prove a physical controller model.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html"
+    ]
+  },
+  {
+    "id": "LAB-013",
+    "title": "UI Workshop",
+    "wing": "interfaces",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Operate a responsive control panel by keyboard and pointer with one predictable focus path.",
+    "mechanism": [
+      "Control",
+      "Container",
+      "Theme",
+      "Focus neighbors"
+    ],
+    "interaction": [
+      "Navigate a multi-section panel",
+      "Resize the window",
+      "Change a setting and inspect state",
+      "Return focus after closing a dialog"
+    ],
+    "operations": [
+      "ui.focus(target:String)->FocusReceipt",
+      "ui.set_setting(key:String,value:Variant)->SettingReceipt"
+    ],
+    "scenario": "ui-workshop",
+    "fixture": "Original settings panel, long labels and disabled items.",
+    "reset": "Restore settings, focus origin and layout size.",
+    "acceptance": [
+      "Every essential control reachable by keyboard",
+      "Disabled items skipped",
+      "Resizing keeps actions inside viewport",
+      "Dialog close restores originating focus"
+    ],
+    "failures": [
+      "Missing focus target returns error",
+      "Rapid confirm produces one state mutation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-006"
+    ],
+    "reusable_component": "Reusable focus-aware settings panel",
+    "limits": "Screen-reader support needs a separate probe/qualification path.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html"
+    ]
+  },
+  {
+    "id": "LAB-014",
+    "title": "Dialogue Machine",
+    "wing": "narrative",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Choose branches in original dialogue and undo a choice without corrupting story state.",
+    "mechanism": [
+      "Resource",
+      "RichTextLabel",
+      "proposed DialogueGraph contract"
+    ],
+    "interaction": [
+      "Start a short conversation",
+      "Choose a conditional response",
+      "Inspect changed flags",
+      "Undo and take another branch"
+    ],
+    "operations": [
+      "dialogue.choose(choice_id:String)->DialogueReceipt",
+      "dialogue.undo(receipt_id:String)->DialogueReceipt"
+    ],
+    "scenario": "dialogue-machine",
+    "fixture": "Original 12-node dialogue graph with two endings and condition flags.",
+    "reset": "Restore graph entry, flags and receipt history.",
+    "acceptance": [
+      "Choice reaches expected node",
+      "Unavailable branch cannot mutate flags",
+      "Undo restores preceding node/flags",
+      "Same choices yield same ending"
+    ],
+    "failures": [
+      "Unknown choice rejects",
+      "Cycle without progress trips bounded traversal guard"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-006",
+      "LAB-013"
+    ],
+    "reusable_component": "Typed dialogue graph interpreter",
+    "limits": "Lab-owned graph contract is proposed, not a built-in Godot dialogue API.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-015",
+    "title": "Skeleton Studio",
+    "wing": "motion",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Place targets and inspect constrained skeletal motion and deformation.",
+    "mechanism": [
+      "Skeleton3D",
+      "SkeletonModifier3D",
+      "AnimationMixer"
+    ],
+    "interaction": [
+      "Move an original arm target",
+      "Change modifier influence",
+      "Compare rest/animated/constrained poses",
+      "Reset the rig"
+    ],
+    "operations": [
+      "rig.set_target(id:String,at:Vector3)->PoseReceipt",
+      "rig.set_influence(value:float)->PoseReceipt"
+    ],
+    "scenario": "skeleton-studio",
+    "fixture": "Original segmented arm plus skinned rig and pose markers.",
+    "reset": "Restore rest pose, target transforms and modifier ordering.",
+    "acceptance": [
+      "End-effector approaches reachable target",
+      "Influence 0 restores animation pose",
+      "Joint bounds hold",
+      "Export/import retains expected bones"
+    ],
+    "failures": [
+      "Unknown bone rejects",
+      "Unreachable target reports bounded residual without exploding"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-008",
+      "LAB-035"
+    ],
+    "reusable_component": "Target-and-constraint skeleton adapter",
+    "limits": "Modifier signatures require installed-engine probe; no deprecated IK API assumed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_skeletonmodifier3d.html"
+    ]
+  },
+  {
+    "id": "LAB-016",
+    "title": "Terrain Foundry",
+    "wing": "world",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Sculpt or import terrain and compare visual form, collision and level-of-detail boundaries.",
+    "mechanism": [
+      "ArrayMesh",
+      "HeightMapShape3D",
+      "proposed TerrainPatch contract"
+    ],
+    "interaction": [
+      "Raise a marked terrain patch",
+      "Walk over its collision",
+      "View near/far detail",
+      "Undo the sculpt"
+    ],
+    "operations": [
+      "terrain.sculpt(region:Rect2i,delta:float)->PatchReceipt",
+      "terrain.restore(receipt_id:String)->PatchReceipt"
+    ],
+    "scenario": "terrain-foundry",
+    "fixture": "Original bounded height field with cliff, plateau and slope.",
+    "reset": "Restore height samples, collision and generated mesh from one seed.",
+    "acceptance": [
+      "Mesh height follows samples",
+      "Collision matches edited surface within tolerance",
+      "Patch seam stays closed",
+      "Undo restores original samples"
+    ],
+    "failures": [
+      "Invalid dimensions reject",
+      "Cancelled rebuild preserves previous complete patch"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-035"
+    ],
+    "reusable_component": "Transactional height-field patch builder",
+    "limits": "No third-party terrain addon promised. Supported shape/import path is probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-017",
+    "title": "Crowd Balcony",
+    "wing": "performance",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare individual meshes and instancing under the same crowd layout and camera.",
+    "mechanism": [
+      "MultiMesh",
+      "MultiMeshInstance3D",
+      "Performance"
+    ],
+    "interaction": [
+      "Choose crowd size",
+      "Switch node/instanced layouts",
+      "Run identical camera route",
+      "Inspect timing and visual count"
+    ],
+    "operations": [
+      "crowd.configure(count:int,mode:CrowdMode)->CrowdReceipt",
+      "crowd.measure(frames:int)->ProfileReceipt"
+    ],
+    "scenario": "crowd-balcony",
+    "fixture": "Original repeated non-skinned figures in seeded rows.",
+    "reset": "Release instances and restore count/camera/sample window.",
+    "acceptance": [
+      "Both modes show same declared count",
+      "Transform distribution matches seed",
+      "Profiler records actual draw/time metrics",
+      "Reset releases allocated crowd"
+    ],
+    "failures": [
+      "Count over budget rejects",
+      "Unavailable metric is marked missing rather than zero"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-036"
+    ],
+    "reusable_component": "Repeatable instance-layout benchmark",
+    "limits": "Host-specific measurement, not universal speedup; skinned crowds are separate work.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/performance/index.html"
+    ]
+  },
+  {
+    "id": "LAB-018",
+    "title": "Resource Cabinet",
+    "wing": "interchange",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Save and reload a custom Resource while inspecting dependencies and stable identities.",
+    "mechanism": [
+      "Resource",
+      "ResourceSaver",
+      "ResourceLoader"
+    ],
+    "interaction": [
+      "Edit an original item resource",
+      "Save and reload it",
+      "Move a referenced fixture through approved workflow",
+      "Inspect identity and missing-dependency behavior"
+    ],
+    "operations": [
+      "resources.save(item:LabResource)->ResourceReceipt",
+      "resources.reload(id:String)->ResourceReceipt"
+    ],
+    "scenario": "resource-cabinet",
+    "fixture": "Original item resource with texture reference and stable lab ID.",
+    "reset": "Restore owned resource files and release test cache.",
+    "acceptance": [
+      "Declared fields round-trip",
+      "Stable IDs survive reload",
+      "Dependency failures are visible",
+      "Repeated load policy is explicit"
+    ],
+    "failures": [
+      "Unsupported resource type rejects",
+      "Missing dependency does not silently replace with a passing fixture"
+    ],
+    "evidence": [
+      "logic",
+      "interchange",
+      "editor"
+    ],
+    "depends_on": [
+      "LAB-006"
+    ],
+    "reusable_component": "Versioned resource persistence adapter",
+    "limits": "Unknown-field policy must be recorded before schema evolution.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html"
+    ]
+  },
+  {
+    "id": "LAB-019",
+    "title": "Shader Bench",
+    "wing": "rendering",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Adjust uniforms and see clean before/after output while inspecting shader diagnostics.",
+    "mechanism": [
+      "Shader",
+      "ShaderMaterial",
+      "SubViewport"
+    ],
+    "interaction": [
+      "Select original shader",
+      "Move a bounded uniform slider",
+      "Compare synchronized views",
+      "Introduce a controlled compile failure and recover"
+    ],
+    "operations": [
+      "shader.set_uniform(name:String,value:Variant)->UniformReceipt",
+      "shader.compare(profile:String)->RenderReceipt"
+    ],
+    "scenario": "shader-bench",
+    "fixture": "Original rim, dissolve and palette shaders plus calibration mesh.",
+    "reset": "Restore known-good shader and all uniform defaults.",
+    "acceptance": [
+      "Uniform changes intended pixels",
+      "Reference view stays unchanged",
+      "Compile failure is shown",
+      "Recovery restores valid output"
+    ],
+    "failures": [
+      "Unknown uniform rejects",
+      "Invalid shader never overwrites known-good fixture"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-004"
+    ],
+    "reusable_component": "Validated shader parameter/comparison panel",
+    "limits": "Shader language/backend availability requires compile probes.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html",
+      "https://docs.godotengine.org/en/stable/tutorials/shaders/index.html"
+    ]
+  },
+  {
+    "id": "LAB-020",
+    "title": "Acoustic Rooms",
+    "wing": "audio",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare bus effects, reverb and filters while walking between simple acoustic spaces.",
+    "mechanism": [
+      "AudioServer",
+      "AudioEffectReverb",
+      "AudioEffectLowPassFilter"
+    ],
+    "interaction": [
+      "Play original impulse/tone fixture",
+      "Switch room bus profile",
+      "Walk source/listener route",
+      "Compare waveform/spectrogram and reset"
+    ],
+    "operations": [
+      "audio.select_bus(profile:BusProfile)->AudioReceipt",
+      "audio.play_fixture(id:String)->AudioReceipt"
+    ],
+    "scenario": "acoustic-rooms",
+    "fixture": "Original impulses and tones in two simple rooms.",
+    "reset": "Stop sources and restore only lab-owned bus configuration.",
+    "acceptance": [
+      "Reverb tail duration changes as specified",
+      "Low-pass attenuates high-frequency fixture",
+      "Master mute remains honored",
+      "Exit leaves no active source/effect"
+    ],
+    "failures": [
+      "Missing bus refuses routing",
+      "Unsupported effect reports unavailable"
+    ],
+    "evidence": [
+      "logic",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-005"
+    ],
+    "reusable_component": "Scoped audio-bus profile controller",
+    "limits": "Encoded proof does not establish listening comfort or device routing.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html"
+    ]
+  },
+  {
+    "id": "LAB-021",
+    "title": "Time Laboratory",
+    "wing": "simulation",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "See pause, time scaling and interpolation affect simulation without freezing the inspector.",
+    "mechanism": [
+      "Engine",
+      "SceneTree",
+      "Node.process_mode"
+    ],
+    "interaction": [
+      "Start a marked moving body",
+      "Pause only simulation",
+      "Change time scale",
+      "Compare tick/interpolation traces and reset"
+    ],
+    "operations": [
+      "time.set_scale(value:float)->TimeReceipt",
+      "time.pause_simulation(paused:bool)->TimeReceipt"
+    ],
+    "scenario": "time-laboratory",
+    "fixture": "Original tick marker, moving body and always-active controls.",
+    "reset": "Restore scale 1, unpaused tree policy and fixture state.",
+    "acceptance": [
+      "Paused simulation position stays stable",
+      "Inspector still accepts resume",
+      "Scale changes elapsed simulation rate",
+      "Reset restores timing settings"
+    ],
+    "failures": [
+      "Invalid scale rejects",
+      "Exit during pause cannot leave hub frozen"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-002"
+    ],
+    "reusable_component": "Scoped simulation-clock adapter",
+    "limits": "Frame count is not wall time; real-time and fixed-step evidence stay separate.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-022",
+    "title": "Destruction Cell",
+    "wing": "simulation",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Break an original assembly into bounded physical fragments and rebuild it.",
+    "mechanism": [
+      "RigidBody3D",
+      "Joint3D",
+      "proposed FractureRecipe contract"
+    ],
+    "interaction": [
+      "Inspect intact modular object",
+      "Strike a chosen joint",
+      "Observe detached pieces",
+      "Reset to original assembly"
+    ],
+    "operations": [
+      "destruction.strike(part_id:String,impulse:Vector3)->BreakReceipt",
+      "destruction.rebuild()->BuildReceipt"
+    ],
+    "scenario": "destruction-cell",
+    "fixture": "Original 12-part lattice with explicit break thresholds.",
+    "reset": "Remove fragments, restore joints/transforms and clear impacts.",
+    "acceptance": [
+      "Only threshold-crossed joints detach",
+      "Fragment count remains capped",
+      "Detached pieces collide/settle",
+      "Reset restores all connections"
+    ],
+    "failures": [
+      "Unknown part rejects",
+      "Repeated break request is idempotent"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-002",
+      "LAB-049"
+    ],
+    "reusable_component": "Budgeted breakable-assembly recipe",
+    "limits": "Authored modular breakage, not arbitrary runtime mesh fracturing.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-023",
+    "title": "Procedural Garden",
+    "wing": "world",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Generate a seeded playable layout and inspect connectivity before entering it.",
+    "mechanism": [
+      "RandomNumberGenerator",
+      "AStarGrid2D",
+      "proposed LayoutRecipe contract"
+    ],
+    "interaction": [
+      "Choose a seed and room budget",
+      "Generate a preview",
+      "Inspect connected route",
+      "Commit and walk the result"
+    ],
+    "operations": [
+      "world.generate(seed:int,config:LayoutConfig)->LayoutProposal",
+      "world.commit(proposal_id:String)->LayoutReceipt"
+    ],
+    "scenario": "procedural-garden",
+    "fixture": "Original grid modules, entrances and obstacle tiles.",
+    "reset": "Restore fixture seed and discard uncommitted proposals.",
+    "acceptance": [
+      "Same seed/config yields same topology hash",
+      "Every required room connects",
+      "Budget caps hold",
+      "Failed proposal leaves current world unchanged"
+    ],
+    "failures": [
+      "Impossible connectivity rejects proposal",
+      "Cancel prevents later completion from committing"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-007",
+      "LAB-006"
+    ],
+    "reusable_component": "Seeded proposal-and-commit world generator",
+    "limits": "Procedural recipe is lab-owned; no claim of universal level quality.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-024",
+    "title": "Network Commons",
+    "wing": "networking",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Join two local processes and inspect server authority and replicated player state.",
+    "mechanism": [
+      "ENetMultiplayerPeer",
+      "MultiplayerAPI",
+      "MultiplayerSpawner",
+      "MultiplayerSynchronizer"
+    ],
+    "interaction": [
+      "Launch host and client",
+      "Move a client-owned actor",
+      "Inspect authority and replica state",
+      "Disconnect and reconnect"
+    ],
+    "operations": [
+      "network.host(port:int)->SessionReceipt",
+      "network.join(endpoint:String)->SessionReceipt"
+    ],
+    "scenario": "network-commons",
+    "fixture": "Original two-peer arena and scoped synthetic identities.",
+    "reset": "Stop peers, release ports and restore actor/session baseline.",
+    "acceptance": [
+      "Two processes establish transport",
+      "Authority-owned state reaches replica",
+      "Unauthorized mutation rejects",
+      "Clean disconnect removes owned actor"
+    ],
+    "failures": [
+      "Port conflict reports failure",
+      "Peer mismatch never joins silently"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-006"
+    ],
+    "reusable_component": "Authority-aware local multiplayer harness",
+    "limits": "Local transport proof is not internet/NAT, service or security qualification.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-025",
+    "title": "Replay Observatory",
+    "wing": "automation",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Record meaningful operations and replay a versioned semantic timeline.",
+    "mechanism": [
+      "InputEvent",
+      "FileAccess",
+      "proposed OperationTimeline contract"
+    ],
+    "interaction": [
+      "Record a short lab session",
+      "Inspect typed events and ticks",
+      "Reset the fixture",
+      "Replay and compare semantic outcomes"
+    ],
+    "operations": [
+      "replay.record(duration_ticks:int)->TimelineReceipt",
+      "replay.play(timeline_id:String)->ReplayReceipt"
+    ],
+    "scenario": "replay-observatory",
+    "fixture": "Original motion/material session with build and fixture fingerprints.",
+    "reset": "Clear transient session and reset fixture before replay.",
+    "acceptance": [
+      "Event order retained",
+      "Replay uses real operations",
+      "Final semantic state matches declared comparison",
+      "Unknown version rejects"
+    ],
+    "failures": [
+      "Truncated timeline refuses play",
+      "Cancelled replay releases held inputs"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-004",
+      "LAB-006"
+    ],
+    "reusable_component": "Versioned operation timeline recorder",
+    "limits": "Does not promise deterministic physics or pixel-identical cross-host output.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html"
+    ]
+  },
+  {
+    "id": "LAB-026",
+    "title": "Editor Toolroom",
+    "wing": "tooling",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Build a small editor panel that changes scene data with working undo/redo.",
+    "mechanism": [
+      "EditorPlugin",
+      "EditorUndoRedoManager",
+      "EditorInterface",
+      "EditorInspectorPlugin"
+    ],
+    "interaction": [
+      "Enable lab plugin",
+      "Select original scene node",
+      "Apply a typed property edit",
+      "Undo/redo and inspect saved scene"
+    ],
+    "operations": [
+      "editor.apply_edit(target:NodePath,change:PropertyChange)->EditReceipt",
+      "editor.undo()->EditReceipt"
+    ],
+    "scenario": "editor-toolroom",
+    "fixture": "Original editor-only modular room and property panel.",
+    "reset": "Undo all lab changes and disable plugin cleanly.",
+    "acceptance": [
+      "Edit affects selected node only",
+      "Undo restores previous value",
+      "Redo reapplies exact value",
+      "Plugin disable releases docks/hooks"
+    ],
+    "failures": [
+      "Missing target rejects",
+      "Unsupported property rejects without scene mutation"
+    ],
+    "evidence": [
+      "logic",
+      "editor",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-018"
+    ],
+    "reusable_component": "Undo-aware editor command adapter",
+    "limits": "Editor-only feature; enabling a plugin is distinct from runtime play.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/plugins/editor/index.html"
+    ]
+  },
+  {
+    "id": "LAB-027",
+    "title": "Native Bridge",
+    "wing": "tooling",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Compare a narrow GDExtension calculation with a typed GDScript reference.",
+    "mechanism": [
+      "GDExtension",
+      "ClassDB",
+      "proposed NativeKernel contract"
+    ],
+    "interaction": [
+      "Choose bounded input vector",
+      "Run script implementation",
+      "Run native implementation when built",
+      "Compare results and timing"
+    ],
+    "operations": [
+      "native.evaluate(input:KernelInput)->KernelResult",
+      "native.compare(samples:int)->ComparisonReceipt"
+    ],
+    "scenario": "native-bridge",
+    "fixture": "Original deterministic integer/geometry fixtures and separate native target.",
+    "reset": "Release native instances and restore input samples.",
+    "acceptance": [
+      "Native/reference outputs match tolerance",
+      "Missing binary produces honest unavailable route",
+      "ABI/build fingerprint recorded",
+      "Fallback remains usable"
+    ],
+    "failures": [
+      "Invalid input rejects",
+      "Wrong architecture binary is refused"
+    ],
+    "evidence": [
+      "logic",
+      "profiling",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-036",
+      "LAB-018"
+    ],
+    "reusable_component": "Optional typed native-kernel boundary",
+    "limits": "Exact extension ABI/toolchain must be probed per engine/target.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/plugins/editor/index.html"
+    ]
+  },
+  {
+    "id": "LAB-028",
+    "title": "Thread Mill",
+    "wing": "performance",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Run a bounded cancellable data job without mutating the scene from worker threads.",
+    "mechanism": [
+      "WorkerThreadPool",
+      "Mutex",
+      "proposed JobReceipt contract"
+    ],
+    "interaction": [
+      "Start seeded data generation",
+      "Observe progress while moving",
+      "Cancel one job",
+      "Apply a completed proposal on main thread"
+    ],
+    "operations": [
+      "jobs.start(request:JobRequest)->JobReceipt",
+      "jobs.cancel(job_id:String)->CancelReceipt"
+    ],
+    "scenario": "thread-mill",
+    "fixture": "Original immutable arrays and bounded geometry recipe.",
+    "reset": "Cancel/join owned jobs and discard unapplied proposals.",
+    "acceptance": [
+      "Controls remain responsive during job",
+      "Cancelled job cannot commit",
+      "Worker result matches single-thread reference",
+      "Scene mutation occurs on main thread"
+    ],
+    "failures": [
+      "Duplicate request joins or rejects explicitly",
+      "Invalid budget rejects before scheduling"
+    ],
+    "evidence": [
+      "logic",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-023",
+      "LAB-036"
+    ],
+    "reusable_component": "Cancellable worker-to-main-thread job coordinator",
+    "limits": "Pool overhead may exceed gains. Thread-safety rules require a focused probe.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/performance/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_workerthreadpool.html"
+    ]
+  },
+  {
+    "id": "LAB-029",
+    "title": "Streaming Depot",
+    "wing": "world",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Walk across scene boundaries while loading chunks and preserving local changes.",
+    "mechanism": [
+      "ResourceLoader",
+      "PackedScene",
+      "proposed ChunkLedger contract"
+    ],
+    "interaction": [
+      "Enter neighboring chunk",
+      "Inspect loading/activation state",
+      "Change one owned object",
+      "Unload and revisit"
+    ],
+    "operations": [
+      "stream.request(chunk_id:String)->ChunkReceipt",
+      "stream.release(chunk_id:String)->ChunkReceipt"
+    ],
+    "scenario": "streaming-depot",
+    "fixture": "Original 3 x 3 chunk map with stable object IDs.",
+    "reset": "Cancel pending loads, free mounted chunks and restore fixture ledger.",
+    "acceptance": [
+      "Boundary activates requested chunk",
+      "Changed object returns with correct state",
+      "Cancelled load never mounts late",
+      "Resident chunk cap holds"
+    ],
+    "failures": [
+      "Missing chunk displays error barrier",
+      "Corrupt resource preserves current playable chunk"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-006",
+      "LAB-028"
+    ],
+    "reusable_component": "Bounded scene-stream coordinator",
+    "limits": "Threaded load is not free scene-tree mutation; actual resource path is probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-030",
+    "title": "Large World",
+    "wing": "world",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Explore precision at large distances and compare an explicit origin strategy.",
+    "mechanism": [
+      "Node3D",
+      "Transform3D",
+      "proposed OriginLedger contract"
+    ],
+    "interaction": [
+      "Move a bounded test rig far from origin",
+      "Inspect jitter/error markers",
+      "Apply origin shift profile",
+      "Compare relative transforms and replay"
+    ],
+    "operations": [
+      "world.shift_origin(offset:Vector3)->OriginReceipt",
+      "world.measure_precision(distance:float)->PrecisionReceipt"
+    ],
+    "scenario": "large-world",
+    "fixture": "Original coordinate grid, camera and physics markers.",
+    "reset": "Restore origin ledger and every registered transform.",
+    "acceptance": [
+      "Relative object offsets survive shift",
+      "Physics/camera state remains coherent",
+      "Measured error is reported at declared distances",
+      "Replay resolves stable IDs"
+    ],
+    "failures": [
+      "Unregistered participant blocks shift",
+      "Overflow/invalid coordinates reject"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-029",
+      "LAB-002"
+    ],
+    "reusable_component": "Explicit origin-participant registry",
+    "limits": "Double-precision builds and engine limits are separate probes, never assumed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-031",
+    "title": "Renderer Gallery",
+    "wing": "rendering",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare the same fixture across Compatibility, Mobile and Forward+ with explicit support gates.",
+    "mechanism": [
+      "RenderingServer",
+      "ProjectSettings",
+      "WorldEnvironment"
+    ],
+    "interaction": [
+      "Select a supported renderer profile",
+      "Launch separate process",
+      "Inspect same reference scene",
+      "Compare feature/cost report"
+    ],
+    "operations": [
+      "renderers.launch(profile:RendererProfile)->LaunchReceipt",
+      "renderers.compare(run_ids:Array[String])->ComparisonReceipt"
+    ],
+    "scenario": "renderer-gallery",
+    "fixture": "Original calibration room with opaque/alpha/light probes.",
+    "reset": "Close spawned runs and restore baseline renderer profile.",
+    "acceptance": [
+      "Each run records actual renderer",
+      "Unsupported features are labeled",
+      "Reference camera/assets match",
+      "Timing/appearance reports remain per-host"
+    ],
+    "failures": [
+      "Unsupported driver does not fake fallback equivalence",
+      "Failed process is captured as failure"
+    ],
+    "evidence": [
+      "render",
+      "export",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-036"
+    ],
+    "reusable_component": "Renderer-profile launch and comparison harness",
+    "limits": "Renderer switching may require restart; API/hardware availability is probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-032",
+    "title": "Web Portal",
+    "wing": "platforms",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Export a small route and try browser-specific input, storage and restart behavior.",
+    "mechanism": [
+      "EditorExportPlatformWeb",
+      "Input",
+      "FileAccess"
+    ],
+    "interaction": [
+      "Build a local web export",
+      "Serve approved local files",
+      "Play keyboard/pointer route",
+      "Reload and inspect storage"
+    ],
+    "operations": [
+      "platforms.export_web(profile:ExportProfile)->ArtifactReceipt",
+      "platforms.run_browser(route:RouteId)->RunReceipt"
+    ],
+    "scenario": "web-portal",
+    "fixture": "Original account-free route and bounded fixture save.",
+    "reset": "Clear only test-origin storage and stop local server.",
+    "acceptance": [
+      "Browser loads actual exported build",
+      "Essential input route completes",
+      "Reload persistence matches documented policy",
+      "Cross-origin requirements are explained"
+    ],
+    "failures": [
+      "Unavailable browser feature offers honest limitation",
+      "Denied storage surfaces recoverable error"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "export",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-013",
+      "LAB-006",
+      "LAB-094"
+    ],
+    "reusable_component": "Web export smoke adapter",
+    "limits": "Browser automation is not mobile browser/device proof. Threading headers are explicit.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html"
+    ]
+  },
+  {
+    "id": "LAB-033",
+    "title": "Mobile Field Kit",
+    "wing": "platforms",
+    "milestone": "M5",
+    "status": "specified",
+    "payoff": "Try touch controls and sensor adapters with visible simulated/real distinction.",
+    "mechanism": [
+      "InputEventScreenTouch",
+      "InputEventScreenDrag",
+      "Input"
+    ],
+    "interaction": [
+      "Use touch movement and action panel",
+      "Choose recorded sensor fixture",
+      "Inspect adapter readiness",
+      "Run real sensor path only on qualified device"
+    ],
+    "operations": [
+      "mobile.apply_touch(event:TouchCommand)->InputReceipt",
+      "mobile.select_sensor(source:SensorSource)->SensorReceipt"
+    ],
+    "scenario": "mobile-field-kit",
+    "fixture": "Original touch route and labeled recorded acceleration traces.",
+    "reset": "Release all touches and restore fixture/real-source selection.",
+    "acceptance": [
+      "Touch action reaches same domain operation",
+      "Multitouch release leaves no held input",
+      "Fixture replay labeled simulated",
+      "Real adapter records device/permission provenance"
+    ],
+    "failures": [
+      "Permission denial leaves fixture path usable",
+      "Sensor unavailable never yields fabricated live values"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "export",
+      "physical"
+    ],
+    "depends_on": [
+      "LAB-012",
+      "LAB-032"
+    ],
+    "reusable_component": "Touch/sensor capability adapter",
+    "limits": "Physical mobile evidence deferred; SDK/signing/toolchain must be probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html"
+    ]
+  },
+  {
+    "id": "LAB-034",
+    "title": "XR Room",
+    "wing": "xr",
+    "milestone": "M5",
+    "status": "specified",
+    "payoff": "Interact through tracked input while inspecting real versus fixture poses.",
+    "mechanism": [
+      "XRServer",
+      "XROrigin3D",
+      "XRController3D",
+      "OpenXRInterface"
+    ],
+    "interaction": [
+      "Probe runtime readiness",
+      "Use desktop pose fixture if unavailable",
+      "Grab an original object",
+      "Reset origin and tracking mode"
+    ],
+    "operations": [
+      "xr.select_source(source:PoseSource)->ReadinessReceipt",
+      "xr.grab(object_id:String,hand:String)->GrabReceipt"
+    ],
+    "scenario": "xr-room",
+    "fixture": "Original reach table and labeled controller pose recording.",
+    "reset": "Release grabs, restore origin and remove fixture tracking hooks.",
+    "acceptance": [
+      "Fixture poses never labeled hardware",
+      "Grab/release changes real object state",
+      "Tracking loss safely releases or freezes by policy",
+      "Runtime/device provenance recorded"
+    ],
+    "failures": [
+      "Unavailable runtime leaves desktop route usable",
+      "Lost tracking cannot launch unbounded objects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "physical",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-049",
+      "LAB-012"
+    ],
+    "reusable_component": "Readiness-aware tracked interaction adapter",
+    "limits": "No headset/controller qualification until physical test; extension names probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/xr/index.html"
+    ]
+  },
+  {
+    "id": "LAB-035",
+    "title": "Import Studio",
+    "wing": "interchange",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Inspect imported meshes, materials and animation against original source fixtures.",
+    "mechanism": [
+      "GLTFDocument",
+      "GLTFState",
+      "ResourceImporterScene"
+    ],
+    "interaction": [
+      "Import original mesh/rig variants",
+      "Inspect axes/material/bone counts",
+      "Play reference pose",
+      "Compare source metadata and output"
+    ],
+    "operations": [
+      "imports.inspect(asset_id:String)->ImportReceipt",
+      "imports.compare(profile:ImportProfile)->ComparisonReceipt"
+    ],
+    "scenario": "import-studio",
+    "fixture": "Original glTF/GLB kit with UV, vertex color and rig markers.",
+    "reset": "Restore approved source files and discard generated test imports.",
+    "acceptance": [
+      "Scale/orientation match markers",
+      "UV/color attributes survive expected path",
+      "Animation duration/bones match fixture",
+      "Missing material is visible"
+    ],
+    "failures": [
+      "Malformed asset refuses import",
+      "Unexpected external URI is not fetched silently"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "editor",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-018",
+      "LAB-004"
+    ],
+    "reusable_component": "Provenance-aware scene import inspector",
+    "limits": "Exact import option names/version require probes; no copied commercial assets.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html"
+    ]
+  },
+  {
+    "id": "LAB-036",
+    "title": "Profiling Booth",
+    "wing": "performance",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Measure a controlled expensive scene before and after one explained optimization.",
+    "mechanism": [
+      "Performance",
+      "Engine",
+      "RenderingServer"
+    ],
+    "interaction": [
+      "Choose bounded workload",
+      "Record warm-up and sample window",
+      "Apply one optimization",
+      "Compare frame/memory metrics and visible output"
+    ],
+    "operations": [
+      "profiling.run(profile:WorkloadProfile)->ProfileReceipt",
+      "profiling.compare(a:String,b:String)->ComparisonReceipt"
+    ],
+    "scenario": "profiling-booth",
+    "fixture": "Original draw-heavy and script-heavy fixtures with fixed camera.",
+    "reset": "Restore workload, camera and profiler sampling state.",
+    "acceptance": [
+      "Report identifies warm-up/sample duration",
+      "Unavailable counters stay missing",
+      "Optimization preserves declared visible outcome",
+      "Samples include variance not only best frame"
+    ],
+    "failures": [
+      "Sample budget too small rejects",
+      "Concurrent workload warns or invalidates comparison"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-004"
+    ],
+    "reusable_component": "Reproducible workload profiler",
+    "limits": "No universal performance threshold or hardware claim without measurements.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/performance/index.html"
+    ]
+  },
+  {
+    "id": "LAB-037",
+    "title": "Capability Compass",
+    "wing": "core",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Find a capability by payoff and see exactly why its live route is available or gated.",
+    "mechanism": [
+      "Resource",
+      "Control",
+      "proposed CapabilityManifest contract"
+    ],
+    "interaction": [
+      "Search for an effect rather than API name",
+      "Inspect prerequisites and evidence",
+      "Open a ready lab",
+      "Compare a gated lab's meaningful fixture path"
+    ],
+    "operations": [
+      "catalog.search(query:String)->Array[LabCard]",
+      "catalog.probe(lab_id:String)->ReadinessReceipt"
+    ],
+    "scenario": "capability-compass",
+    "fixture": "Original manifests spanning supported, unavailable and specified capabilities.",
+    "reset": "Restore search/filter/navigation without altering lab proof state.",
+    "acceptance": [
+      "Search returns stable relevant IDs",
+      "Unavailable adapter names missing gate",
+      "Opening ready card enters correct lab",
+      "Specified card cannot masquerade as playable"
+    ],
+    "failures": [
+      "Unknown ID reports not found",
+      "Malformed manifest is rejected visibly"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-013",
+      "LAB-018"
+    ],
+    "reusable_component": "Capability manifest and readiness evaluator",
+    "limits": "Readiness is a current probe, not a permanent platform promise.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-038",
+    "title": "Operation Desk",
+    "wing": "core",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Invoke one typed operation from UI and automation and compare receipts and undo.",
+    "mechanism": [
+      "Callable",
+      "Signal",
+      "proposed OperationEnvelope contract"
+    ],
+    "interaction": [
+      "Inspect an operation schema",
+      "Perform it through a control",
+      "Repeat via scenario with same request ID",
+      "Undo one committed change"
+    ],
+    "operations": [
+      "operations.invoke(request:OperationEnvelope)->OperationReceipt",
+      "operations.undo(receipt_id:String)->OperationReceipt"
+    ],
+    "scenario": "operation-desk",
+    "fixture": "Original object-color/position domain with stable IDs and request ledger.",
+    "reset": "Restore fixture ledger and only its receipts.",
+    "acceptance": [
+      "UI/scenario yield equivalent state",
+      "Duplicate request mutates once",
+      "Undo restores exact prior state",
+      "Failed validation emits error receipt"
+    ],
+    "failures": [
+      "Ambiguous target refuses mutation",
+      "Stale revision rejects with current revision"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-006",
+      "LAB-025"
+    ],
+    "reusable_component": "Idempotent typed operation router",
+    "limits": "Proposed lab-owned contract, not arbitrary remote code execution.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-039",
+    "title": "Fixture Pantry",
+    "wing": "core",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Choose safe original fixtures and preview their bounds before committing them to a lab.",
+    "mechanism": [
+      "ResourceLoader",
+      "JSON",
+      "proposed FixtureEnvelope contract"
+    ],
+    "interaction": [
+      "Browse original fixture variants",
+      "Inspect rights/hash/size",
+      "Stage a selected fixture",
+      "Commit or cancel and replay"
+    ],
+    "operations": [
+      "fixtures.stage(id:String)->FixtureProposal",
+      "fixtures.commit(proposal_id:String)->FixtureReceipt"
+    ],
+    "scenario": "fixture-pantry",
+    "fixture": "Original small geometry, texture, tone and malformed test fixtures.",
+    "reset": "Remove staged proposals and restore selected baseline fixture.",
+    "acceptance": [
+      "Hashes identify exact fixture",
+      "Size limits checked before adoption",
+      "Cancel leaves current scene unchanged",
+      "Commit preserves source identity in receipt"
+    ],
+    "failures": [
+      "Oversized fixture refuses staging",
+      "Unapproved external path is rejected"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-018",
+      "LAB-035"
+    ],
+    "reusable_component": "Bounded fixture staging and provenance service",
+    "limits": "Only approved original/licensed inputs; no automatic arbitrary-path import.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-040",
+    "title": "Pause Vestibule",
+    "wing": "core",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Pause, resume and leave an active lab while inspecting cleanup and focus handoff.",
+    "mechanism": [
+      "SceneTree",
+      "Node.process_mode",
+      "Control"
+    ],
+    "interaction": [
+      "Start a long-running interaction",
+      "Pause simulation",
+      "Open inspector and resume",
+      "Exit while work is active and re-enter"
+    ],
+    "operations": [
+      "lifecycle.pause(scope:PauseScope)->LifecycleReceipt",
+      "lifecycle.exit(lab_id:String)->LifecycleReceipt"
+    ],
+    "scenario": "pause-vestibule",
+    "fixture": "Original timed mover, audio emitter and cancellable fixture job.",
+    "reset": "Cancel owned work, clear held inputs and restore hub timing/focus.",
+    "acceptance": [
+      "Inspector works while simulation paused",
+      "Resume preserves intended state",
+      "Exit releases audio/jobs/nodes",
+      "Re-entry begins clean baseline"
+    ],
+    "failures": [
+      "Repeated exit is idempotent",
+      "Cancellation race cannot mount late resources"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio"
+    ],
+    "depends_on": [
+      "LAB-021",
+      "LAB-028",
+      "LAB-013"
+    ],
+    "reusable_component": "Lab lifecycle and cleanup coordinator",
+    "limits": "Only lab-owned work may be cancelled or reset.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html",
+      "https://docs.godotengine.org/en/stable/classes/class_workerthreadpool.html"
+    ]
+  },
+  {
+    "id": "LAB-041",
+    "title": "Signal Switchboard",
+    "wing": "core",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Wire events between scene objects and inspect ordering, disconnection and duplicate subscription.",
+    "mechanism": [
+      "Signal",
+      "Callable",
+      "SceneTree groups"
+    ],
+    "interaction": [
+      "Connect an original lever to a gate",
+      "Trigger multiple sources",
+      "Inspect ordered receipts",
+      "Disconnect a receiver and reset"
+    ],
+    "operations": [
+      "signals.connect_route(route:SignalRoute)->RouteReceipt",
+      "signals.emit_event(event:TypedEvent)->EventReceipt"
+    ],
+    "scenario": "signal-switchboard",
+    "fixture": "Original lever, lamp and gate nodes with stable names.",
+    "reset": "Disconnect owned routes and restore initial states.",
+    "acceptance": [
+      "One emit invokes one registered receiver",
+      "Duplicate connect does not multiply effects",
+      "Freed receiver is removed safely",
+      "Event trace order matches declared ordering"
+    ],
+    "failures": [
+      "Invalid payload rejects",
+      "Missing receiver reports unavailable route"
+    ],
+    "evidence": [
+      "logic",
+      "render"
+    ],
+    "depends_on": [
+      "LAB-038"
+    ],
+    "reusable_component": "Typed signal-route inspector",
+    "limits": "Ordering policy belongs to this lab; not a universal global event bus.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-042",
+    "title": "2D Movement",
+    "wing": "motion",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Compare forgiving jump controls with exact collision in a compact2D platform course.",
+    "mechanism": [
+      "CharacterBody2D",
+      "ShapeCast2D",
+      "InputMap"
+    ],
+    "interaction": [
+      "Walk into a wall",
+      "Jump just after leaving an edge",
+      "Buffer jump before landing",
+      "Toggle assist window and compare traces"
+    ],
+    "operations": [
+      "motion2d.set_assist(config:JumpAssist)->AssistReceipt",
+      "motion2d.perform(action:MoveCommand)->MotionReceipt"
+    ],
+    "scenario": "2d-movement",
+    "fixture": "Original tile course with edge, low ceiling and moving goal marker.",
+    "reset": "Restore body transform/velocity, buffer timers and assist defaults.",
+    "acceptance": [
+      "Wall remains solid",
+      "Coyote jump succeeds only inside window",
+      "Buffered jump fires once on landing",
+      "Assist-off preserves strict collision"
+    ],
+    "failures": [
+      "Held jump cannot retrigger without policy",
+      "Invalid assist duration rejects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-007",
+      "LAB-012"
+    ],
+    "reusable_component": "2D movement and jump-buffer controller",
+    "limits": "Input comfort needs later human testing; timing measured in declared ticks.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-043",
+    "title": "Combat Clock",
+    "wing": "motion",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Land a readable attack and inspect hitboxes, invulnerability, hitstop and cancel timing.",
+    "mechanism": [
+      "Area3D",
+      "AnimationPlayer",
+      "Engine",
+      "proposed CombatTimeline contract"
+    ],
+    "interaction": [
+      "Perform an original attack",
+      "Inspect hit/hurt overlap",
+      "Toggle bounded hitstop",
+      "Try a permitted and forbidden cancel"
+    ],
+    "operations": [
+      "combat.attack(attack_id:String)->AttackReceipt",
+      "combat.cancel(target:String,tick:int)->CancelReceipt"
+    ],
+    "scenario": "combat-clock",
+    "fixture": "Original dummy, three authored attacks and frame-window table.",
+    "reset": "Restore health/poses/timeline and timing scale.",
+    "acceptance": [
+      "One swing damages target once",
+      "Hitstop pauses intended actors while UI remains active",
+      "Cancel accepted only in window",
+      "Invulnerability suppresses declared hits"
+    ],
+    "failures": [
+      "Unknown attack rejects",
+      "Repeated overlap cannot double damage same swing"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-008",
+      "LAB-021",
+      "LAB-052"
+    ],
+    "reusable_component": "Inspectable combat timeline and hit registry",
+    "limits": "Original mechanics only; not rollback determinism or production combat balance.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-044",
+    "title": "Ledge Course",
+    "wing": "motion",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Traverse slope, wall and ledge states while inspecting transition guards.",
+    "mechanism": [
+      "CharacterBody3D",
+      "ShapeCast3D",
+      "RayCast3D"
+    ],
+    "interaction": [
+      "Run up a slope",
+      "Approach a ledge",
+      "Attempt grab/climb",
+      "Compare denied/allowed transitions and reset"
+    ],
+    "operations": [
+      "locomotion.request(state:LocomotionState)->TransitionReceipt",
+      "locomotion.set_assist(config:LedgeAssist)->AssistReceipt"
+    ],
+    "scenario": "ledge-course",
+    "fixture": "Original ledge heights, overhang and slope calibration course.",
+    "reset": "Restore controller state, velocity and all contact caches.",
+    "acceptance": [
+      "Allowed ledge transitions reach stable pose",
+      "Overhang blocks climb",
+      "Slope limit prevents invalid walking",
+      "Reset clears grab constraints"
+    ],
+    "failures": [
+      "Missing contact refuses grab",
+      "Repeated climb input cannot teleport through geometry"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-008",
+      "LAB-011"
+    ],
+    "reusable_component": "Contact-driven locomotion state machine",
+    "limits": "No comfortable movement claim without human testing.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-045",
+    "title": "Platform Ferry",
+    "wing": "motion",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Ride translating/rotating platforms and compare inherited velocity on departure.",
+    "mechanism": [
+      "AnimatableBody3D",
+      "CharacterBody3D",
+      "PhysicsServer3D"
+    ],
+    "interaction": [
+      "Board a ferry",
+      "Ride a turn",
+      "Jump from the moving deck",
+      "Inspect inherited velocity and reboard"
+    ],
+    "operations": [
+      "platforms.start(route_id:String)->RouteReceipt",
+      "platforms.set_departure(policy:VelocityPolicy)->PolicyReceipt"
+    ],
+    "scenario": "platform-ferry",
+    "fixture": "Original translating deck, rotating deck and marked landing zone.",
+    "reset": "Stop routes and restore platform/player transforms and velocity.",
+    "acceptance": [
+      "Player tracks deck during ride",
+      "Departure policy changes measured velocity",
+      "Collision stays aligned during turn",
+      "Reset removes accumulated platform motion"
+    ],
+    "failures": [
+      "Unknown route rejects",
+      "Blocked deck follows declared stop policy"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-021"
+    ],
+    "reusable_component": "Moving-platform interaction harness",
+    "limits": "Godot platform-motion properties are compile/probe leads; no all-controller equivalence.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-046",
+    "title": "Aim Range",
+    "wing": "motion",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Compare ray, shape and projectile targeting with readable occlusion and collision masks.",
+    "mechanism": [
+      "RayCast3D",
+      "ShapeCast3D",
+      "PhysicsDirectSpaceState3D"
+    ],
+    "interaction": [
+      "Aim at original targets",
+      "Place a blocker",
+      "Switch query shape/mask",
+      "Fire and inspect hit receipt"
+    ],
+    "operations": [
+      "aim.query(request:AimQuery)->HitReceipt",
+      "aim.fire(request:ShotRequest)->ShotReceipt"
+    ],
+    "scenario": "aim-range",
+    "fixture": "Original target plates, thin blocker and collision-layer markers.",
+    "reset": "Restore targets, query profile and projectile budget.",
+    "acceptance": [
+      "Occluder prevents hidden target hit",
+      "Ray/shape outcomes match documented geometry",
+      "Mask excludes declared targets",
+      "Hit receipt identifies stable object and position"
+    ],
+    "failures": [
+      "Zero-length query rejects",
+      "Invalid mask/profile returns explicit error"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-052",
+      "LAB-053"
+    ],
+    "reusable_component": "Typed aim-query and shot adapter",
+    "limits": "No weapon-art or commercial game content; continuous projectile proof is separate.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-047",
+    "title": "Navigation Traffic",
+    "wing": "motion",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Dispatch several agents through a bottleneck and inspect avoidance versus path planning.",
+    "mechanism": [
+      "NavigationAgent3D",
+      "NavigationServer3D"
+    ],
+    "interaction": [
+      "Choose bounded agent count",
+      "Dispatch opposing routes",
+      "Toggle supported avoidance profile",
+      "Inspect arrivals and bottleneck clearance"
+    ],
+    "operations": [
+      "traffic.dispatch(batch:RouteBatch)->TrafficReceipt",
+      "traffic.set_avoidance(profile:AvoidanceProfile)->PolicyReceipt"
+    ],
+    "scenario": "navigation-traffic",
+    "fixture": "Original corridor, passing bay and seeded actor origins.",
+    "reset": "Stop agents, clear targets and restore actor positions.",
+    "acceptance": [
+      "Path planning still avoids static obstacle",
+      "Bounded batch completes or reports timeout",
+      "Avoidance changes separation trace",
+      "Reset removes all active targets"
+    ],
+    "failures": [
+      "Unreachable target reports failure",
+      "Excess agent count refuses spawn"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-003",
+      "LAB-024"
+    ],
+    "reusable_component": "Bounded navigation batch/avoidance runner",
+    "limits": "Avoidance does not guarantee perfect deadlock resolution or internet synchronization.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_navigationagent3d.html"
+    ]
+  },
+  {
+    "id": "LAB-048",
+    "title": "Joint Arcade",
+    "wing": "simulation",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Connect2D bodies with pin/spring/groove joints and inspect limits and break policy.",
+    "mechanism": [
+      "RigidBody2D",
+      "PinJoint2D",
+      "DampedSpringJoint2D",
+      "GrooveJoint2D"
+    ],
+    "interaction": [
+      "Assemble a small linkage",
+      "Pull an end body",
+      "Switch one joint recipe",
+      "Compare travel limits and reset"
+    ],
+    "operations": [
+      "joints2d.attach(recipe:JointRecipe2D)->JointReceipt",
+      "joints2d.pull(body_id:String,force:Vector2)->ForceReceipt"
+    ],
+    "scenario": "joint-arcade",
+    "fixture": "Original pendulum, spring and slider fixtures.",
+    "reset": "Restore transforms/velocities and reconstruct owned joints.",
+    "acceptance": [
+      "Pin maintains declared pivot tolerance",
+      "Spring response changes with profile",
+      "Slider stays within allowed travel",
+      "Reset restores baseline linkage"
+    ],
+    "failures": [
+      "Missing body refuses joint",
+      "Negative/invalid parameters reject before mutation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-042"
+    ],
+    "reusable_component": "Typed2D linkage recipe",
+    "limits": "Physics tolerances are host/version-specific; no bit-identical replay promise.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-049",
+    "title": "Constraint Foundry",
+    "wing": "simulation",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Manipulate3D mechanical joints and inspect angular limits and solver stability.",
+    "mechanism": [
+      "RigidBody3D",
+      "HingeJoint3D",
+      "SliderJoint3D",
+      "Generic6DOFJoint3D"
+    ],
+    "interaction": [
+      "Select hinge or slider mechanism",
+      "Apply bounded force",
+      "Change limit profile",
+      "Inspect excursion and reset"
+    ],
+    "operations": [
+      "joints3d.configure(id:String,config:JointConfig)->JointReceipt",
+      "joints3d.apply_force(id:String,force:Vector3)->ForceReceipt"
+    ],
+    "scenario": "constraint-foundry",
+    "fixture": "Original door hinge, piston and constrained pair.",
+    "reset": "Restore transforms, zero velocities and rebuild constraints.",
+    "acceptance": [
+      "Hinge stays within configured angular tolerance",
+      "Slider stays on intended axis",
+      "Force response is observable",
+      "Reset yields stable initial system"
+    ],
+    "failures": [
+      "Invalid body reference rejects",
+      "Extreme unsupported config returns failed probe"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-002"
+    ],
+    "reusable_component": "Inspectable3D constraint recipe",
+    "limits": "Joint solver behavior needs engine-specific acceptance rather than universal stability claims.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-050",
+    "title": "Field Chamber",
+    "wing": "simulation",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Move bodies through gravity, damping and trigger zones and inspect overlap policy.",
+    "mechanism": [
+      "Area2D",
+      "Area3D",
+      "RigidBody3D",
+      "PhysicsServer3D"
+    ],
+    "interaction": [
+      "Drop an original body outside a field",
+      "Move it into a field",
+      "Overlap two fields",
+      "Read effective policy and reset"
+    ],
+    "operations": [
+      "fields.set_profile(id:String,profile:FieldProfile)->FieldReceipt",
+      "fields.move_body(id:String,at:Vector3)->MoveReceipt"
+    ],
+    "scenario": "field-chamber",
+    "fixture": "Original normal-gravity, low-gravity and damped zones with clear bounds.",
+    "reset": "Restore area profiles, overlap set and body velocities.",
+    "acceptance": [
+      "Entering zone changes measured acceleration/damping",
+      "Exit restores outside behavior",
+      "Overlap priority matches declared policy",
+      "One enter/exit receipt per transition"
+    ],
+    "failures": [
+      "Unsupported dimensional profile refuses apply",
+      "Invalid shape/budget rejects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-002",
+      "LAB-052"
+    ],
+    "reusable_component": "Area-effect and overlap policy inspector",
+    "limits": "Exact gravity override priorities require installed-engine probe.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-051",
+    "title": "Cloth Sail",
+    "wing": "simulation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Pin and release a small soft-body sail and inspect deformation and collision cost.",
+    "mechanism": [
+      "SoftBody3D",
+      "MeshInstance3D"
+    ],
+    "interaction": [
+      "Select supported simulation profile",
+      "Move a pinned corner",
+      "Release one anchor",
+      "Compare silhouette and collision response"
+    ],
+    "operations": [
+      "cloth.pin(vertex_id:int,at:Vector3)->PinReceipt",
+      "cloth.release(vertex_id:int)->PinReceipt"
+    ],
+    "scenario": "cloth-sail",
+    "fixture": "Original low-resolution sail mesh, anchor markers and collision sphere.",
+    "reset": "Recreate mesh, pins and transform from fixture baseline.",
+    "acceptance": [
+      "Pinned point follows target",
+      "Released corner deforms visibly",
+      "Supported collider prevents declared intersection tolerance",
+      "Reset restores undeformed mesh"
+    ],
+    "failures": [
+      "Unsupported physics/backend reports gate",
+      "Unknown vertex refuses mutation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-002",
+      "LAB-035"
+    ],
+    "reusable_component": "Bounded soft-body fixture controller",
+    "limits": "Soft-body availability/performance is a probe; no realistic fabric claim.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-052",
+    "title": "Collision Switchyard",
+    "wing": "simulation",
+    "milestone": "M1",
+    "status": "specified",
+    "payoff": "Toggle layers/masks and see which bodies, triggers and queries can interact.",
+    "mechanism": [
+      "CollisionObject2D",
+      "CollisionObject3D",
+      "Area3D"
+    ],
+    "interaction": [
+      "Inspect colored collision groups",
+      "Toggle one mask bit",
+      "Move a probe through gates",
+      "Read pairwise contact/query table"
+    ],
+    "operations": [
+      "collision.set_filter(id:String,layers:int,mask:int)->FilterReceipt",
+      "collision.probe(pair:CollisionPair)->ContactReceipt"
+    ],
+    "scenario": "collision-switchyard",
+    "fixture": "Original actor, wall, trigger and query probes in named layers.",
+    "reset": "Restore default filter bits and clear overlap trace.",
+    "acceptance": [
+      "Allowed pair contacts",
+      "Excluded pair does not contact",
+      "Trigger/query policy shown separately",
+      "Reset restores original pair table"
+    ],
+    "failures": [
+      "Unknown layer name rejects",
+      "Invalid bit range refuses before change"
+    ],
+    "evidence": [
+      "logic",
+      "render"
+    ],
+    "depends_on": [
+      "LAB-001",
+      "LAB-002"
+    ],
+    "reusable_component": "Collision filter visualization and validation",
+    "limits": "Physics contact, trigger and query rules are distinguished; no implicit global policy.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-053",
+    "title": "Ballistics Tunnel",
+    "wing": "simulation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Fire fast objects at thin obstacles and compare discrete/continuous collision behavior.",
+    "mechanism": [
+      "RigidBody3D",
+      "PhysicsDirectSpaceState3D",
+      "proposed SweepPolicy contract"
+    ],
+    "interaction": [
+      "Select speed within budget",
+      "Fire at thin plate",
+      "Switch supported continuous profile",
+      "Inspect hit/miss trace and reset"
+    ],
+    "operations": [
+      "ballistics.fire(request:ProjectileRequest)->FlightReceipt",
+      "ballistics.select_ccd(profile:CCDProfile)->PolicyReceipt"
+    ],
+    "scenario": "ballistics-tunnel",
+    "fixture": "Original thin plates and bounded projectile count/speeds.",
+    "reset": "Remove shots and restore collision profile and target state.",
+    "acceptance": [
+      "Continuous path detects declared plate under tested profile",
+      "Discrete misses are recorded honestly",
+      "Hit time/location bounded",
+      "Projectile count never exceeds cap"
+    ],
+    "failures": [
+      "Invalid velocity rejects",
+      "Unsupported CCD mode reports unavailable"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-002",
+      "LAB-052"
+    ],
+    "reusable_component": "Fast-projectile comparison runner",
+    "limits": "Backend/version-sensitive CCD properties need probes. No unbounded velocity guarantee.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html"
+    ]
+  },
+  {
+    "id": "LAB-054",
+    "title": "Ragdoll Recovery",
+    "wing": "simulation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Switch an original rig between animation and physical bones and inspect recovery.",
+    "mechanism": [
+      "Skeleton3D",
+      "PhysicalBoneSimulator3D",
+      "AnimationTree"
+    ],
+    "interaction": [
+      "Play an idle pose",
+      "Trigger bounded physical fall",
+      "Wait for settling",
+      "Blend toward a chosen recovery pose"
+    ],
+    "operations": [
+      "ragdoll.activate(impulse:Vector3)->RagdollReceipt",
+      "ragdoll.recover(pose_id:String)->RecoveryReceipt"
+    ],
+    "scenario": "ragdoll-recovery",
+    "fixture": "Original simple rig, floor and two recovery poses.",
+    "reset": "Disable simulation and restore pose/transforms/constraints.",
+    "acceptance": [
+      "Physical mode changes actual bone transforms",
+      "Fall remains within resource bounds",
+      "Recovery ends in valid animation state",
+      "Reset clears physics velocities"
+    ],
+    "failures": [
+      "Missing recovery pose rejects",
+      "Unsettled timeout reports incomplete recovery"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-015",
+      "LAB-049",
+      "LAB-008"
+    ],
+    "reusable_component": "Animation-to-physics transition adapter",
+    "limits": "Exact physical-bone API requires probe; no general retargeting guarantee.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/physics/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_skeletonmodifier3d.html"
+    ]
+  },
+  {
+    "id": "LAB-055",
+    "title": "Grid Tactics",
+    "wing": "world",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Plan and execute a turn on a2D grid with cost, occupancy and undoable commands.",
+    "mechanism": [
+      "AStarGrid2D",
+      "Resource",
+      "proposed TurnCommand contract"
+    ],
+    "interaction": [
+      "Select original unit",
+      "Preview reachable cells",
+      "Commit one move",
+      "Inspect cost/occupancy and undo"
+    ],
+    "operations": [
+      "tactics.preview(unit_id:String,cell:Vector2i)->MoveProposal",
+      "tactics.commit(proposal_id:String)->TurnReceipt"
+    ],
+    "scenario": "grid-tactics",
+    "fixture": "Original bounded grid with weighted floor, blocked cell and two units.",
+    "reset": "Restore turn index, occupancy and receipt history.",
+    "acceptance": [
+      "Preview respects blocked/occupied cells",
+      "Committed cost matches preview",
+      "One unit occupies one cell",
+      "Undo restores previous turn and positions"
+    ],
+    "failures": [
+      "Stale preview rejects",
+      "Insufficient movement budget refuses commit"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-007",
+      "LAB-038"
+    ],
+    "reusable_component": "Grid turn/proposal engine",
+    "limits": "Lab-owned tactics contract; not a built-in combat framework.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-056",
+    "title": "Voxel Quarry",
+    "wing": "world",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Edit a tiny voxel volume and inspect meshing, collision and chunk seams.",
+    "mechanism": [
+      "ArrayMesh",
+      "SurfaceTool",
+      "StaticBody3D",
+      "proposed VoxelChunk contract"
+    ],
+    "interaction": [
+      "Remove a marked voxel",
+      "Add a voxel at a boundary",
+      "Regenerate bounded mesh/collision",
+      "Walk and inspect seams"
+    ],
+    "operations": [
+      "voxels.edit(cell:Vector3i,value:int)->VoxelReceipt",
+      "voxels.rebuild(chunk_id:String)->MeshReceipt"
+    ],
+    "scenario": "voxel-quarry",
+    "fixture": "Original small voxel chunks with deterministic material IDs.",
+    "reset": "Restore voxel arrays and recreate affected mesh/collision.",
+    "acceptance": [
+      "Edit changes expected cells only",
+      "Boundary surfaces have no cracks",
+      "Collision follows committed mesh",
+      "Same voxel data gives same topology signature"
+    ],
+    "failures": [
+      "Out-of-bounds edit rejects",
+      "Cancelled rebuild cannot replace last complete chunk"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-016",
+      "LAB-028",
+      "LAB-029"
+    ],
+    "reusable_component": "Transactional voxel chunk builder",
+    "limits": "Custom bounded meshing, not an implied built-in voxel engine.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-057",
+    "title": "Navmesh Workshop",
+    "wing": "world",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Move an obstacle and inspect the difference between navigation rebake and runtime avoidance.",
+    "mechanism": [
+      "NavigationMesh",
+      "NavigationRegion3D",
+      "NavigationServer3D"
+    ],
+    "interaction": [
+      "Dispatch baseline courier",
+      "Move original obstacle",
+      "Request bounded rebake",
+      "Compare new path after synchronization"
+    ],
+    "operations": [
+      "navigation.stage_obstacle(change:ObstacleChange)->NavProposal",
+      "navigation.commit_rebake(proposal_id:String)->NavReceipt"
+    ],
+    "scenario": "navmesh-workshop",
+    "fixture": "Original small bake region with movable blocker and path markers.",
+    "reset": "Restore blocker, mesh and navigation map state.",
+    "acceptance": [
+      "New committed path avoids moved obstacle",
+      "Path switches only after map sync",
+      "Failed bake preserves previous region",
+      "Reset restores baseline path"
+    ],
+    "failures": [
+      "Invalid source geometry refuses bake",
+      "Cancelled bake cannot mount late map"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "editor",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-003",
+      "LAB-028"
+    ],
+    "reusable_component": "Navigation rebuild coordinator",
+    "limits": "Bake/source signatures are version-sensitive probes; avoidance alone is not rebaking.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_navigationagent3d.html"
+    ]
+  },
+  {
+    "id": "LAB-058",
+    "title": "World Clock",
+    "wing": "world",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Advance a scoped day/weather clock and inspect gameplay triggers and visual change separately.",
+    "mechanism": [
+      "AnimationPlayer",
+      "WorldEnvironment",
+      "proposed WorldClock contract"
+    ],
+    "interaction": [
+      "Set an original day phase",
+      "Advance clock",
+      "Trigger scheduled fixture event",
+      "Pause/reset without changing global wall time"
+    ],
+    "operations": [
+      "worldclock.seek(tick:int)->ClockReceipt",
+      "worldclock.advance(ticks:int)->ClockReceipt"
+    ],
+    "scenario": "world-clock",
+    "fixture": "Original observatory sky/color script and three scheduled gate events.",
+    "reset": "Restore time 0, weather profile and consumed event ledger.",
+    "acceptance": [
+      "Seek sets expected environment state",
+      "Event fires once at threshold",
+      "Pause freezes world schedule",
+      "Replay yields same semantic event order"
+    ],
+    "failures": [
+      "Negative/out-of-range tick rejects",
+      "Duplicate event ID refuses schedule"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-021",
+      "LAB-041"
+    ],
+    "reusable_component": "Scoped simulation calendar and event scheduler",
+    "limits": "No OS clock manipulation; visual interpolation and logical schedule remain separate.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html"
+    ]
+  },
+  {
+    "id": "LAB-059",
+    "title": "LOD Walk",
+    "wing": "performance",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Walk an identical camera route and inspect mesh detail transitions, culling and visual discontinuity.",
+    "mechanism": [
+      "GeometryInstance3D",
+      "MeshInstance3D",
+      "MultiMeshInstance3D"
+    ],
+    "interaction": [
+      "Choose bounded object field",
+      "Walk near/far route",
+      "Toggle detail profile",
+      "Inspect transitions and measured cost"
+    ],
+    "operations": [
+      "lod.select(profile:LODProfile)->LODReceipt",
+      "lod.measure(route_id:String)->ProfileReceipt"
+    ],
+    "scenario": "lod-walk",
+    "fixture": "Original near/far mesh variants, occluder and fixed camera route.",
+    "reset": "Restore visibility/detail profile and metric sampling.",
+    "acceptance": [
+      "LOD threshold matches declared distance",
+      "Visible object IDs stay semantically stable",
+      "Culling preserves required landmarks",
+      "Timing/triangle metrics tied to renderer"
+    ],
+    "failures": [
+      "Missing detail variant reports unavailable",
+      "Invalid thresholds reject"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-017",
+      "LAB-036",
+      "LAB-011"
+    ],
+    "reusable_component": "Distance-detail profile evaluator",
+    "limits": "Exact LOD/occlusion support probed per renderer; cost is measured not promised.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/performance/index.html"
+    ]
+  },
+  {
+    "id": "LAB-060",
+    "title": "Atlas Author",
+    "wing": "art",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Paint a tiny original motif atlas and inspect UV padding, sampling and repetition on modular geometry.",
+    "mechanism": [
+      "Image",
+      "ImageTexture",
+      "ArrayMesh",
+      "ShaderMaterial"
+    ],
+    "interaction": [
+      "Choose a motif region",
+      "Paint bounded pixels",
+      "Apply to wall/trim/floor samples",
+      "Compare nearest and supported minification modes"
+    ],
+    "operations": [
+      "atlas.paint(region_id:String,stroke:PixelStroke)->AtlasReceipt",
+      "atlas.apply(sample_id:String,region_id:String)->UVReceipt"
+    ],
+    "scenario": "atlas-author",
+    "fixture": "Original 256 x 256 proposed motif sheet with padded swatches and trim regions.",
+    "reset": "Restore original atlas pixels and sample UVs.",
+    "acceptance": [
+      "Pixel edits affect intended region only",
+      "Padding prevents declared sample bleed",
+      "Repeated trim stays in assigned region",
+      "Undo restores atlas hash"
+    ],
+    "failures": [
+      "Out-of-region stroke rejects",
+      "Invalid UV rectangle refuses apply"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-035"
+    ],
+    "reusable_component": "Pixel motif/UV region authoring kit",
+    "limits": "Texture size is a project choice. Whole-atlas repeat is not subregion tiling.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html",
+      "https://docs.godotengine.org/en/stable/tutorials/shaders/index.html"
+    ]
+  },
+  {
+    "id": "LAB-061",
+    "title": "Vertex Shade",
+    "wing": "art",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Paint broad shade on geometry and inspect interpolation and triangulation before adding lights.",
+    "mechanism": [
+      "SurfaceTool",
+      "ArrayMesh",
+      "MeshDataTool"
+    ],
+    "interaction": [
+      "Select original corner/wall mesh",
+      "Paint vertex color ramp",
+      "Switch triangulation/reference view",
+      "Compare lit and authored output"
+    ],
+    "operations": [
+      "vertexpaint.apply(mesh_id:String,colors:ColorPatch)->PaintReceipt",
+      "vertexpaint.inspect(mesh_id:String)->AttributeReceipt"
+    ],
+    "scenario": "vertex-shade",
+    "fixture": "Original quad/corner meshes with intentional shade boundaries.",
+    "reset": "Restore vertex attributes, triangulation and comparison mode.",
+    "acceptance": [
+      "Color data reaches shader",
+      "Ramp follows intended vertices",
+      "Triangulation artifact is visible/labeled",
+      "Reset restores attribute hash"
+    ],
+    "failures": [
+      "Unknown vertex rejects",
+      "Wrong color count refuses mutation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-035"
+    ],
+    "reusable_component": "Vertex-color inspection and painting adapter",
+    "limits": "No claim that every imported format preserves colors without round-trip test.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html",
+      "https://docs.godotengine.org/en/stable/tutorials/shaders/index.html"
+    ]
+  },
+  {
+    "id": "LAB-062",
+    "title": "Silhouette Studio",
+    "wing": "art",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare original low-poly character shapes at gameplay and close-up distances.",
+    "mechanism": [
+      "MeshInstance3D",
+      "Camera3D",
+      "SubViewport"
+    ],
+    "interaction": [
+      "Choose original silhouette variant",
+      "View at marked gameplay distance",
+      "Rotate through key poses",
+      "Inspect readability/contact framing and reset"
+    ],
+    "operations": [
+      "silhouette.select(asset_id:String)->AssetReceipt",
+      "silhouette.capture(profile:ViewProfile)->RenderReceipt"
+    ],
+    "scenario": "silhouette-studio",
+    "fixture": "Original head/hair/gear mass studies and flat-shade reference.",
+    "reset": "Restore pose, camera and selected original asset.",
+    "acceptance": [
+      "Reference views use same framing",
+      "Silhouette masks retain separated key limbs",
+      "Gameplay projection meets declared size",
+      "LOD does not remove identity landmark"
+    ],
+    "failures": [
+      "Missing asset refuses selection",
+      "Unsupported pose returns unavailable"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-011",
+      "LAB-035"
+    ],
+    "reusable_component": "Gameplay-distance silhouette review rig",
+    "limits": "Automated masks are proxies; preference/expressiveness need later human judgment.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html"
+    ]
+  },
+  {
+    "id": "LAB-063",
+    "title": "Stepped Animation",
+    "wing": "art",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare stepped pose sampling with smooth simulation/camera response.",
+    "mechanism": [
+      "AnimationPlayer",
+      "AnimationMixer",
+      "proposed PoseSampling contract"
+    ],
+    "interaction": [
+      "Play the same original motion",
+      "Select pose cadence",
+      "Move camera/controller independently",
+      "Compare temporal traces and captures"
+    ],
+    "operations": [
+      "posesampling.set_rate(hz:float)->SamplingReceipt",
+      "posesampling.play(clip_id:String)->PlaybackReceipt"
+    ],
+    "scenario": "stepped-animation",
+    "fixture": "Original gesture/run clips and independent moving camera marker.",
+    "reset": "Restore normal pose cadence and simulation timing.",
+    "acceptance": [
+      "Pose changes follow selected cadence",
+      "Physics remains at declared tick",
+      "Camera input remains responsive",
+      "Same clip duration retained"
+    ],
+    "failures": [
+      "Non-positive cadence rejects",
+      "Missing clip refuses playback"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-008",
+      "LAB-021"
+    ],
+    "reusable_component": "Decoupled animation pose sampler",
+    "limits": "No universal on-twos rule inferred from references; comfort is untested.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html"
+    ]
+  },
+  {
+    "id": "LAB-064",
+    "title": "Shadow Cards",
+    "wing": "art",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Place authored contact gradients and shafts and inspect their camera-angle limits.",
+    "mechanism": [
+      "MeshInstance3D",
+      "StandardMaterial3D",
+      "Camera3D"
+    ],
+    "interaction": [
+      "Place an original gradient card",
+      "Move source/camera",
+      "Compare against dynamic shadow reference",
+      "Inspect overlap and reset"
+    ],
+    "operations": [
+      "cards.place(recipe:CardRecipe)->CardReceipt",
+      "cards.set_strength(id:String,value:float)->CardReceipt"
+    ],
+    "scenario": "shadow-cards",
+    "fixture": "Original contact gradient and intersecting shaft textures.",
+    "reset": "Remove placed cards and restore fixed comparison rig.",
+    "acceptance": [
+      "Card affects intended recess",
+      "Unsupported angle artifacts are disclosed",
+      "Alpha overlap stays bounded",
+      "Reset removes all added cards"
+    ],
+    "failures": [
+      "Invalid texture rights/source rejects",
+      "Strength outside range refuses"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-010",
+      "LAB-060"
+    ],
+    "reusable_component": "Authored gradient-card placement kit",
+    "limits": "Cards are not volumetric lighting or physically correct moving shadows.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html"
+    ]
+  },
+  {
+    "id": "LAB-065",
+    "title": "Fog Theater",
+    "wing": "rendering",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Compare depth haze and supported volumetric fog around readable silhouettes.",
+    "mechanism": [
+      "WorldEnvironment",
+      "Environment",
+      "FogVolume"
+    ],
+    "interaction": [
+      "Choose baseline haze",
+      "Walk depth markers",
+      "Enable supported volumetric profile",
+      "Compare silhouettes and cost"
+    ],
+    "operations": [
+      "fog.select(profile:FogProfile)->FogReceipt",
+      "fog.measure(route_id:String)->ProfileReceipt"
+    ],
+    "scenario": "fog-theater",
+    "fixture": "Original depth steps, silhouette pillars and light source.",
+    "reset": "Restore clean haze profile and free optional volumes.",
+    "acceptance": [
+      "Far/near contrast follows profile",
+      "Unsupported volumetric route reports gate",
+      "Markers remain readable within declared distance",
+      "Cost report names renderer"
+    ],
+    "failures": [
+      "Missing volume profile refuses",
+      "Excess density rejects or warns with bounded policy"
+    ],
+    "evidence": [
+      "render",
+      "profiling",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-010",
+      "LAB-031"
+    ],
+    "reusable_component": "Readiness-aware atmosphere profile runner",
+    "limits": "Volumetric support is renderer-specific and must be probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-066",
+    "title": "Viewport Mirrors",
+    "wing": "rendering",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Look through a live portal/monitor and inspect camera, texture and input forwarding boundaries.",
+    "mechanism": [
+      "SubViewport",
+      "SubViewportContainer",
+      "ViewportTexture",
+      "Camera3D"
+    ],
+    "interaction": [
+      "Activate original monitor",
+      "Move source camera",
+      "Interact with displayed panel",
+      "Limit recursive view and reset"
+    ],
+    "operations": [
+      "viewports.mount(recipe:ViewportRecipe)->ViewportReceipt",
+      "viewports.forward(event:PanelInput)->InputReceipt"
+    ],
+    "scenario": "viewport-mirrors",
+    "fixture": "Original room monitor and bounded two-view portal fixture.",
+    "reset": "Release child viewports and restore source camera/input focus.",
+    "acceptance": [
+      "Displayed texture updates from intended camera",
+      "Forwarded input affects correct panel",
+      "Recursion cap holds",
+      "Exit frees viewport resources"
+    ],
+    "failures": [
+      "Invalid source rejects",
+      "Input outside panel cannot activate hidden control"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-011",
+      "LAB-013"
+    ],
+    "reusable_component": "Bounded viewport/camera/input bridge",
+    "limits": "Portal illusion scope is explicit; no unlimited recursion or arbitrary cross-app capture.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-067",
+    "title": "Decal Printing",
+    "wing": "rendering",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Place original projected marks and compare them with mesh-backed marks under supported renderers.",
+    "mechanism": [
+      "Decal",
+      "MeshInstance3D",
+      "StandardMaterial3D"
+    ],
+    "interaction": [
+      "Select original symbol",
+      "Place it on flat/curved fixtures",
+      "Switch supported projection/fallback profile",
+      "Inspect seams and reset"
+    ],
+    "operations": [
+      "decals.place(request:DecalRequest)->DecalReceipt",
+      "decals.remove(id:String)->DecalReceipt"
+    ],
+    "scenario": "decal-printing",
+    "fixture": "Original paint symbols and calibration surfaces.",
+    "reset": "Remove lab marks and restore receiver/material profiles.",
+    "acceptance": [
+      "Mark lands on selected receiver",
+      "Excluded receiver remains clean",
+      "Fallback is labeled",
+      "Instance budget is enforced"
+    ],
+    "failures": [
+      "Unsupported Decal path reports gate",
+      "Invalid receiver or texture refuses placement"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-031",
+      "LAB-060"
+    ],
+    "reusable_component": "Readiness-aware surface-mark adapter",
+    "limits": "Decal renderer support is probed; mesh fallback is not identical projection.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-068",
+    "title": "Display Laboratory",
+    "wing": "rendering",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Compare clean, pixel-scaled, palette and optional CRT output without weakening controls.",
+    "mechanism": [
+      "SubViewport",
+      "ShaderMaterial",
+      "CanvasLayer"
+    ],
+    "interaction": [
+      "Select clean reference",
+      "Enable bounded display profile",
+      "Move camera through fine detail",
+      "Disable effect and inspect text"
+    ],
+    "operations": [
+      "display.select(profile:DisplayProfile)->DisplayReceipt",
+      "display.set_internal_size(size:Vector2i)->DisplayReceipt"
+    ],
+    "scenario": "display-laboratory",
+    "fixture": "Original pixel calibration chart, moving mesh and text panel.",
+    "reset": "Restore clean full-resolution profile and normal input/camera.",
+    "acceptance": [
+      "Profile visibly changes intended pixels",
+      "Essential text remains legible in declared minimum viewport",
+      "Simulation/input rate unchanged",
+      "Disable returns clean reference"
+    ],
+    "failures": [
+      "Invalid dimensions reject",
+      "Unsupported shader profile stays unavailable"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-004",
+      "LAB-019",
+      "LAB-013"
+    ],
+    "reusable_component": "Comfort-aware display profile stack",
+    "limits": "Filters optional. No historical-hardware accuracy implied by visual resemblance.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html",
+      "https://docs.godotengine.org/en/stable/tutorials/shaders/index.html"
+    ]
+  },
+  {
+    "id": "LAB-069",
+    "title": "Compute Garden",
+    "wing": "rendering",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Run a small compute fixture and compare output against a CPU reference with honest availability.",
+    "mechanism": [
+      "RenderingDevice",
+      "RDShaderFile",
+      "RDComputePipeline",
+      "proposed ComputeKernel contract"
+    ],
+    "interaction": [
+      "Probe compute support",
+      "Choose bounded original input",
+      "Run supported compute or labeled CPU path",
+      "Inspect results and resource cleanup"
+    ],
+    "operations": [
+      "compute.dispatch(request:KernelRequest)->KernelReceipt",
+      "compute.compare(reference_id:String)->ComparisonReceipt"
+    ],
+    "scenario": "compute-garden",
+    "fixture": "Original integer/float transform vectors and bounded particle-state arrays.",
+    "reset": "Free owned buffers/pipelines and restore input data.",
+    "acceptance": [
+      "GPU/reference outputs match defined tolerance",
+      "Readback identifies actual backend",
+      "Unsupported route reports unavailable",
+      "Repeated runs release allocated resources"
+    ],
+    "failures": [
+      "Oversized dispatch rejects",
+      "Shader failure preserves reference result without claiming GPU success"
+    ],
+    "evidence": [
+      "logic",
+      "profiling",
+      "render"
+    ],
+    "depends_on": [
+      "LAB-027",
+      "LAB-031",
+      "LAB-028"
+    ],
+    "reusable_component": "Optional bounded compute adapter",
+    "limits": "RenderingDevice/backend/thread ownership signatures need probes. No Compatibility compute promise.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html",
+      "https://docs.godotengine.org/en/stable/classes/class_renderingdevice.html"
+    ]
+  },
+  {
+    "id": "LAB-070",
+    "title": "Tone Observatory",
+    "wing": "rendering",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Compare exposure, tone mapping and color grading while preserving meaningful luminance roles.",
+    "mechanism": [
+      "Environment",
+      "WorldEnvironment",
+      "Image"
+    ],
+    "interaction": [
+      "Inspect calibrated bright/dark patches",
+      "Switch supported tone profiles",
+      "Capture identical camera views",
+      "Read clipping/color statistics"
+    ],
+    "operations": [
+      "tone.select(profile:ToneProfile)->ToneReceipt",
+      "tone.measure(frame_id:String)->ColorReceipt"
+    ],
+    "scenario": "tone-observatory",
+    "fixture": "Original luminance chart, warm/cool surfaces and bright effect.",
+    "reset": "Restore baseline exposure/grading and fixed camera.",
+    "acceptance": [
+      "Profile labels match actual environment",
+      "Clipped highlights counted",
+      "Dark silhouette contrast remains within declared range",
+      "Captured images preserve provenance"
+    ],
+    "failures": [
+      "Unsupported HDR path reports gate",
+      "Invalid LUT/profile rejects"
+    ],
+    "evidence": [
+      "render",
+      "profiling",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-010",
+      "LAB-031",
+      "LAB-019"
+    ],
+    "reusable_component": "Calibrated tone-profile comparison",
+    "limits": "Encoded SDR images cannot prove an HDR display. Output color management recorded explicitly.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/rendering/renderers.html"
+    ]
+  },
+  {
+    "id": "LAB-071",
+    "title": "Mixer Desk",
+    "wing": "audio",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Route original stems into lab-owned buses and inspect gain, solo and clipping safely.",
+    "mechanism": [
+      "AudioServer",
+      "AudioStreamPlayer",
+      "AudioEffectLimiter"
+    ],
+    "interaction": [
+      "Start original rhythm/tone stems",
+      "Adjust one bus",
+      "Solo/mute and inspect channel energy",
+      "Restore mix"
+    ],
+    "operations": [
+      "mixer.set_gain(bus_id:String,db:float)->MixReceipt",
+      "mixer.solo(bus_id:String,enabled:bool)->MixReceipt"
+    ],
+    "scenario": "mixer-desk",
+    "fixture": "Original short stems and bounded meter calibration tones.",
+    "reset": "Stop stems and restore only lab-owned buses/gains.",
+    "acceptance": [
+      "Gain change follows measured RMS ratio",
+      "Solo leaves selected stem only",
+      "Clipping/limiter result reported",
+      "Exit leaves user's unrelated audio untouched"
+    ],
+    "failures": [
+      "Unknown bus rejects",
+      "Unsafe out-of-range gain refuses"
+    ],
+    "evidence": [
+      "logic",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-005",
+      "LAB-020"
+    ],
+    "reusable_component": "Scoped mixer and encoded-meter adapter",
+    "limits": "Comfort/loudness requires later listening judgment; no mastering-quality claim.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html"
+    ]
+  },
+  {
+    "id": "LAB-072",
+    "title": "Music Conductor",
+    "wing": "audio",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Change intensity on a beat boundary and inspect synchronized stems rather than abrupt restarts.",
+    "mechanism": [
+      "AudioStreamPlayer",
+      "AudioStreamInteractive",
+      "AudioStreamSynchronized"
+    ],
+    "interaction": [
+      "Play original loop",
+      "Request new intensity",
+      "Observe deferred beat-boundary switch",
+      "Pause/reset and compare timeline"
+    ],
+    "operations": [
+      "music.request_state(state_id:String)->TransitionReceipt",
+      "music.seek_bar(bar:int)->MusicReceipt"
+    ],
+    "scenario": "music-conductor",
+    "fixture": "Original equal-length stems with beat/loop metadata.",
+    "reset": "Stop playback and restore bar 0, stem state and scheduled requests.",
+    "acceptance": [
+      "Transition occurs within declared beat tolerance",
+      "Stem phases remain aligned",
+      "Repeated same request causes no duplicate restart",
+      "Reset clears pending switch"
+    ],
+    "failures": [
+      "Invalid beat metadata rejects fixture",
+      "Unsupported interactive-stream API leaves explicit alternate path"
+    ],
+    "evidence": [
+      "logic",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-071",
+      "LAB-021"
+    ],
+    "reusable_component": "Beat-aware adaptive-music controller",
+    "limits": "New stream APIs require installed-engine probes; no rhythm-game latency guarantee.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html"
+    ]
+  },
+  {
+    "id": "LAB-073",
+    "title": "Voice & Captions",
+    "wing": "audio",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Play original speech with timed captions and compare transcript, timing and audible evidence.",
+    "mechanism": [
+      "AudioStreamPlayer",
+      "RichTextLabel",
+      "proposed CaptionTrack contract"
+    ],
+    "interaction": [
+      "Select original recorded fixture",
+      "Play with captions",
+      "Seek to a cue",
+      "Compare encoded timing and transcript provenance"
+    ],
+    "operations": [
+      "captions.play(track_id:String)->PlaybackReceipt",
+      "captions.seek(time_ms:int)->SeekReceipt"
+    ],
+    "scenario": "voice-captions",
+    "fixture": "Original consented short speech plus authoritative cue text/times.",
+    "reset": "Stop voice and clear active cue/time offset.",
+    "acceptance": [
+      "Cue appears within timing tolerance",
+      "Seek selects correct cue",
+      "Muted route retains captions",
+      "Transcript/corrections preserve exact fixture wording"
+    ],
+    "failures": [
+      "Malformed overlapping policy violation rejects track",
+      "Missing audio gives labeled text-only fallback"
+    ],
+    "evidence": [
+      "logic",
+      "audio",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-014",
+      "LAB-071"
+    ],
+    "reusable_component": "Timed caption and speech-fixture player",
+    "limits": "ASR is draft evidence; reviewed authoritative captions are required. No microphone permission assumed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html"
+    ]
+  },
+  {
+    "id": "LAB-074",
+    "title": "Statechart Playhouse",
+    "wing": "narrative",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Manipulate a small character state machine and inspect guards, entry/exit and interrupted actions.",
+    "mechanism": [
+      "Resource",
+      "Signal",
+      "proposed Statechart contract"
+    ],
+    "interaction": [
+      "Choose a guarded action",
+      "Inspect state transition",
+      "Interrupt with permitted event",
+      "Undo or reset the toy actor"
+    ],
+    "operations": [
+      "statecharts.dispatch(event:StateEvent)->TransitionReceipt",
+      "statecharts.inspect(actor_id:String)->StateReceipt"
+    ],
+    "scenario": "statechart-playhouse",
+    "fixture": "Original patrol/chase/rest toy with transition graph.",
+    "reset": "Restore initial state, timers and event queue.",
+    "acceptance": [
+      "Allowed event reaches expected state",
+      "Rejected guard leaves state unchanged",
+      "Entry/exit hooks run once",
+      "Interrupt cancels prior owned action"
+    ],
+    "failures": [
+      "Unknown event rejects",
+      "Recursive transition budget catches loops"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-038",
+      "LAB-041",
+      "LAB-021"
+    ],
+    "reusable_component": "Typed guarded statechart interpreter",
+    "limits": "Lab-owned statechart contract, not an implied Godot behavior-tree feature.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-075",
+    "title": "Quest Weave",
+    "wing": "narrative",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Complete original objectives in different orders and inspect dependency and undo semantics.",
+    "mechanism": [
+      "Resource",
+      "JSON",
+      "proposed ObjectiveGraph contract"
+    ],
+    "interaction": [
+      "Inspect objective graph",
+      "Perform a task through real lab operation",
+      "Complete prerequisite chain",
+      "Undo supported receipt and inspect dependent state"
+    ],
+    "operations": [
+      "quests.record(event:ObjectiveEvent)->QuestReceipt",
+      "quests.undo(receipt_id:String)->QuestReceipt"
+    ],
+    "scenario": "quest-weave",
+    "fixture": "Original observatory repair quest with optional and dependent nodes.",
+    "reset": "Restore fixture objective ledger and reward receipts.",
+    "acceptance": [
+      "Prerequisite guards hold",
+      "Duplicate event awards once",
+      "Alternate valid order yields same required completion",
+      "Undo follows declared dependency policy"
+    ],
+    "failures": [
+      "Cycle rejects graph",
+      "Unknown objective event refuses mutation"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-074",
+      "LAB-038",
+      "LAB-006"
+    ],
+    "reusable_component": "Objective dependency/reward ledger",
+    "limits": "No production economy or arbitrary script execution in quest data.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-076",
+    "title": "Cinematic Rails",
+    "wing": "narrative",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Compose an interactive camera/animation sequence with skip, resume and bounded cancellation.",
+    "mechanism": [
+      "AnimationPlayer",
+      "Path3D",
+      "PathFollow3D",
+      "Camera3D"
+    ],
+    "interaction": [
+      "Start original short scene",
+      "Interrupt with skip",
+      "Resume from approved checkpoint",
+      "Inspect restored player control"
+    ],
+    "operations": [
+      "cinematics.play(sequence_id:String)->SequenceReceipt",
+      "cinematics.skip(policy:SkipPolicy)->SequenceReceipt"
+    ],
+    "scenario": "cinematic-rails",
+    "fixture": "Original 10-second observatory reveal and actor cues.",
+    "reset": "Cancel timeline, restore player/camera control and clear pending events.",
+    "acceptance": [
+      "Camera follows declared path",
+      "Skip commits only approved semantic events",
+      "Exit returns controls",
+      "Repeated start cannot overlap timelines"
+    ],
+    "failures": [
+      "Missing cue target refuses start",
+      "Cancelled sequence cannot apply late event"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-011",
+      "LAB-008",
+      "LAB-025"
+    ],
+    "reusable_component": "Cancellable scene-sequence director",
+    "limits": "A movie route does not substitute for player interaction or human camera-comfort testing.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-077",
+    "title": "Inventory Alchemy",
+    "wing": "narrative",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Combine original items and inspect transactional recipes, limits and undo.",
+    "mechanism": [
+      "Resource",
+      "Dictionary",
+      "proposed InventoryTransaction contract"
+    ],
+    "interaction": [
+      "Pick up original fixtures",
+      "Preview recipe result/cost",
+      "Commit craft",
+      "Undo and compare ledger"
+    ],
+    "operations": [
+      "inventory.preview(recipe_id:String)->CraftProposal",
+      "inventory.commit(proposal_id:String)->InventoryReceipt"
+    ],
+    "scenario": "inventory-alchemy",
+    "fixture": "Original 12-item inventory, three recipes and capacity limit.",
+    "reset": "Restore item counts and transaction/request ledger.",
+    "acceptance": [
+      "Recipe consumes/produces exact quantities",
+      "Duplicate request crafts once",
+      "Capacity failure leaves inventory unchanged",
+      "Undo restores prior counts"
+    ],
+    "failures": [
+      "Unknown ingredient rejects",
+      "Stale proposal refuses commit"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-018",
+      "LAB-038",
+      "LAB-006"
+    ],
+    "reusable_component": "Transactional inventory/recipe service",
+    "limits": "Project-owned game economy example; no purchase or payment path.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html"
+    ]
+  },
+  {
+    "id": "LAB-078",
+    "title": "Locale Pavilion",
+    "wing": "interfaces",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Switch original translations and inspect text direction, plural rules and saved language choice.",
+    "mechanism": [
+      "TranslationServer",
+      "Translation",
+      "RichTextLabel"
+    ],
+    "interaction": [
+      "Choose locale",
+      "Inspect plural/number examples",
+      "View long and right-to-left fixture text",
+      "Restart with saved preference"
+    ],
+    "operations": [
+      "locale.select(code:String)->LocaleReceipt",
+      "locale.format(message_id:String,args:Dictionary)->TextReceipt"
+    ],
+    "scenario": "locale-pavilion",
+    "fixture": "Original English/long-text/RTL test strings and plural cases.",
+    "reset": "Restore baseline locale and only lab-owned language preference.",
+    "acceptance": [
+      "Selected translation renders",
+      "Plural fixtures match expected forms",
+      "Long strings avoid hidden actions",
+      "Restart restores locale"
+    ],
+    "failures": [
+      "Missing key displays explicit fallback marker",
+      "Unsupported locale refuses silently pretending success"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-013",
+      "LAB-006"
+    ],
+    "reusable_component": "Localization and text-layout test deck",
+    "limits": "RTL/font shaping and translation quality need platform-specific review; no OS language change.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html",
+      "https://docs.godotengine.org/en/stable/tutorials/i18n/internationalizing_games.html"
+    ]
+  },
+  {
+    "id": "LAB-079",
+    "title": "Focus Labyrinth",
+    "wing": "interfaces",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Navigate menus, dialogs and a3D panel with keyboard focus and inspect accessibility probes.",
+    "mechanism": [
+      "Control",
+      "SubViewportContainer",
+      "proposed AccessibilityProbe contract"
+    ],
+    "interaction": [
+      "Navigate essential actions by keyboard",
+      "Open nested dialog",
+      "Use supported assistive probe or labeled unavailable route",
+      "Return to originating control"
+    ],
+    "operations": [
+      "focus.navigate(direction:FocusDirection)->FocusReceipt",
+      "accessibility.probe(profile:AssistiveProfile)->ProbeReceipt"
+    ],
+    "scenario": "focus-labyrinth",
+    "fixture": "Original mixed UI layout with disabled, hidden and dynamic controls.",
+    "reset": "Restore focus tree, open-dialog stack and selection.",
+    "acceptance": [
+      "Essential path is reachable without pointer",
+      "Hidden controls never focus",
+      "Closing dialog restores origin",
+      "Unavailable assistive API is reported honestly"
+    ],
+    "failures": [
+      "Removed focus target chooses declared safe successor",
+      "Duplicate confirm invokes once"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "physical",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-013",
+      "LAB-066"
+    ],
+    "reusable_component": "Focus-tree and assistive-readiness inspector",
+    "limits": "Automated focus is not screen-reader/human accessibility qualification. API support probed.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html"
+    ]
+  },
+  {
+    "id": "LAB-080",
+    "title": "Comfort Controls",
+    "wing": "interfaces",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Tune motion, flash, text and input assists with immediate preview and scoped persistence.",
+    "mechanism": [
+      "Control",
+      "InputMap",
+      "ShaderMaterial",
+      "proposed ComfortProfile contract"
+    ],
+    "interaction": [
+      "Adjust original preview sliders",
+      "Disable optional motion/flash",
+      "Try same task with assist",
+      "Restart and inspect preferences"
+    ],
+    "operations": [
+      "comfort.apply(profile:ComfortProfile)->ComfortReceipt",
+      "comfort.reset_defaults()->ComfortReceipt"
+    ],
+    "scenario": "comfort-controls",
+    "fixture": "Original shake/flash/text/control preview scene with safe defaults.",
+    "reset": "Restore safe defaults only after explicit action, keeping progress seals.",
+    "acceptance": [
+      "Reduced motion suppresses declared effects",
+      "No-flash keeps steady focus",
+      "Text-scale retains essential actions",
+      "Preferences survive restart"
+    ],
+    "failures": [
+      "Invalid scale/intensity rejects",
+      "Cancelled reset preserves chosen preferences"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-012",
+      "LAB-013",
+      "LAB-006",
+      "LAB-068"
+    ],
+    "reusable_component": "Comfort preference and effect-policy service",
+    "limits": "Preview checks do not prove comfort. Avoid compulsory rapid flashing.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html"
+    ]
+  },
+  {
+    "id": "LAB-081",
+    "title": "Drag & Inspect",
+    "wing": "interfaces",
+    "milestone": "M2",
+    "status": "specified",
+    "payoff": "Drag typed resources between panels and inspect validation, preview and undo.",
+    "mechanism": [
+      "Control",
+      "Resource",
+      "Tree"
+    ],
+    "interaction": [
+      "Pick an original resource card",
+      "Drag to compatible slot",
+      "Inspect staged preview",
+      "Commit or cancel and undo"
+    ],
+    "operations": [
+      "drag.stage(payload:DragPayload,target_id:String)->DropProposal",
+      "drag.commit(proposal_id:String)->DropReceipt"
+    ],
+    "scenario": "drag-inspect",
+    "fixture": "Original material/item cards and compatible/incompatible slots.",
+    "reset": "Discard staged drops and restore panel assignments.",
+    "acceptance": [
+      "Compatible drop changes correct target",
+      "Cancelled drag leaves state unchanged",
+      "Keyboard alternative reaches same operation",
+      "Undo restores prior assignment"
+    ],
+    "failures": [
+      "Wrong payload type refuses drop",
+      "Freed target cancels pending proposal"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-013",
+      "LAB-018",
+      "LAB-038"
+    ],
+    "reusable_component": "Typed drag/drop proposal adapter",
+    "limits": "No automatic adoption of arbitrary external files; focus behavior tested separately.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/ui/index.html"
+    ]
+  },
+  {
+    "id": "LAB-082",
+    "title": "Prediction Track",
+    "wing": "networking",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Compare authoritative motion with client prediction and reconciliation under controlled delay.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "ENetMultiplayerPeer",
+      "proposed SnapshotProtocol contract"
+    ],
+    "interaction": [
+      "Join two local peers",
+      "Move predicted actor",
+      "Inject bounded delay",
+      "Inspect correction and acknowledged inputs"
+    ],
+    "operations": [
+      "prediction.submit(command:InputCommand)->InputReceipt",
+      "prediction.apply_snapshot(snapshot:StateSnapshot)->ReconcileReceipt"
+    ],
+    "scenario": "prediction-track",
+    "fixture": "Original constrained movement track with ticked input and snapshot records.",
+    "reset": "Stop peers, clear pending inputs and restore authoritative baseline.",
+    "acceptance": [
+      "Acknowledged inputs removed exactly once",
+      "Reconciliation converges within declared tolerance",
+      "Stale snapshots ignored visibly",
+      "Server remains authority"
+    ],
+    "failures": [
+      "Duplicate/out-of-order snapshot handled by policy",
+      "Unknown actor snapshot refuses apply"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "render",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-024",
+      "LAB-025",
+      "LAB-001"
+    ],
+    "reusable_component": "Versioned input/snapshot reconciliation adapter",
+    "limits": "Networked physics determinism not assumed; no competitive-game guarantee.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-083",
+    "title": "Reconnect Harbor",
+    "wing": "networking",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Drop and rejoin a local session without duplicating owned entities or losing committed state.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "ENetMultiplayerPeer",
+      "proposed ResumeToken contract"
+    ],
+    "interaction": [
+      "Join and mutate owned fixture",
+      "Disconnect intentionally",
+      "Reconnect with scoped resume request",
+      "Inspect identity and state receipt"
+    ],
+    "operations": [
+      "sessions.disconnect(reason:String)->SessionReceipt",
+      "sessions.resume(request:ResumeRequest)->ResumeReceipt"
+    ],
+    "scenario": "reconnect-harbor",
+    "fixture": "Original two-peer room and versioned session ledger.",
+    "reset": "Stop all peers and discard scoped resume records.",
+    "acceptance": [
+      "Rejoin recovers declared committed state",
+      "One actor exists per resumed identity",
+      "Unacked actions follow explicit policy",
+      "Expired request rejects cleanly"
+    ],
+    "failures": [
+      "Invalid resume token refuses",
+      "Version mismatch provides restart route"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "interchange",
+      "render"
+    ],
+    "depends_on": [
+      "LAB-024",
+      "LAB-082",
+      "LAB-006"
+    ],
+    "reusable_component": "Reconnect/resume lifecycle harness",
+    "limits": "Local session tokens are scoped fixtures, not production authentication.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-084",
+    "title": "Network Chaos",
+    "wing": "networking",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Inject loss, jitter, duplication and reordering and inspect recovery instead of hiding transport failures.",
+    "mechanism": [
+      "PacketPeer",
+      "MultiplayerAPI",
+      "proposed ChaosProfile contract"
+    ],
+    "interaction": [
+      "Choose bounded fault profile",
+      "Run paired-process route",
+      "Inspect packet/operation timeline",
+      "Disable faults and observe convergence"
+    ],
+    "operations": [
+      "chaos.set_profile(profile:ChaosProfile)->ChaosReceipt",
+      "chaos.run(route_id:String)->TransportReceipt"
+    ],
+    "scenario": "network-chaos",
+    "fixture": "Original operation stream and deterministic fault-seed recipe.",
+    "reset": "Remove proxy/fault injection and release process/port resources.",
+    "acceptance": [
+      "Fault trace matches selected seed",
+      "Reliable semantic operations do not duplicate",
+      "Timeout becomes explicit failure",
+      "After recovery replicas converge"
+    ],
+    "failures": [
+      "Impossible/unbounded delay profile rejects",
+      "Proxy exit reports broken transport"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-024",
+      "LAB-082",
+      "LAB-083"
+    ],
+    "reusable_component": "Reproducible transport fault harness",
+    "limits": "Fault adapter is proposed lab tooling; actual wire loss is distinct from synthetic event replay.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-085",
+    "title": "RPC Gatehouse",
+    "wing": "networking",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Send allowed and invalid RPC requests and inspect authority, payload limits and version checks.",
+    "mechanism": [
+      "MultiplayerAPI",
+      "rpc annotations",
+      "proposed RPCEnvelope contract"
+    ],
+    "interaction": [
+      "Join approved local peers",
+      "Invoke allowed operation",
+      "Send malformed/unauthorized requests",
+      "Inspect rejection receipts and continued session"
+    ],
+    "operations": [
+      "rpc.invoke(request:RPCEnvelope)->RPCReceipt",
+      "rpc.inspect_rejections()->Array[RejectionReceipt]"
+    ],
+    "scenario": "rpc-gatehouse",
+    "fixture": "Original entity operations plus hostile synthetic payload fixtures.",
+    "reset": "Restore allowlist/request ledger and stop peers.",
+    "acceptance": [
+      "Allowed request mutates once",
+      "Unauthorized peer cannot mutate",
+      "Oversized payload rejected before domain processing",
+      "Session survives invalid request"
+    ],
+    "failures": [
+      "Unknown operation rejects",
+      "Duplicate request does not repeat effect"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-024",
+      "LAB-038"
+    ],
+    "reusable_component": "Allowlisted versioned RPC boundary",
+    "limits": "No arbitrary remote eval. Production authentication/encryption needs separate design.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-086",
+    "title": "WebRTC Bridge",
+    "wing": "networking",
+    "milestone": "M5",
+    "status": "specified",
+    "payoff": "Connect two browser-capable peers through an explicit local signaling adapter and inspect failure modes.",
+    "mechanism": [
+      "WebRTCPeerConnection",
+      "WebRTCDataChannel",
+      "WebRTCMultiplayerPeer"
+    ],
+    "interaction": [
+      "Probe backend availability",
+      "Exchange local signaling fixtures",
+      "Send a typed bounded message",
+      "Disconnect/reconnect and inspect state"
+    ],
+    "operations": [
+      "webrtc.offer(request:PeerOffer)->SignalReceipt",
+      "webrtc.send(channel_id:String,message:LabMessage)->SendReceipt"
+    ],
+    "scenario": "webrtc-bridge",
+    "fixture": "Original two-browser message room and approved local signaling service.",
+    "reset": "Close channels/peers and discard signaling/session fixtures.",
+    "acceptance": [
+      "Both peers establish actual channel",
+      "Message order follows declared channel policy",
+      "Disconnect reported",
+      "Unsupported backend retains labeled fixture path"
+    ],
+    "failures": [
+      "Malformed signaling rejects",
+      "Connection timeout is not promoted to success"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-024",
+      "LAB-032",
+      "LAB-085"
+    ],
+    "reusable_component": "Optional WebRTC/signaling adapter",
+    "limits": "Native plugin/browser requirements are probes. No public NAT/STUN service assumption.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html"
+    ]
+  },
+  {
+    "id": "LAB-087",
+    "title": "Live Control",
+    "wing": "automation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Drive a running lab through a narrow typed command channel and inspect cancellation and receipts.",
+    "mechanism": [
+      "WebSocketPeer",
+      "Cappy released addon",
+      "proposed LiveCommandEnvelope contract"
+    ],
+    "interaction": [
+      "Attach approved local tool",
+      "Query current lab state",
+      "Invoke bounded operation",
+      "Cancel or disconnect and inspect cleanup"
+    ],
+    "operations": [
+      "live.invoke(request:LiveCommandEnvelope)->OperationReceipt",
+      "live.cancel(operation_id:String)->CancelReceipt"
+    ],
+    "scenario": "live-control",
+    "fixture": "Original local command client and stable scene-target IDs.",
+    "reset": "Close owned connection and clear pending commands without stopping play.",
+    "acceptance": [
+      "Command uses same player operation",
+      "Invalid target rejected",
+      "Cancellation prevents late commit",
+      "Tool disconnect leaves ordinary play usable"
+    ],
+    "failures": [
+      "Unknown command rejects",
+      "Oversized request closes/refuses according to policy"
+    ],
+    "evidence": [
+      "logic",
+      "transport",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-038",
+      "LAB-025",
+      "LAB-040"
+    ],
+    "reusable_component": "Allowlisted live-command adapter",
+    "limits": "No arbitrary code/OS command execution. Official Cappy protocol must be probed rather than invented.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "https://www.npmjs.com/package/@uppercut-labs/cappy"
+    ]
+  },
+  {
+    "id": "LAB-088",
+    "title": "Source-bound Capture",
+    "wing": "automation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Capture only the declared game window/process and verify the source identity before accepting media.",
+    "mechanism": [
+      "Official @uppercut-labs/cappy package",
+      "OBS WebSocket",
+      "proposed CaptureSourceReceipt contract"
+    ],
+    "interaction": [
+      "Probe capture provider",
+      "Bind exact game source",
+      "Run bounded scenario",
+      "Inspect encoded pixels/audio and source manifest"
+    ],
+    "operations": [
+      "capture.bind(source:GameSource)->SourceReceipt",
+      "capture.run(request:CaptureRequest)->CaptureReceipt"
+    ],
+    "scenario": "source-bound-capture",
+    "fixture": "Original game-only route and wrong-source/black-frame fixtures.",
+    "reset": "Stop owned recording and restore isolated provider profile only.",
+    "acceptance": [
+      "Declared source matches build/window identity",
+      "Black/flat output rejects proof",
+      "Artifact includes scenario/build provenance",
+      "Stop finalizes on failure"
+    ],
+    "failures": [
+      "Wrong source refuses capture",
+      "Unavailable provider reports gate without success-shaped movie substitute"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-025",
+      "LAB-087",
+      "LAB-039"
+    ],
+    "reusable_component": "Source-identity capture acceptance gate",
+    "limits": "Provider capture distinct from Godot movie writing. Credentials stay local; no desktop fallback.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "https://www.npmjs.com/package/@uppercut-labs/cappy"
+    ]
+  },
+  {
+    "id": "LAB-089",
+    "title": "Parameter Sweeps",
+    "wing": "automation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Schedule bounded scenario variations and compare their actual outcomes with resumable jobs.",
+    "mechanism": [
+      "WorkerThreadPool",
+      "FileAccess",
+      "Official Cappy package",
+      "proposed SweepPlan contract"
+    ],
+    "interaction": [
+      "Choose small parameter matrix",
+      "Preview resource/time budget",
+      "Run or cancel batch",
+      "Resume remaining rows and compare receipts"
+    ],
+    "operations": [
+      "sweeps.plan(request:SweepRequest)->SweepProposal",
+      "sweeps.run(proposal_id:String)->BatchReceipt"
+    ],
+    "scenario": "parameter-sweeps",
+    "fixture": "Original physics/material parameter matrix and stable fixture hashes.",
+    "reset": "Cancel active row, finalize owned capture and preserve honest checkpoint.",
+    "acceptance": [
+      "Each accepted row records actual parameters/result",
+      "Cancelled row never marked passed",
+      "Resume skips only proven rows",
+      "Concurrency/memory cap enforced"
+    ],
+    "failures": [
+      "Invalid matrix rejects before scheduling",
+      "Changed build invalidates incompatible checkpoint"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-028",
+      "LAB-088",
+      "LAB-036"
+    ],
+    "reusable_component": "Checkpointed bounded scenario sweep scheduler",
+    "limits": "Heavy encoding uses approved separate host policy; no infinite autonomous recording loop.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "https://docs.godotengine.org/en/stable/classes/class_workerthreadpool.html",
+      "https://www.npmjs.com/package/@uppercut-labs/cappy"
+    ]
+  },
+  {
+    "id": "LAB-090",
+    "title": "Camera Takes",
+    "wing": "automation",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Author reusable camera routes and record them without disabling ordinary playable scenes.",
+    "mechanism": [
+      "Path3D",
+      "PathFollow3D",
+      "Camera3D",
+      "Official Cappy package"
+    ],
+    "interaction": [
+      "Place original camera markers",
+      "Preview shot while scene remains live",
+      "Record bounded take",
+      "Reset and compare route receipts"
+    ],
+    "operations": [
+      "takes.plan(route:CameraRoute)->TakeProposal",
+      "takes.record(proposal_id:String)->TakeReceipt"
+    ],
+    "scenario": "camera-takes",
+    "fixture": "Original orbit, tracking and wide shot routes with duration bounds.",
+    "reset": "Restore player camera and stop route/recording resources.",
+    "acceptance": [
+      "Camera follows timed markers",
+      "Semantic scene action matches declared take",
+      "Abort restores player controls",
+      "Replay uses same fixture/build"
+    ],
+    "failures": [
+      "Missing target refuses take",
+      "Invalid duration or clipping profile rejects"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-011",
+      "LAB-076",
+      "LAB-088"
+    ],
+    "reusable_component": "Cancellable camera-route take director",
+    "limits": "Camera route is media tooling, never replacement for live player navigation.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html",
+      "https://www.npmjs.com/package/@uppercut-labs/cappy"
+    ]
+  },
+  {
+    "id": "LAB-091",
+    "title": "Golden Assertions",
+    "wing": "automation",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Compare declared image/audio/state regions and inspect why a regression passes or fails.",
+    "mechanism": [
+      "Image",
+      "AudioStreamWAV",
+      "proposed EvidenceComparator contract"
+    ],
+    "interaction": [
+      "Choose approved original reference",
+      "Run bounded scenario",
+      "Inspect regional difference metrics",
+      "Review a candidate reference update"
+    ],
+    "operations": [
+      "goldens.compare(request:ComparisonRequest)->DifferenceReceipt",
+      "goldens.propose_update(run_id:String)->ReferenceProposal"
+    ],
+    "scenario": "golden-assertions",
+    "fixture": "Original calibrated frames, PCM tone and semantic state records.",
+    "reset": "Discard unapproved reference proposals and restore comparison settings.",
+    "acceptance": [
+      "Semantic mismatch fails",
+      "Rendered region threshold detects controlled change",
+      "Audio gate catches muted/wrong tone fixture",
+      "Reference update requires explicit review"
+    ],
+    "failures": [
+      "Missing reference reports unavailable",
+      "Wrong build/fixture identity refuses comparison"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "audio",
+      "provider"
+    ],
+    "depends_on": [
+      "LAB-088",
+      "LAB-073",
+      "LAB-019"
+    ],
+    "reusable_component": "Provenance-aware regional evidence comparator",
+    "limits": "Tolerances avoid brittle exact pixels; passing metrics do not establish overall artistic quality.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html"
+    ]
+  },
+  {
+    "id": "LAB-092",
+    "title": "Memory Observatory",
+    "wing": "performance",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Repeat entry/reset/exit and inspect resource growth, leaks and bounded caches.",
+    "mechanism": [
+      "Performance",
+      "Object",
+      "ResourceLoader",
+      "proposed ResourceLedger contract"
+    ],
+    "interaction": [
+      "Record warm baseline",
+      "Cycle heavy lab repeatedly",
+      "Inspect live node/resource counts and memory",
+      "Release cache and compare"
+    ],
+    "operations": [
+      "memory.run_cycles(request:CycleRequest)->MemoryReceipt",
+      "memory.inspect(scope:String)->ResourceReceipt"
+    ],
+    "scenario": "memory-observatory",
+    "fixture": "Original streaming/crowd/audio stress fixtures with known ownership.",
+    "reset": "Stop cycles, release owned caches and return to hub.",
+    "acceptance": [
+      "Node count returns within declared baseline tolerance",
+      "Cache cap enforced",
+      "Repeated cycles show bounded trend",
+      "Missing counters remain unavailable"
+    ],
+    "failures": [
+      "Cancelled cycle still cleans owned state",
+      "Intentional leaking negative fixture is detected"
+    ],
+    "evidence": [
+      "logic",
+      "profiling"
+    ],
+    "depends_on": [
+      "LAB-029",
+      "LAB-017",
+      "LAB-040",
+      "LAB-036"
+    ],
+    "reusable_component": "Lifecycle resource-growth evaluator",
+    "limits": "OS memory noise distinguished from owned-object counts; no universal RAM threshold.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/performance/index.html"
+    ]
+  },
+  {
+    "id": "LAB-093",
+    "title": "Import Plugin",
+    "wing": "tooling",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Import an original custom data format through editor tooling with reimport and diagnostics.",
+    "mechanism": [
+      "EditorImportPlugin",
+      "ResourceImporter",
+      "Resource"
+    ],
+    "interaction": [
+      "Select original source file",
+      "Import into typed Resource",
+      "Edit source and reimport",
+      "Inspect errors and preserved last-good output"
+    ],
+    "operations": [
+      "importplugin.import_file(request:ImportRequest)->ImportReceipt",
+      "importplugin.reimport(source_id:String)->ImportReceipt"
+    ],
+    "scenario": "import-plugin",
+    "fixture": "Original tiny room recipe format plus malformed fixtures.",
+    "reset": "Disable owned plugin and remove only generated test imports.",
+    "acceptance": [
+      "Valid source yields expected Resource",
+      "Reimport updates versioned content",
+      "Diagnostics point to offending field",
+      "Failed import preserves last-good usable fixture"
+    ],
+    "failures": [
+      "Unknown version refuses import",
+      "External path traversal rejects"
+    ],
+    "evidence": [
+      "logic",
+      "editor",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-026",
+      "LAB-018",
+      "LAB-039"
+    ],
+    "reusable_component": "Versioned custom-resource importer",
+    "limits": "Exact plugin hooks require installed-editor probe. Import does not execute arbitrary source code.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/plugins/editor/index.html"
+    ]
+  },
+  {
+    "id": "LAB-094",
+    "title": "Export Profiles",
+    "wing": "tooling",
+    "milestone": "M4",
+    "status": "specified",
+    "payoff": "Build explicit native/web profiles and inspect included assets, runtime route and unsupported gates.",
+    "mechanism": [
+      "EditorExportPlugin",
+      "EditorExportPreset",
+      "EditorExportPlatform"
+    ],
+    "interaction": [
+      "Select target/profile",
+      "Preview public asset allowlist",
+      "Export with actual installed templates",
+      "Launch artifact smoke route and inspect receipt"
+    ],
+    "operations": [
+      "exports.plan(profile:ExportProfile)->ExportProposal",
+      "exports.build(proposal_id:String)->ArtifactReceipt"
+    ],
+    "scenario": "export-profiles",
+    "fixture": "Original account-free route and excluded sentinel files.",
+    "reset": "Remove generated outputs only and restore tested preset configuration.",
+    "acceptance": [
+      "Artifact includes approved assets only",
+      "Sentinel/private file excluded",
+      "Actual artifact completes bounded route",
+      "Target/toolchain/signing status recorded"
+    ],
+    "failures": [
+      "Missing templates reports blocked target",
+      "Wrong architecture cannot be labeled launch success"
+    ],
+    "evidence": [
+      "logic",
+      "export",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-026",
+      "LAB-088"
+    ],
+    "reusable_component": "Allowlisted export/launch qualifier",
+    "limits": "Native Windows/macOS/Linux targets need separate builds; signed distribution and physical proof distinct.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/plugins/editor/index.html"
+    ]
+  },
+  {
+    "id": "LAB-095",
+    "title": "Blender Round Trip",
+    "wing": "interchange",
+    "milestone": "M3",
+    "status": "specified",
+    "payoff": "Carry an original rigged, vertex-painted modular asset from source to Godot and back through a bounded interchange path.",
+    "mechanism": [
+      "GLTFDocument",
+      "GLTFState",
+      "Skeleton3D",
+      "Blender glTF exporter probe"
+    ],
+    "interaction": [
+      "Open original authored source",
+      "Export approved glTF/GLB",
+      "Import/play marker pose in Godot",
+      "Export a bounded edited scene and compare attributes"
+    ],
+    "operations": [
+      "assets.export_scene(request:SceneExportRequest)->AssetReceipt",
+      "assets.compare_roundtrip(source_id:String,result_id:String)->AttributeReceipt"
+    ],
+    "scenario": "blender-round-trip",
+    "fixture": "Original Blender-source mesh with UV seams, vertex colors, rig, pose and unit markers.",
+    "reset": "Restore approved source and remove only generated interchange outputs.",
+    "acceptance": [
+      "Axes/scale match markers",
+      "UV/color attribute counts/hash policy hold",
+      "Bone names and reference pose preserved",
+      "Unsupported attributes reported explicitly"
+    ],
+    "failures": [
+      "Missing external texture rejects or labeled unresolved",
+      "Malformed/unknown extension cannot silently lose data"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "editor",
+      "interchange"
+    ],
+    "depends_on": [
+      "LAB-035",
+      "LAB-015",
+      "LAB-060",
+      "LAB-061"
+    ],
+    "reusable_component": "Attribute/provenance round-trip verifier",
+    "limits": "Blender/plugin versions require probes. Godot export may not preserve every authoring feature.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_gltfdocument.html"
+    ]
+  },
+  {
+    "id": "LAB-096",
+    "title": "XR Hands",
+    "wing": "xr",
+    "milestone": "M5",
+    "status": "specified",
+    "payoff": "Inspect tracked or recorded hands, pinch grabs and loss-of-tracking behavior on original objects.",
+    "mechanism": [
+      "XRHandTracker",
+      "XRHandModifier3D",
+      "XRServer",
+      "proposed HandPoseSource contract"
+    ],
+    "interaction": [
+      "Probe runtime/extensions",
+      "Replay labeled original hand fixture when unavailable",
+      "Pinch/grab an original object",
+      "Lose tracking and inspect release policy"
+    ],
+    "operations": [
+      "hands.select_source(source:HandPoseSource)->ReadinessReceipt",
+      "hands.pinch(command:PinchCommand)->GrabReceipt"
+    ],
+    "scenario": "xr-hands",
+    "fixture": "Original joint-pose recording and reach/pinch calibration objects.",
+    "reset": "Release grabbed objects and restore origin/tracking-source state.",
+    "acceptance": [
+      "Fixture/live provenance remains visible",
+      "Pinch transition emits once",
+      "Tracking loss follows safe declared policy",
+      "Joint visualization matches recorded fixture"
+    ],
+    "failures": [
+      "Unsupported extension leaves fixture path usable",
+      "Invalid joint array refuses pose"
+    ],
+    "evidence": [
+      "logic",
+      "render",
+      "physical",
+      "export"
+    ],
+    "depends_on": [
+      "LAB-034",
+      "LAB-015",
+      "LAB-012"
+    ],
+    "reusable_component": "Readiness-aware hand-pose interaction adapter",
+    "limits": "Hand tracking extensions and API signatures need probes; no hardware qualification from fixture replay.",
+    "deepening_requirements": [],
+    "implementation_boundary": "Specified interaction only. API names are primary-documentation leads; exact signatures, renderer support and target availability require an installed-engine compile/probe before implementation.",
+    "sources": [
+      "https://docs.godotengine.org/en/stable/tutorials/xr/index.html",
+      "https://docs.godotengine.org/en/stable/classes/class_skeletonmodifier3d.html"
+    ]
+  }
+]

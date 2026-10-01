@@ -1,55 +1,98 @@
-# Product specification
+# Godot Lab product specification
 
-Baseline: 2026-10-01. The authoritative implementation/evidence snapshot is [BUILD_STATUS](docs/BUILD_STATUS.md).
+Expanded program: 2026-10-01. **96 lab contracts, 16 wings, six delivery milestones, and two independently useful repositories.** This is the product plan; [BUILD_STATUS](docs/BUILD_STATUS.md) remains the authority for implemented behavior. Six baseline rooms are automatically verified. The other 90 labs and the deeper contracts for those six are planned.
 
-## Purpose and audience
+## 1. Purpose and audiences
 
-Build a playable executable that teaches Godot capabilities through physical interactions and repeatable automation. Curious players should understand the effect without reading code. Developers should find the mechanism, source, test, and reusable boundary. Automation builders should discover how a real interaction becomes a recordable scenario.
+Make Godot's breadth discoverable through a playable executable, living source documentation, and inspectable automation. A player encounters a remarkable effect, changes it, understands the mechanism, and can replay what happened. A developer extracts a small reusable component. An automation builder controls that same system, captures it with the official Cappy package, and inspects source-bound evidence.
 
-## Product shape
+The ambition covers engine systems, game authoring, tooling, platform adapters, and the work that agents can automate around them. Six mechanism demos established a bootstrap; they do not fulfill this ambition. The expanded plan takes the Apple Native Lab model of detailed interactions, reusable domain operations, capability probes, fixtures, honest fallbacks, and dependency-ordered qualification. It also includes live authoring, simulation records, scripted asset creation, presentation tracks, combat and animation, and production capture workflows.
 
-An original third-person retro 3D hub connects six labs. A station introduces one concrete payoff, shows the important controls, and exposes the observed state. The player can reset a lab or leave it at any point. Information panels explain both the Godot mechanism and what automation can measure.
+## 2. Product shape
+
+An original retro observatory houses sixteen wings. Physical exhibits connect to searchable catalogs, guided journeys, and a compact inspector showing controls, parameters, current state, operation receipts, reset scope, and verified capabilities. Players can inspect a system without turning every room into a text wall. Demonstration cameras and automation controls remain secondary to ordinary play.
+
+The sixteen wings are core, motion, simulation, world, art, rendering, audio, narrative, interfaces, networking, automation, tooling, performance, interchange, platforms, and XR. [The catalog](experiments/INDEX.md) assigns every lab its interaction and proof contract. [The capability matrix](docs/CAPABILITY_MATRIX.md) makes breadth, dependencies, and evidence visible. Ninety-six is a governed starting program, not a claim that every engine API is covered.
+
+The host has a world route, catalog route, fixture browser, session inspector, settings, source/component links, evidence browser, and journey progress. A missing adapter appears with its actual reason and a useful supported fixture path where possible. A replay is labeled as a replay. Future labs are searchable specifications, never active portals or earned completion badges before implementation.
+
+## 3. Requirements
 
 | ID | Requirement | Acceptance anchor |
 |---|---|---|
-| R-01 | A clean public checkout is independently runnable | No account, private dependency, or recording service in play path |
-| R-02 | The executable supports ordinary interactive play | Player can reach, operate, reset, and leave all six labs |
-| R-03 | Lab behavior and automation share real operations | Scenario changes the same nodes/state as the live route |
-| R-04 | Each effect has a readable explanation | Player sees the capability, action, response, and reset |
-| R-05 | State is resettable and isolated | Repeated run begins from documented baseline |
-| R-06 | Evidence supports a bounded claim | Build, engine, renderer, scenario, result, and limits recorded |
-| R-07 | Retro art is authored and usable | Clear silhouettes, quiet floor, strong station colors, readable text |
-| R-08 | Capture is optional tooling | Official Cappy package integration cannot break offline play |
-| R-09 | Persistence is local and explicit | Save survives restart; malformed data is handled visibly; reset stays scoped |
-| R-10 | New labs have a stable extension contract | Catalog, implementation, instructions, scenario, and tests added together |
-| R-11 | Export is verified separately from source launch | Executable opens and completes automated smoke route |
-| R-12 | Human testing is not fabricated | Human/controller/physical-device gates stay pending until performed |
+| R-01 | Public core runs independently without accounts | Clean public archive, network-blocked fixture route, no sibling dependency |
+| R-02 | Ordinary play is the primary deliverable | Reach, operate, inspect, reset, and exit every enabled lab in an executable |
+| R-03 | Entry points share typed operations | UI, scenario, CLI, live API and MCP produce equivalent semantic receipts |
+| R-04 | A lab demonstrates depth | Parameter variation, meaningful failure, visible consequence, reusable source and reset |
+| R-05 | Readiness is probed | Engine/build, renderer, OS, extension, provider, assets and device reported separately |
+| R-06 | Fixtures are original, bounded and isolated | Seed/hash manifest, demo namespace, hostile-input tests and scoped cleanup |
+| R-07 | Reset is a lifecycle contract | Jobs, actors, audio, signals, peers and fixtures released without losing ordinary progress |
+| R-08 | Live control and Cappy coexist | One session accepts authenticated operations while recording actual game output |
+| R-09 | Simulation and presentation are distinct | Fixed-tick ordering, timeline events, independent viewer camera and declared replay tolerance |
+| R-10 | Evidence binds source and scenario | Commit/tree, tool versions, fixture, seed, operations, results, artifact hashes and limits |
+| R-11 | Asset authoring is reproducible | Blender recipe to validated mesh/rig/clip/material import with provenance and round trips |
+| R-12 | Effects remain readable and comfortable | Original retro identity, shape plus color, clean comparisons and comfort options |
+| R-13 | Animation and gameplay systems compose | Movement, combat, IK/layering, events, effects, sound, cameras and reset tested together |
+| R-14 | Networking has explicit semantics | Authority, ordering, loss, reconnection, prediction/resync and incompatible-peer tests |
+| R-15 | Durable state differs from replay and transport | Migration, atomic writes, namespaces, conflict/recovery and malformed-input handling |
+| R-16 | Expensive work is budgeted and cancellable | Estimates, deadlines, checkpoints, cancellation and partial-output protection |
+| R-17 | Platform and tool integrations are optional | Separately probed profiles cannot break default source/export |
+| R-18 | Automation extends beyond playback | Live authoring, sweeps, build comparison, event clips and media/performance analysis |
+| R-19 | Artifacts preserve meaningful structure | Versioned records, resources/manifests, unknown-version rejection and round trips |
+| R-20 | Accessibility/input have explicit gates | Keyboard/focus/rebind, text scale, non-color cues, comfort and device evidence |
+| R-21 | Packages are intentional | Export profiles, addon/tool separation, licenses, allowlists and metadata/secret checks |
+| R-22 | Components work outside the museum | Minimal extraction scene and documented injected dependencies |
+| R-23 | Breadth ships in coherent journeys | Cross-lab state/operation handoffs, not isolated badge accumulation |
+| R-24 | No invented qualification | Logic, pixels, audio, provider, export, editor, native, transport, profiling and hardware differ |
 
-## First release
+## 4. Shared systems and module contract
 
-| Lab | Physical payoff | Mechanism | Automated acceptance |
-|---|---|---|---|
-| LAB-001 Motion atelier | Move/jump around solid stairs and an obstacle | CharacterBody3D, collisions, input, camera | Floor contact, blocked wall, jump movement, reset |
-| LAB-002 Gravity foundry | Launch a body and watch a resettable arrangement react | RigidBody3D, impulse, contacts | Body displacement, collision/settling, reset baseline |
-| LAB-003 Pathfinder garden | Dispatch a courier around a tower to a fixed gold pad | NavigationAgent3D, authored navigation mesh | Non-straight path and arrival within tolerance |
-| LAB-004 Paint & light | Compare authored, lit, and pixel treatments | Shader/material parameters, sampling, viewport | Parameter route plus real rendered image comparison |
-| LAB-005 Signal chamber | Move around a visible sound source | AudioStreamPlayer3D, attenuation, listener position | Source placement/state plus recorded audible energy/panning checks |
-| LAB-006 Memory archive | Save earned lab seals and comfort settings; reload from disk | Local file format, validation, versioning | Round trip, restart, invalid input preserved |
+The expanded host must replace monolithic growth with statically registered lab modules. Current main.gd and world.gd are the bootstrap implementation, not proof that this split exists. Proposed modules expose metadata, readiness, setup/teardown, operations, bounded observations, fixture/reset, scenarios, and a reusable component. The host injects services; a module does not reach into arbitrary sibling scene paths.
 
-The catalog also specifies advanced directions. A documented future capability is never represented as available in the hub. A first implementation may be compact; it must still provide the mechanism and interaction it names.
+One operation spine accepts validated requests and emits versioned receipts/events. Actions carry a session, lab/namespace, request ID, expected revision where needed, and typed bounded arguments. An inspector and automation client observe the same result. Operation names in new lab specs are **proposed contracts**, not callable APIs today. Retry semantics, stale-state rejection and effectful actions are specified in [DATA_CONTRACTS](docs/DATA_CONTRACTS.md) and [AUTOMATION_CONTRACTS](docs/AUTOMATION_CONTRACTS.md).
 
-## Milestones
+Shared systems include readiness/profiles, fixture registry, reset ownership, schema/migration, scenario/event records, clocks, live transport, CLI/MCP adapters, presentation tracks, Cappy orchestration, evidence manifests, cancelable jobs, asset provenance/import, analysis budgets, and source/export qualification. Their implementation and qualification tickets precede dependent lab tickets.
 
-M1 establishes the hub, the six labs, automated checks, capture integration, and a tested local executable. M2 develops richer input/settings, animation, tile/world systems, and profiler-driven art iteration. M3 adds networking, tooling extensions, large-world investigations, and alternative renderer studies. M4 holds hardware-dependent XR, mobile sensor experiments, and external service integrations.
+## 5. A lab is a complete interaction contract
 
-The current user is unavailable for manual testing. Complete all feasible automated work now; retain human comfort, real controller, and physical-device gates for later. Do not use that absence to replace the playable product with a video.
+Every entry specifies a player payoff; Godot mechanisms versus proposed lab types; at least three interaction steps; typed operations; a scenario and fixture; reset ownership; observable positive assertions; at least two meaningful failure cases; evidence channels; dependencies; an extractable component; and limits.
 
-## States and completion
+For implementation, add actual scene/source paths, installed API probes, profile readiness/fallback, precise argument/result schemas, scenario sequence and tolerances, fixture license/hashes, performance budgets, accessible input, and evidence locations. A qualification ticket follows implementation. Specs can evolve after a spike finds an API boundary; do not silently substitute a screenshot for a promised mechanism.
 
-Use `specified`, `spiked`, `implemented`, `automated-verified`, `human-verified`, `release-ready`, or `blocked`. Record evidence separately for logic, rendered output, audio, capture provider, exported executable, and physical devices. Status is attached to a build and supported route, not assumed forever.
+The first six retain bounded historical proof. Deepening includes richer movement/collision variation, simulation investigation, navigation behavior, rendering comparison, audio examination, and durable-state work. A previous seal does not qualify new depth. [ROADMAP](docs/ROADMAP.md) links all 192 lab implementation/qualification tasks, including those six deepening pairs.
 
-A lab is automated-verified when its ordinary play route exists, reset works, meaningful assertions pass, and the required rendered/audio checks pass on the named host. A release additionally needs an exported executable check, reproducible build instructions, license inventory, public-content review, and honest missing-gate disclosure. A lab may be automated-verified while controller comfort remains untested.
+## 6. Composed playable journeys
 
-## Non-goals
+Eight public journeys are planned: Courier Circuit; Clockwork Duel; Weather Postcard; Story Caravan; Signal Orchestra; Two Worlds Together; Maker to Movie; and Device Expedition. [JOURNEYS](docs/JOURNEYS.md) defines cross-system acceptance and laboratory prerequisites. Each needs an enjoyable goal, useful feedback and clean recovery. The bootstrap currently offers a six-room tour.
 
-The first release is not an engine replacement, a commercial full-length game, an exhaustive implementation of every Godot API, a benchmark suite, or a promise of every export platform. It does not ship copied game art or require cloud services. Multiplayer, mobile/XR, GDExtension, editor plugins, and production telemetry are future experiments until implemented and checked.
+Private composition builds twelve more opinionated experiences from qualified public components and original restricted fixtures. Private provenance and machine routes stay private. It pins an exact public revision and separately records the runtime revision actually verified. The public game must never require private composition or its research materials.
+
+## 7. Delivery order
+
+M0 is the tested bootstrap. M1 establishes module/operation/readiness/reset/evidence foundations and a broader playable core. M2 develops character, combat, animation, world, narrative, art and sound depth. M3 delivers live production automation, networking, asset/tool authoring and record workflows. M4 qualifies advanced rendering, performance, native/tool and interchange systems. M5 qualifies optional platform, mobile, web, multi-device and XR adapters where environments are available.
+
+Milestones are waves, not permission to skip dependencies. The catalog DAG and shared-system gates determine execution order; [MILESTONES](docs/MILESTONES.md) defines exits. A late optional adapter cannot delay the default journey. A lower-cost fallback can ship with bounded proof while the advanced profile remains unverified.
+
+## 8. Automated acceptance
+
+Run actual operations against actual scenes and record semantic observations; setting expected final state is not acceptance. Use stable fixtures, ticks and ordering where possible. Physics, GPU pixels, audio encoders and timing require declared tolerances rather than universal bit-identical claims. Positive evidence must survive reset/re-entry and failure probes.
+
+Headless behavior cannot establish visual quality. A nonblack frame cannot establish animation correctness. A receipt cannot establish capture. Provider success cannot establish encoded sound. A simulator cannot establish real controller, touch, XR or sensor comfort. Each lab declares required routes; [TEST_STRATEGY](docs/TEST_STRATEGY.md) defines gates.
+
+The user is unavailable for physical-device testing. Complete feasible automated simulation, rendered desktop, media analysis, toolchain, network-process, export and simulator work; retain physical/human gates for later. Automatically recorded video is evidence of the executable, not a substitute deliverable.
+
+## 9. Budgets, errors and boundaries
+
+Default play is offline and inexpensive. Import/export destinations, recording, optional networking, external tools and costly work have explicit routes and ownership. Imports are staged before activation. Large fixtures, commands, event streams, shaders, native binaries and render jobs have size/time/resource limits. Failure returns a typed reason and leaves usable state; cancellation cannot replace a good artifact with partial output.
+
+Networking defaults to explicit local sessions. Live automation binds loopback with scoped authentication for mutation. No arbitrary evaluation or shell command is exposed. Workers receive bounded recipes and source/asset manifests rather than hidden private paths. Distribution includes approved assets and licenses.
+
+## 10. States and completion
+
+Use specified, spiked, implemented, automated-verified, human-verified, release-ready or blocked. Track evidence per revision/adapter; a milestone or generated spec cannot promote runtime status. The first six catalog statuses describe existing bounded routes only.
+
+Qualification requires ordinary play, operation equivalence, reset/lifecycle cleanup, hostile/failure cases, required rendered/audio/provider/editor/native/network evidence and extraction viability. A wave release adds its composed journey, independent source, exported artifact, budgets, license/privacy/content review and truthful pending physical gates. M0 alone cannot establish project-wide completion.
+
+## 11. Scope boundaries
+
+This is an original playable engine laboratory and reusable automation system. It is not an engine fork, copied game, compulsory cloud service, commercial backend, or promise of every API on every host. Native/web/mobile/XR examples qualify tested combinations. Retro style is preferred; modern rendering is used where it communicates a mechanism worth comparing.

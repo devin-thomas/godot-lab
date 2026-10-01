@@ -1,5 +1,7 @@
 # Why Godot Lab exists
 
+The comprehensive program now specifies 96 laboratories across 16 wings. Its six tested rooms are a bootstrap. Shared typed operations, live authoring, simulation/presentation records, scripted original assets, connected systems, platform probes and composed journeys turn this into a reusable systems laboratory rather than a six-demo launcher. Specifications and proof remain separate.
+
 An engine exposes more useful mechanisms than a typical game ever needs. Knowing those mechanisms expands the kinds of games and tools a developer can imagine. Documentation explains the API; a small playable experiment reveals the consequences of using it.
 
 Godot Lab takes the living-documentation pattern of [Apple Native Capability Lab](https://github.com/devin-thomas/apple-native-lab) into a different domain. It combines written intent, a bounded implementation, and evidence that a user can inspect. The examples form a coherent playable place rather than a disconnected directory of code fragments.

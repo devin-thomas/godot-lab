@@ -29,6 +29,13 @@ def main() -> None:
                 if not (checkout / member.filename).resolve().is_relative_to(checkout):
                     raise RuntimeError("Source archive contains an escaping path")
             source.extractall(checkout)
+        planning = subprocess.run([sys.executable, "scripts/plan.py", "--check", "--self-test"],
+                                  cwd=checkout, text=True, capture_output=True, timeout=60)
+        if planning.returncode:
+            raise RuntimeError(planning.stdout + planning.stderr)
+        planning_report = json.loads(planning.stdout.strip())
+        if planning_report.get("result") != "passed":
+            raise RuntimeError("Public archive planning validation did not produce a passing report")
         result = subprocess.run([sys.executable, "scripts/check.py", "--godot", godot],
                                 cwd=checkout, text=True, capture_output=True, timeout=180)
         if result.returncode or "PASS Godot Lab automated acceptance" not in result.stdout:
@@ -36,7 +43,7 @@ def main() -> None:
         evidence = json.loads((checkout / "artifacts/headless.json").read_text(encoding="utf-8"))
         report = {"passed": True, "public_commit": revision, "sibling_dependencies": [],
                   "checks": len(evidence["checks"]), "engine": evidence["engine"],
-                  "fresh_process_restart": True}
+                  "fresh_process_restart": True, "planning": planning_report}
         output = ROOT / "artifacts" / "public-source.json"
         output.parent.mkdir(exist_ok=True)
         output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

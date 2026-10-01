@@ -2,6 +2,8 @@
 
 Read SPEC.md, docs/BUILD_STATUS.md, docs/EXTENSION_CONTRACT.md, and the ticket for the work before editing. Inspect Git state and preserve unrelated work. Use the existing main branch unless an isolated branch is requested or required for review. Commit explicit project paths; never stage generated output or credentials.
 
+The expanded program has 96 contracts in planning/catalog.json; six have bounded bootstrap evidence and expansion remains specified. Read docs/ROADMAP.md, docs/DATA_CONTRACTS.md and docs/CAPABILITY_PROFILES.md. Preserve IDs 001..036 and historical evidence. Lab A tickets implement/deepen; B tickets qualify. Documentation cannot promote runtime status. After catalog edits run `python scripts/plan.py --write`, then `python scripts/plan.py --check --self-test` and inspect generated changes. Keep optional native/provider/device targets outside default startup.
+
 ## Product rules
 
 - The deliverable is a playable executable with ordinary input. Never replace interaction with a cutscene or scenario-only implementation.

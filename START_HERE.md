@@ -1,5 +1,7 @@
 # Start here
 
+For the expanded program, read [SPEC](SPEC.md), [the 96-lab catalog](experiments/INDEX.md), [MILESTONES](docs/MILESTONES.md), [ROADMAP](docs/ROADMAP.md), [profiles](docs/CAPABILITY_PROFILES.md), and [journeys](docs/JOURNEYS.md). The six-room executable is M0. Begin future implementation with shared-system tickets. Validate consistency with `python scripts/plan.py --check --self-test`.
+
 ## Play
 
 Use the run and export commands in [BUILD_STATUS](docs/BUILD_STATUS.md); that page names the actual engine and files tested for the current build. Begin in the hub, walk to a labeled station, and interact. The station explains what to try, what the engine is doing, and how to reset or return. You can visit the six first-release labs in any order.
